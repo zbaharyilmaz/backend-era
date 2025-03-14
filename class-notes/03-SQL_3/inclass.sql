@@ -1,6 +1,4 @@
 ---------------------------------- JOINS ----------------------------------
-SELECT * 
-FROM Artist;
 
 SELECT *
-FROM Album;
+FROM Invoice;
