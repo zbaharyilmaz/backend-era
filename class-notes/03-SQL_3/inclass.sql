@@ -1,5 +1,3 @@
--- Active: 1741976409637@@127.0.0.1@3306
----------------------------------- JOINS ----------------------------------
 
 -- * INNER JOIN -- Yalnızca kesişen kayıtları getirir.
 -- * (Alternatif Yazım: JOIN) Default JOIN yöntemi INNER JOIN'dir. (Piyasa kullanımı: INNER JOIN)
