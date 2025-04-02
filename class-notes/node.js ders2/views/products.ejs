@@ -10,7 +10,12 @@
     <%=  list[0].name %>
     <ul>
         <% list.forEach(element => { %>
-            <li><%= element.name %> - <%= element.price %></li>
+            <% if (element.price>30000 && element.isActive==true) { %>
+                <a href="/products/<%= element.id %>">
+                    <li><%= element.name %> - <%= element.price %></li>
+                </a>
+     
+            <% } %>
         <% }) %>
     
     </ul>

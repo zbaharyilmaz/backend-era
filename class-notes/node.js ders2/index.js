@@ -4,16 +4,17 @@ const express= require("express")  //Bu satır, Express.js kütüphanesini proje
 const app= express()  //Bu satır, Express uygulaması oluşturur. Artık bu app objesi, web sunucusu oluşturmak ve çeşitli işlemler yapmak için kullanılacak.
 
 app.set("view engine", "ejs")
-
-const productsdata=[
-    {id:1, name:"itgon", price:39990},
-    {id:2, name:"itgon 5", price:39990},
-    {id:3, name:"itgon 9", price:39990}
+app.use(express.static("public"))
+const data=[
+    {id:1, name:"itgon", price:39990, isActive:true, imageUrl: "1.webp"},
+    {id:2, name:"itgon 5", price:39990, isActive:false, imageUrl: "2.webp"},
+    {id:3, name:"itgon 9", price:39990, isActive:true, imageUrl: "3.webp"}
 ]
 //routes
 app.use("/products/:id", function(req, res){
+    const product= data.find(u=>u.id==req.params.id)
     // res.send("product details" + req.params.id)
-    res.render("product-details")
+    res.render("product-details", product)
 })
 
 app.use("/products", function(req,res){    //EN ÖZELİ EN YUKARI, EN GENELİ AŞAĞI AL. İLK EŞLEŞMEDE SEÇİM YAPIYOR ÇÜNKÜ.
