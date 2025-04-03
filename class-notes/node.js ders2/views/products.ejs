@@ -12,7 +12,7 @@
         <% list.forEach(element => { %>
             <% if (element.price>30000 && element.isActive==true) { %>
                 <a href="/products/<%= element.id %>">
-                    <li><%= element.name %> - <%= element.price %></li>
+                    <li><%= element.name %> - <%= element.price %></li>   
                 </a>
      
             <% } %>
@@ -21,3 +21,6 @@
     </ul>
 </body>
 </html>
+
+
+//EJS şablon motoru, içinde yazdığınız JavaScript kodlarının HTML çıktısına dönüştürülmesi gerektiği yerleri bilmek için bu işaretleri kullanır. <% başlangıçtır, %> ise kod bloğunun sonudur. <%= ... %> çıktıyı HTML'e aktarır. Bu iki işaret arasındaki JavaScript kodu, işlem yapar ancak HTML'e yazılmaz.

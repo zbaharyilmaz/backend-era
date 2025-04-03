@@ -4,6 +4,7 @@ const express= require("express")  //Bu satır, Express.js kütüphanesini proje
 const app= express()  //Bu satır, Express uygulaması oluşturur. Artık bu app objesi, web sunucusu oluşturmak ve çeşitli işlemler yapmak için kullanılacak.
 
 app.set("view engine", "ejs")
+app.use(express.static("node_modules"))
 app.use(express.static("public"))
 const data=[
     {id:1, name:"itgon", price:39990, isActive:true, imageUrl: "1.webp"},
@@ -19,7 +20,7 @@ app.use("/products/:id", function(req, res){
 
 app.use("/products", function(req,res){    //EN ÖZELİ EN YUKARI, EN GENELİ AŞAĞI AL. İLK EŞLEŞMEDE SEÇİM YAPIYOR ÇÜNKÜ.
     res.render("products",{
-        list:productsdata
+        list:data
     })
 }) 
 

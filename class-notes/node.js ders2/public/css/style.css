@@ -1,3 +1,15 @@
-body{
-    background-color:red;
+body {
+  background-color: red;
+}
+
+.text-hover-warning a {
+  color: black;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.text-hover-warning a:hover,
+.text-hover-warning a:focus {
+  color: #ffc107;
+  text-decoration: underline;
 }
