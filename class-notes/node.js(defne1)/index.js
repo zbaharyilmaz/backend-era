@@ -10,10 +10,26 @@ app.listen(port, () => { //Sunucuyu belirtilen portta dinlemeye başlıyoruz. Su
     console.log(`Server is running on port ${port}`);
   });
 
-// const testFunct= require("./module/module")         //! TEK BİR FONKSİYON İÇİN KULLANILDI
+//! TEK BİR FONKSİYON İÇİN KULLANILDI
+// const testFunct= require("./module/module")         
 // testFunct()
 
-const {testing, imrenbirth, baharbirth}= require("./module/module")   //! ÇOKLU FONKSİYON İÇİN KULLANILDI
-imrenbirth()
-baharbirth()
-testing()
+//! ÇOKLU FONKSİYON İÇİN KULLANILDI
+// const {testing, imrenbirth, baharbirth, imren}= require("./module/module")   
+// imrenbirth()
+// baharbirth()
+// testing()
+// console.log(imren);
+
+const {testFunct, birthday1, birthday2, imren, numbers:[oddNumber, evenNumber]}= require("./module/module")  
+
+testFunct()
+birthday1()     
+birthday2()
+console.log(imren);
+oddNumber()
+evenNumber()
+
+
+
+

@@ -1,13 +1,9 @@
 # Backend-Era
 
-
-
 npm init -y
 node index.js  
 sudo npm install -g nodemon
 npm i -D nodemon
-
-
 
 npm init -y
 sudo npm install -g nodemon
