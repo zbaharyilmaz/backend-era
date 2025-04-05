@@ -170,7 +170,7 @@ class Payment{
 const pay = new Payment();
 pay.proccessPayment(200)
 
-/*------------------------------------------------------- */
+/*------------------------------------------------------- *
 //? INHERITANCE
 // Allows a child class to inherit properties and methods from a parent class.
 // SUPER: Parent Class - THIS: Child Class
@@ -236,7 +236,156 @@ console.log(myTesla.fuelType);
 myTesla.honk();
 myTesla.stopEngine();
 
+console.clear();
+
+/*------------------------------------------------------- *
+//? POLYMORPHISIM:
+//  A child class to have different behaviors for the same method as the parent class.
+// - Method Overriding: Child class redefines a method from the parent class.
+// - Method Overloading: JavaScript does not support it natively, but TypeScript does.
+
+// Parent Class
+class Animal {
+    constructor(name) {
+        this.name = name
+    }
+
+    makeSound() {
+        console.log('Some generic animal sound..');
+    }
+};
+
+// Child Class: Dog (inherits from Animal)
+class Dog extends Animal {
+    makeSound() {
+        console.log(`${this.name} barks: Woof!`);
+    }
+};
+
+// Child Class: Cat (inherits from Animal)
+class Cat extends Animal {
+    makeSound() {
+        console.log(`${this.name} meows: Meows!`);
+    }
+};
 
 
+// makeSound(word){ // Overloading exp
+//     console.log(`${this.name} says: ${word}`);
+// }
+
+const genereicAnimal = new Animal('Generic Animal');
+const myDog = new Dog('Magetron');
+const myCat = new Cat('Supa');
+
+genereicAnimal.makeSound()
+myDog.makeSound()
+myCat.makeSound()
+
+/*------------------------------------------------------- *
+//? Access Modifiers:
+// - PUBLIC: (Parent: Yes, Child: Yes, Instance: Yes)
+// - PROTECTED: (Parent: Yes, Child: Yes, Instance: No) (JS does not support.)
+// - PRIVATE: (Parent: Yes, Child: No, Instance: No)
+
+class Vehicle {
+
+    vehicleIsActive = false // Public property
+
+    _protectedProperty = 'protected Property' // Proctected Property
+    _protectedMethod() { return this } // Proctected Method
+
+    #privatePropery = 'private value' // Private Property
+    #privateMethod() { return this } // Private Property
+
+    constructor(vehicleType) {
+        this.vehicleType = vehicleType
+    }
+
+    getDetails() {
+        console.log('vehicleGetDetails worked');
+        return this.vehicleType
+    }
+};
+
+class Car extends Vehicle {
+    isRunning = false
+
+    constructor(brand, model, year, vehicleType = 'Car' ) {
+        super(vehicleType)
+        this.brand = brand
+        this.model = model
+        this.year = year
+    }
+
+    startEngine() {
+        this.isRunning = true
+        return console.log(`${this.brand} ${this.model}'s engine started!`);
+    }
+
+    getDetails() {
+        console.log('Car.getDetail worked');
+        return super.getDetails()
+    }
+}
+
+const Ford = new Car('Ford', 'Mustang', 1967)
+console.log(Ford.vehicleIsActive);
+console.log(Ford.protectedProperty); // js does not support
+console.log(Ford.privatePropery);
+Ford.getDetails()
+
 /*------------------------------------------------------- */
-/*------------------------------------------------------- */
+//? GETTER & SETTER METHODS:
+//? "STATIC" KEYWORD: Class'dan direct access. (Instance does not access)
+
+
+class Car {
+    isRunning = false
+    #price = 5000
+
+    constructor(brand, model, year,) {
+        this.brand = brand
+        this.model = model
+        this.year = year
+    }
+
+    startEngine() {
+        this.isRunning = true
+        return console.log(`${this.brand} ${this.model}'s engine started!`);
+    }
+
+    get getPrice() {
+        console.log('Fiyat goruntulendi..');
+        return this.#price
+    }
+
+    set setPrice(newPrice) {
+        console.log('Fiyat guncellendi..');
+        this.#price = newPrice
+    }
+
+    // Static method & attribute
+    // Statik property veya methodlara intance ile erişilmez.
+    static staticProperty = 'this is static attribute'
+
+    // Static methodlarda this ifadesi sadece statikleri çağırır.
+    static staticMethod() {
+        console.log('this is static method');
+        return this
+    }
+
+}
+
+const Ford = new Car('Ford', 'Mustang', 1967);
+console.log(Ford.price);
+/// getter ve setter methodlar bir property gibi kullanılılır:
+console.log(Ford.getPrice);
+// Ford.setPrice(5000) // Setter method normal method gibi çağrılmaz.
+Ford.setPrice = 6000
+console.log(Ford.getPrice);
+
+// How to access static attributes & methods // Object.entries()
+console.log(Car.isRunning);
+console.log(Car.staticProperty);
+console.log(Car.staticMethod());

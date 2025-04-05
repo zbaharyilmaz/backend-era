@@ -1,4 +1,4 @@
--- Active: 1741976409637@@127.0.0.1@3306
+-- Active: 1741985276176@@127.0.0.1@5432@test
 ---------------------------------- JOINS ----------------------------------
 
 -- * INNER JOIN -- Yalnızca kesişen kayıtları getirir.
@@ -109,6 +109,6 @@ WHERE "GenreId" = 26;
 -- **Genre tablosundaki tüm verileri sil**
 DELETE FROM genre;
 
-DELETE FROM "Invoice"
-WHERE "InvoiceId" = 1;
+DELETE FROM genre
+WHERE "genreid" = 29;
 
