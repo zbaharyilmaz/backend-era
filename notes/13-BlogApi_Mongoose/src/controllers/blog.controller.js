@@ -1,7 +1,4 @@
 "use strict";
-/* -------------------------------------------------------
-    EXPRESSJS - BLOG Project with Mongoose
-------------------------------------------------------- */
 
 // Call Models:
 const { BlogCategory, BlogPost } = require('../models/blog.model');
