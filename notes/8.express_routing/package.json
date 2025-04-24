@@ -1,7 +1,7 @@
 {
-  "name": "8.express_routing",
+  "name": "08-express_routing",
   "version": "1.0.0",
-  "description": "",
+  "description": "Initial commands; * npm init -y * npm i -D nodemon * npm i express dotenv * echo PORT=8000 > .env * add .gitigore file",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +13,7 @@
     "nodemon": "^3.1.10"
   },
   "dependencies": {
-    "dotenv": "^16.5.0",
-    "express": "^5.1.0"
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
   }
 }

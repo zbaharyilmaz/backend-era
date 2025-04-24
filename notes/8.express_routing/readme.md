@@ -8,3 +8,5 @@
 * add .gitigore file
 
 /* Alt shift A */
+
+Coommand+F (terminalde arama)

@@ -22,8 +22,29 @@ const PORT = process.env?.PORT || 8000;
 // .put((req, res)=>res.send({method:"PUT"}))
 // .delete((req, res)=>res.send({method:"DELETE"}))
 
-app.get("/", (req, res) => res.send("in 'root' path"));
-app.get("/path", (req, res) => res.send("in path"));
-app.get("/abc(x?)123", (req, res) => res.send("in abc123"));
+// app.get("/", (req, res) => res.send("in 'root' path"));
+// app.get("/path", (req, res) => res.send("in path"));
+// //express-urls supported JOKERCHAR
+// app.get("/abc(x?)123", (req, res) => res.send("in abc(x?)123"));
+// app.get("/abc(x+)123", (req, res) => res.send("in abc(x+)123"));
+// app.get("/abc*123", (req, res) => res.send("in abcbahar123"));
+// app.get("/path", (req, res) => res.send("in path"));
+// //express-urls supported REGEXP
+// // app.get(/xyz/, (req,res)=>res.send("in /xyz/"));
+// app.get(/^\/xyz/,(req,res)=>res.send("starts with /xyz/")); //starts with xyz
+// app.get(/xyz$/, (req,res)=>res.send("ends with /xyz/")); //ends with xyz
+
+//URL PARAMETERS
+app.get("/", (req,res)=>{
+    console.log(req);
+    res.send({
+        url:{
+            
+        }
+    })
+})
+
+
 
 app.listen(PORT, () => console.log("Running at : http://127.0.0.1:" + PORT));
+
