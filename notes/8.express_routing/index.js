@@ -1,0 +1,29 @@
+const express = require("express");
+const app = express();
+require("dotenv").config();
+const PORT = process.env?.PORT || 8000;
+
+// http istekleri:
+// app.METHOD(PATH, HANDLER)
+
+//? app.get("/", (req, res)=> res.end("Hello get"))
+//* app.post("/", (req, res)=>res.end("Hello post"))
+//? app.put("/", (req, res)=> res.end("Hello put"))
+//PUT genelde var olan veriyi tamamen güncellemek için kullanılır.
+//* app.patch("/", (req, res)=> res.end("Hello patch"))
+//PATCH genelde verinin bir kısmını güncellemek için tercih edilir.
+
+//&  app.all("/", (req, res)=>res.end("Hello all"))
+// app.all() metodu, belirtilen URL'ye gelen tüm HTTP isteklerini yakalamak için kullanılır.
+
+// app.route("/")
+// .get((req,res)=>res.send({method: "GET"}))
+// .post((req, res)=>res.send({method: "POST"}))
+// .put((req, res)=>res.send({method:"PUT"}))
+// .delete((req, res)=>res.send({method:"DELETE"}))
+
+app.get("/", (req, res) => res.send("in 'root' path"));
+app.get("/path", (req, res) => res.send("in path"));
+app.get("/abc(x?)123", (req, res) => res.send("in abc123"));
+
+app.listen(PORT, () => console.log("Running at : http://127.0.0.1:" + PORT));
