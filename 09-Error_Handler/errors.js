@@ -91,7 +91,7 @@ app.get("/async", async (req, res, next) => {
 
 // const errorHandler = (err, req, res, next) => {
 //     console.log(err, "Error Handler is working");
-//     res.send({
+//     res.status(500).send({
 //       error: true,
 //       message: err.message,
 //       cause: err.cause,
