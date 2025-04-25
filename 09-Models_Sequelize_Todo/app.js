@@ -65,12 +65,12 @@ const Todo = sequelize.define("todos", {
 //& sync 1  defa çalıştırıldıktan sonra yoruma alınması gerekmektedir.
 // sequelize.sync()  // create table(tablo yoksa oluşturur)
 //! sequelize.sync({force: true}) // mevcutu sil, yeniden oluştur. tabloyu tamamen siliyor. Datayı siliyor.
-sequelize.sync({ alter: true }); // önce backup & drop & create(data kaybı yaşamayız) //! GÜVENLİ YOL.
+// sequelize.sync({ alter: true }); // önce backup & drop & create(data kaybı yaşamayız) //! GÜVENLİ YOL.
 
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
 //* CONNECT TO DB
-
+// sync kapayınca DB connected gözüküyor.
 sequelize
   .authenticate()
   .then(() => console.log("DB connected"))
