@@ -20,12 +20,12 @@ app.all("/", (req, res) => {
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 //&     MODELS      MODELS    MODELS     MODELS      MODELS      MODELS      MODELS
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-//Data yapısı bu modele göre olacak.
+//Data yapısı bu modele göre olacak. Bir tablo ve modeli.
 
 const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = new Sequelize("sqlite:+ process.env.SQLITE"); //* kullacağım veritabanı: kullanacağım dosya yolu
+const sequelize = new Sequelize("sqlite:"+ process.env.SQLITE); //* kullacağım veritabanı: kullanacağım dosya yolu
 
-const Todo = sequelize.define("todo", {
+const Todo = sequelize.define("todos", {
   //? 🔥 🔥 🔥 🔥 ilk sutun olarak ID tanımlaması yapmanıza gerek yok. sequelize otomatik tanımlar ve yönetir. Createdat ve updatedat de id gibi sequelize otomatik tanımlar ve yönetir.
   /* id: {
     type: DataTypes.INTEGER,
@@ -54,7 +54,17 @@ const Todo = sequelize.define("todo", {
     allowNull: false,
     default: false,
   },
+  createdAt: false,
+  updatedAt: false,
 });
+
+// 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+//* SYNCRONIZATION
+
+// sequelize.sync()  // create table(tablo yoksa oluşturur)
+//! sequelize.sync({force: true}) // mevcutu sil, yeniden oluştur. tabloyu tamamen siliyor. Datayı siliyor.
+sequelize.sync({alter: true}) // önce backup & drop & create(data kaybı yaşamayız) //! GÜVENLİ YOL.
 
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
