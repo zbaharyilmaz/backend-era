@@ -23,7 +23,7 @@ app.all("/", (req, res) => {
 //Data yapısı bu modele göre olacak. Bir tablo ve modeli.
 
 const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = new Sequelize("sqlite:"+ process.env.SQLITE); //* kullacağım veritabanı: kullanacağım dosya yolu
+const sequelize = new Sequelize("sqlite:" + process.env.SQLITE); //* kullacağım veritabanı: kullanacağım dosya yolu
 
 const Todo = sequelize.define("todos", {
   //? 🔥 🔥 🔥 🔥 ilk sutun olarak ID tanımlaması yapmanıza gerek yok. sequelize otomatik tanımlar ve yönetir. Createdat ve updatedat de id gibi sequelize otomatik tanımlar ve yönetir.
@@ -62,12 +62,21 @@ const Todo = sequelize.define("todos", {
 
 //* SYNCRONIZATION
 
+//& sync 1  defa çalıştırıldıktan sonra yoruma alınması gerekmektedir.
 // sequelize.sync()  // create table(tablo yoksa oluşturur)
 //! sequelize.sync({force: true}) // mevcutu sil, yeniden oluştur. tabloyu tamamen siliyor. Datayı siliyor.
-sequelize.sync({alter: true}) // önce backup & drop & create(data kaybı yaşamayız) //! GÜVENLİ YOL.
+sequelize.sync({ alter: true }); // önce backup & drop & create(data kaybı yaşamayız) //! GÜVENLİ YOL.
 
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
+//* CONNECT TO DB
+
+sequelize
+  .authenticate()
+  .then(() => console.log("DB connected"))
+  .catch(() => console.log("DB not connected"));
+
+// 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 const errorHandler = (err, req, res, next) => {
   const errorStatusCode = res.errorStatusCode ?? 500;
   console.log("errorHandler worked.");
