@@ -3,6 +3,7 @@
 * npm init -y           
 * npm i express dotenv express-async-errors
 * npm i sequelize
+*  npm i sqlite3 (hangi veritabanı kullanacaksan)
 
 
 
@@ -27,3 +28,7 @@ Veritabanı tablo olarak dökümünü bize tablo olarak verebilecek yapıdır.
 
 
 Note: Bir node.js projesinde Model ve ORM yapısı için Sequelize kullanıyoruz. Sequelize; SQL Veritabanları için kullanılabilen bir ORM modülüdür. Birçok veritabanını destekler. Komutları MongoDB komutlarına çok benzer.
+
+## Data Types:
+
+https://sequelize.org/docs/v7/models/data-types/
