@@ -26,6 +26,5 @@ const router=require("./routes/index")
 app.use(router); //tanışma merasimi
 
 
-/* Listen */
-app.listen(PORT, ()=>console.log("Running at: http://127.0.0.1:"+ PORT));  // Server başlatılıyor:
+
 

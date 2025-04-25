@@ -22,3 +22,15 @@ Express sunucusu (router.js) bu isteği yakalar
 routes/index.js içindeki router.route("/") yakalar
          ⬇
 Uygun HTTP metoduna göre (GET, POST, PUT) cevap döner
+
+
+
+# Routes & Middlewares
+
+### What? Why?
+
+![](./middlewares1.png)
+
+### Example:
+
+![](./middlewares2.jpeg)
