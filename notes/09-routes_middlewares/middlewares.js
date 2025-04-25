@@ -14,30 +14,53 @@ app.get("/", (req, res, next) => {
 });
 
 app.get("/", (req, res, next) => {
+  req.message1 = "Hello from middleware";
+
   next();
 });
 app.get("/", (req, res, next) => {
+  req.message2 = "Hello from middleware 2";
   next();
 });
 app.get("/", (req, res, next) => {
+  req.message3 = "Hello from middleware 3";
   next();
 });
-app.get("/", (req, res, next) => {
+// app.get("/", (req, res, next) => {
+
+//   res.send({
+//     message1: req.message1,
+//     message2: req.message2,
+//     message3: req.message3,
+//   })
+// });
+
+//& Functional Middlewares
+// bunları middleware dosyasına taşıdık.
+//* Call functional middlewares
+//? app.use(middleware1);
+// app.use(middleware2);
+//&  or app.use(middleware1, middleware2)
+//* app.use(middleware1, middleware2); // Middleware'leri kullanmak için app.use() fonksiyonunu kullanıyoruz.
+//or app.use("/api, [middleware1, middleware2]) runs only "/api" route and GET method
+//or  app.get("/api", middleware1, middleware2, (req, res)=>{
+//   res.send({
+//         messageFn1: req.messageFn1,
+//         messageFn2: req.messageFn2,
+//         message5: "the end",
+//       })
+//      })
+
+
+const {middleware1, middleware2}= require("./middlewares/index.js"); // import middlewares
+app.use(middleware1, middleware2); // Middleware'leri kullanmak için app.use() fonksiyonunu kullanıyoruz.
+app.get("/api", (req, res, next) => {
   res.send({
-    message1: "Welcome",
-    message2: "Welcome 2",
-    message3: "Welcome 3",
-    message4: "Welcome 4",
+    messageFn1: req.messageFn1,
+    messageFn2: req.messageFn2,
+    message5: "the end",
   });
 });
-
-// app.get("/", (req, res)=> {
-
-//     console.log("Main route");
-//     res.send({
-//         message:"Welcome"
-//     })
-// })
 
 /* Listen */
 app.listen(PORT, () => console.log("Running at: http://127.0.0.1:" + PORT)); // Server başlatılıyor:
