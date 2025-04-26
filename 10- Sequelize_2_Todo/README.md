@@ -1,2 +1,0 @@
-# bucket-list
-Backend Project
