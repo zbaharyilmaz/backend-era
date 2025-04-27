@@ -63,13 +63,13 @@ db.collName2.drop() // Drop
 	db.coll.findOne()
 	db.coll.findOne({ firstName: 'Test' })
 	db.coll.distinct('firstName') // get only firstName in array.
-	// Comparison:
+	//! Comparison:
 	db.coll.find({ 'age': { $exists: true } }) // if exists
 	db.coll.find({ 'age': { $eq: 15 } }) // == : equal
 	db.coll.find({ 'age': { $ne: 15 } }) // <> : not equal
 	db.coll.find({ 'age': { $gt: 15 } }) // > : greather than
 	db.coll.find({ 'age': { $gte: 15 } }) // >= : greather than equal
-	db.coll.find({ 'age': { $lt: 15 } }) // <= : less than equal
+	db.coll.find({ 'age': { $lt: 15 } }) // <= : less than
 	db.coll.find({ 'age': { $lte: 15 } }) // <= : less than equal
 	db.coll.find({ 'age': { $in: [10, 11, 12] } }) // in list
 	db.coll.find({ 'age': { $nin: [10, 11, 12] } }) // not in list
