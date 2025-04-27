@@ -4,10 +4,6 @@
 
 https://mongoosejs.com/
 
-### What? Why?
-
-![](./mongoose.png)
-
 ## BLOG API
 
 ### ERD(Entity Relation Diagram)
@@ -35,3 +31,7 @@ DrawSql.com 'dan
         routes/
             blogRouter.js
 ```
+
+## Not
+
+nodemon için rs komutu(restart)
