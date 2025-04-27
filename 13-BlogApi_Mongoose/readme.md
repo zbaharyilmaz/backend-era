@@ -10,7 +10,9 @@ https://mongoosejs.com/
 
 ## BLOG API
 
-### ERD:
+### ERD(Entity Relation Diagram)
+
+DrawSql.com 'dan 
 
 ![ERD](./erdBlogAPI.png)
 

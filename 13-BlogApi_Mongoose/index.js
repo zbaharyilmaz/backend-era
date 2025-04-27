@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 
 require("dotenv").config();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env?.PORT || 8000;
 
 app.use(express.json())
 require("express-async-errors")
@@ -16,4 +16,5 @@ app.all("/", (req, res)=>{
 app.use(require("./src/routes/blogController.router"))
 
 app.use(require("./src/middlewares/errorHandlers"))
+
 app.listen(PORT, ()=>console.log("Running at http://127.0.0.1:" + PORT))
