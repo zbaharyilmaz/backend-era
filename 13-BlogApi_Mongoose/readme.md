@@ -32,6 +32,11 @@ DrawSql.com 'dan
             blogRouter.js
 ```
 
-## Not
+## Not 
 
 nodemon için rs komutu(restart)
+
+
+## MVC
+Table= Collections
+Taslak= Schema
