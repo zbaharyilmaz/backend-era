@@ -10,24 +10,14 @@ module.exports = {
       result,
     });
   },
-//   create: async (req, res) => {
-//     const result = await BlogCategory;
+  create: async (req, res) => {
+    const result = await BlogCategory.create(req.body);
 
-//     res.status(200).send({
-//       error: false, 
-//       result,
-//     });
-//   },
-//   read: async (req, res) => {
-//     const result = await BlogCategory;
-
-//     res.status(200).send({
-//       error: false, 
-//       result,
-//     });
-//   },
-//   update: async (req, res) => {
-//     const result = await BlogCategory;
+    res.status(201).send({
+      error: false, 
+      result,
+    });
+  },
 
 //     res.status(200).send({
 //       error: false, 
@@ -42,4 +32,4 @@ module.exports = {
 //       result,
 //     });
 //   },
-};
+}

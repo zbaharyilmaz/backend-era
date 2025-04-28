@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-const PORT = process.env?.PORT || 8000;
+const PORT = process.env.PORT || 8000;
 //* 🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳 REQUIRED MIDDLEWARES 🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳
 //*Parse data
-app.use(express.json);
+app.use(express.json());
 //* Catch Async Error
 require("express-async-errors");
 //* DB Connection
