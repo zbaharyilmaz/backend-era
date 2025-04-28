@@ -1,13 +1,35 @@
-"use strict"
-//* Sample
-//1. Create Schema(oop yapısı)
-// new mongoose.Schema({fields}, {options})
-const nameSchema= new mongoose.Schema({
-  //_id: auto created and increment
-  fieldName: Number,  
-  fieldName2: Boolean,
-     //!MongoDb type ları VScode ile aynı olduğu için mongoose.Schema.Types.String yazmana gerek yok. Sequelize da datatypes kullanıyorduk.
-},{
-  collections: "collectionName",
-  timestamps: true, //createdAt ve updatedAt oluşturmak için. Sequelize da otomatik oluşturuluyordu.
-})
+"use strict";
+const mongoose = require("mongoose");
+//*blogCategories
+const blogCategorySchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      trim: true,
+      required: true,
+      unique: true,
+    },
+  },
+  {
+    collection: "blogCategories",
+  }
+);
+module.exports = mongoose.model("BlogCategory", blogCategorySchema);
+//* blogPosts
+const blogPost = new mongoose.Schema(
+  {
+    categoryId: {
+      //! default relation: ManytoOne
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BlogCategory", //!ilişkisi old model ismini referans ver.
+      required: true,
+      unique: true, //!convert relation to OnetoOne.
+    },
+    title: {},
+    content: {},
+  },
+  {
+    collection: "blogPosts",
+    timestamps: true,
+  }
+);
