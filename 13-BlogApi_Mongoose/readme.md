@@ -37,6 +37,9 @@ DrawSql.com 'dan
 nodemon için rs komutu(restart)
 
 
-## MVC
-Table= Collections
-Taslak= Schema
+## MVC(Backendi yazdığımız standart)
+* Table= Collections
+* Taslak= Schema
+
+* Kod yazarken sıramız: Model > Controller > Route
+

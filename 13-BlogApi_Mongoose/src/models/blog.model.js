@@ -14,9 +14,9 @@ const blogCategorySchema = new mongoose.Schema(
     collection: "blogCategories",
   }
 );
-module.exports = mongoose.model("BlogCategory", blogCategorySchema);
+const BlogCategory = mongoose.model("BlogCategory", blogCategorySchema);
 //* blogPosts
-const blogPost = new mongoose.Schema(
+const blogPostSchema = new mongoose.Schema(
   {
     categoryId: {
       //! default relation: ManytoOne
@@ -33,3 +33,5 @@ const blogPost = new mongoose.Schema(
     timestamps: true,
   }
 );
+const BlogPost= mongoose.model("BlogPost",blogPostSchema)
+module.exports= {BlogCategory, BlogPost}
