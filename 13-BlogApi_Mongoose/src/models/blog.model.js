@@ -1,7 +1,7 @@
 "use strict";
 const mongoose = require("mongoose");
 //*blogCategories
-const blogCategorySchema = new mongoose.Schema(
+const blogCategorySchema = new mongoose.Schema(  //iki parametre var. options ve collection
   {
     name: {
       type: String,
