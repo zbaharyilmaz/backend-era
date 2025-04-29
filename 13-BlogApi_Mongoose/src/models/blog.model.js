@@ -25,8 +25,16 @@ const blogPostSchema = new mongoose.Schema(
       required: true,
       unique: true, //!convert relation to OnetoOne.
     },
-    title: {},
-    content: {},
+    title: {
+      type: String,
+      trim:true,
+      required:true,
+    },
+    content: {
+      type:String,
+      trim:true,
+      required:true,
+    },
   },
   {
     collection: "blogPosts",
