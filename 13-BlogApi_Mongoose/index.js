@@ -15,10 +15,10 @@ require("./src/dbConnection")()
 //* Main Routes
 app.all("/", (req,res)=>res.send("Welcome to Blog API"))
 //* Blog Routes
-app.use(require("./src/routes/blog.router"))
+app.use("/blogs",require("./src/routes/blog.router"))
 // 🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳
 //* User Routes
-app.use(require("./src/routes/user.router"))
+app.use("/users", require("./src/routes/user.router"))
 //🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳
 //* Error Handler
 app.use(require("./src/middlewares/errorHandlers"))

@@ -67,10 +67,10 @@ if(result?.deletedCount){
 };
 
 /* ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ */
-//Todo BlogCategory Controller
+//Todo BlogPost Controller
 module.exports.blogPost = {
   list: async (req, res) => {
-    const result = await BlogPost.find({},{title:1, content:1, categoryId:true}).populate("categoryId");  //!POPULATE() categoryId yi okumak için.
+    const result = await BlogPost.find({},{title:1, content:1, categoryId:true, userId:true}).populate("categoryId");  //!POPULATE() categoryId yi okumak için.
 
     res.status(200).send({
       error: false, //success:true da olur.
