@@ -80,5 +80,19 @@ module.exports = {
             throw new Error("Data is not found or already deleted");
         }
     },
+    login: async(req,res)=>{
+        //const email= req.body.email;
+        const {email, password}= req.body;  //destructure
+        if(email && password){
+            res.status(200).send({
+                error:false,
+                message:"OK",
+            })
+        }else{
+            res.errorStatusCode= 401;
+            throw new Error("Email and password are required")
+        }
+
+    }
 
 }

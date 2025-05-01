@@ -44,3 +44,5 @@ nodemon için rs komutu(restart)
 * Kod yazarken sıramız: Model > Controller > Route
 
 * Document oluşturursak database gözükecek, Mongodb de.
+* Local storage, session, cookies
+* npm i cookkie-session

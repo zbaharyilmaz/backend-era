@@ -8,4 +8,7 @@ router.route("/:id")
 .get(user.read)
 .put(user.update)
 .delete(user.delete);
+
+//router.route("/login").post(user.login) yerine 1 metod old için:
+router.post("/login", user.login)
 module.exports= router;
