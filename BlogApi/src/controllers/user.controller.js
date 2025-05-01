@@ -84,12 +84,25 @@ module.exports = {
         //const email= req.body.email;
         const {email, password}= req.body;  //destructure
         if(email && password){
-            res.status(200).send({
+            const user= await User.findOne({email});
+            if(user){
+                if(user.password== password){
+
+                }else{
+                    res.custonErrorCode= 401;
+                    throw new Error("Wrong email or password ")
+                }
+                     res.status(200).send({
                 error:false,
                 message:"OK",
-            })
+            }) 
+            }else{
+                res.custonErrorCode= 401;
+                throw new Error("Wrong email or password ")
+            }
+      
         }else{
-            res.errorStatusCode= 401;
+            res.custonErrorCode= 401;
             throw new Error("Email and password are required")
         }
 

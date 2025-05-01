@@ -2,7 +2,7 @@
 //* 🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳 ERROR HANDLER 🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳
 module.exports = (err, req, res, next) => {
     console.log("Errorhandler Worked");
-    const customErrorCode = res?.customErrorCode || 500;
+    const customErrorCode = res?.customErrorCode || 401;
     res.status(customErrorCode).send({
       error: true,
       message: err.message,
