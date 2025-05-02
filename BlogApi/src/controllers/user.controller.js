@@ -4,6 +4,7 @@
 ------------------------------------------------------- */
 
 const User = require('../models/user.model');
+const passwordEncrypte= require("../utils/passwordEncrypte");
 
 module.exports = {
 
@@ -86,7 +87,7 @@ module.exports = {
         if(email && password){
             const user= await User.findOne({email});
             if(user){
-                if(user.password== password){
+                if(user.password== passwordEncrypte(password)){
 
                 }else{
                     res.custonErrorCode= 401;
