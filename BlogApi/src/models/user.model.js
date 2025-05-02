@@ -1,22 +1,12 @@
 "use strict";
 const mongoose = require("mongoose");
-//Password Encryption:
-const crypto= require("node:crypto")
-const passwordEncrypte= (password)=>{
-  const salt= "kskshjjdhdbbbsbbsbbsbbs";
-  const iteration= 100000;
-  const keylen=32; //write 32 for 64
-  const digest= "sha512";
-  return crypto.pbkdf2Sync(password,salt, iteration, keylen, digest ).toString("hex")
-
-}
-
+const passwordEncrypte= require("../utils/passwordEncrypte")
 const userSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      required: [true, 'Email field is required'],
-      unique: [true, 'This email address is already in use.'],
+      required: [true, "Email field is required"],
+      unique: [true, "This email address is already in use."],
       trim: true,
       //* How validate works?
       // validate: (email) => { return false }
@@ -29,18 +19,21 @@ const userSchema = new mongoose.Schema(
       //     throw new Error('invalid email address')
       // },
 
-      validate: [(email) => {
-          return (email.includes('@') && email.includes('.'))
-      }, 'Invalid email address']
-  },
+      validate: [
+        (email) => {
+          return email.includes("@") && email.includes(".");
+        },
+        "Invalid email address",
+      ],
+    },
     password: {
       type: String,
-      required: [true, 'Password field is required'],
+      required: [true, "Password field is required"],
       trim: true,
       //set:(password)=>{return password} //database e kaydediyor.
-       set:passwordEncrypte,
+      set: passwordEncrypte,
     },
-    firstName:String,
+    firstName: String,
     lastName: String,
   },
   {
