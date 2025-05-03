@@ -11,4 +11,5 @@ router.route("/:id")
 
 //router.route("/login").post(user.login) yerine 1 metod old için:
 router.post("/login", user.login)
+router.all("/logout", user.logout)
 module.exports= router;

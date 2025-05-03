@@ -81,32 +81,71 @@ module.exports = {
             throw new Error("Data is not found or already deleted");
         }
     },
-    login: async(req,res)=>{
-        //const email= req.body.email;
-        const {email, password}= req.body;  //destructure
-        if(email && password){
-            const user= await User.findOne({email});
-            if(user){
-                if(user.password== passwordEncrypte(password)){
+    login: async (req, res) => {
 
-                }else{
-                    res.custonErrorCode= 401;
-                    throw new Error("Wrong email or password ")
+        // const email = req.body.email;
+        const { email, password } = req.body;
+
+        if (email && password) {
+
+            const user = await User.findOne({ email });
+
+            if (user) {
+
+                if (user.password == passwordEncrypte(password)) {
+
+                    /*  Session */
+                    // req.session = {
+                    //     email: user.email,
+                    //     _id: user._id
+                    // };
+                    req.session._id = user._id;
+                    req.session.email = user.email;
+                    /*  Session */
+
+                    /*  Cookie */
+                    if (req.body?.rememberMe == true) {
+                        req.session.rememberMe = true
+                        req.sessionOptions.maxAge = 1000 * 60 * 60 * 24 * 3
+                    }
+                    /*  Cookie */
+
+                    res.status(200).send({
+                        error: false,
+                        message: 'Login is succesful.',
+                        user
+                    });
+
+                } else {
+                    res.errorStatusCode = 401;
+                    throw new Error('Wrong email or password');
                 }
-                     res.status(200).send({
-                error:false,
-                message:"OK",
-            }) 
-            }else{
-                res.custonErrorCode= 401;
-                throw new Error("Wrong email or password ")
+
+            } else {
+                res.errorStatusCode = 401;
+                throw new Error('Wrong email or password');
             }
-      
-        }else{
-            res.custonErrorCode= 401;
-            throw new Error("Email and password are required")
+
+        } else {
+            res.errorStatusCode = 401;
+            throw new Error('Email and Password are required');
         }
+    },
 
+    logout: async (req, res) => {
+
+        req.session = null;
+
+        res.status(200).send({
+            error: false,
+            message: "Logout is succesful"
+        })
+    },
+    logout: async (req,res)=>{
+        req.session=null;
+        res.status(200).send({
+            error:false,
+            message:"logout"
+        })
     }
-
 }

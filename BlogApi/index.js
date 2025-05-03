@@ -12,8 +12,25 @@ require("express-async-errors");
 // dbConnection(); yerine şöyle yaz:
 require("./src/dbConnection")()
 // 🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳
+// Session Cookie
+const session= require("cookie-session")
+app.use(session({
+    secret: process.env.PASS_SALT,
+    //! maxAge: 1000 * 60 * 60 * 24   //1 gün
+    //*session a süre verirsen, cookie ye döner. 1 day in miliseconds
+}))
+
+//🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳
 //* Main Routes
-app.all("/", (req,res)=>res.send("Welcome to Blog API"))
+app.all("/", (req,res)=>{
+    res.send({
+        message: "Welcome to Blog API",
+        session:req.session,
+ //boolean değer için !!
+
+    })
+    console.log(req.session);
+})
 //* Blog Routes
 app.use("/blogs",require("./src/routes/blog.router"))
 // 🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳
