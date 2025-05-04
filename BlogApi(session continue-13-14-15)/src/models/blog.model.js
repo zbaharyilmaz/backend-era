@@ -43,6 +43,11 @@ const blogPostSchema = new mongoose.Schema(
       trim:true,
       required:true,
     },
+    published:{
+      type: Boolean,
+      default:true,
+      
+    }
   },
   {
     collection: "blogPosts",

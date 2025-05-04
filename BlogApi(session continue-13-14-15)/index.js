@@ -37,7 +37,17 @@ app.use("/blogs",require("./src/routes/blog.router"))
 //* User Routes
 app.use("/users", require("./src/routes/user.router"))
 //🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳
+//Not Found Route
+app.all("*", (req,res)=>
+    res.status(404).send({
+        error:true,
+        message:"The route you are looking is not found"
+    }))
+//🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳
+
 //* Error Handler
 app.use(require("./src/middlewares/errorHandlers"))
 // 🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳
 app.listen(PORT, () => console.log("Running at http://127.0.0.1:" + PORT));
+//! Syncronization:(one run)
+require("./sync")()
