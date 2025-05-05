@@ -23,14 +23,14 @@ const blogPostSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "BlogCategory", //!ilişkisi old model ismini referans ver.
       required: true,
-      unique: true, //!convert relation to OnetoOne.
+      //unique: true, //!convert relation to OnetoOne.
     },
     userId: {
       //! default relation: ManytoOne
       type: mongoose.Schema.Types.ObjectId,
       ref: "User", //!ilişkisi old model ismini referans ver.
       required: true,
-      unique: true, //!convert relation to OnetoOne.
+      //unique: true, //!convert relation to OnetoOne.
     },
 
     title: {
@@ -46,6 +46,7 @@ const blogPostSchema = new mongoose.Schema(
     published:{
       type: Boolean,
       default:true,
+    
       
     }
   },

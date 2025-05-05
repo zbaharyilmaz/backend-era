@@ -70,7 +70,19 @@ if(result?.deletedCount){
 //Todo BlogPost Controller
 module.exports.blogPost = {
   list: async (req, res) => {
-    const result = await BlogPost.find({},{title:1, content:1, categoryId:true, userId:true}).populate("categoryId");  //!POPULATE() categoryId yi okumak için.
+    //* FILTERING
+    //Filter: absolute equality 
+    //Search: partial equality
+    console.log(req.query)
+    // {
+    //   published: '1',
+    //   categoryId: '6819439d6dcb2cacfac67063',
+    //   title: 'test 5',
+    //   sort: 'asc'
+    // } clg ye gelen yanıt.
+
+    //*nested query:   filter: { published: '1', categoryId: '6819439d6dcb2cacfac67063' }
+    const result = await BlogPost.find({}).populate("categoryId");  //!POPULATE() categoryId yi okumak için.
 
     res.status(200).send({
       error: false, //success:true da olur.

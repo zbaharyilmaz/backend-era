@@ -50,4 +50,5 @@ app.use(require("./src/middlewares/errorHandlers"))
 // 🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳
 app.listen(PORT, () => console.log("Running at http://127.0.0.1:" + PORT));
 //! Syncronization:(one run)
-require("./sync")()
+//require("./sync")()
+
