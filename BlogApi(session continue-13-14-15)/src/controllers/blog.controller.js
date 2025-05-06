@@ -82,7 +82,17 @@ module.exports.blogPost = {
     // } clg ye gelen yanıt.
 
     //*nested query:   filter: { published: '1', categoryId: '6819439d6dcb2cacfac67063' }
-    const result = await BlogPost.find({}).populate("categoryId");  //!POPULATE() categoryId yi okumak için.
+
+    const filter= req.query?.filter || {}
+
+    console.log(filter);
+
+   //SEARCHING
+   const search= req.query?.search || {}
+   console.log(search);
+
+
+    const result = await BlogPost.find(filter)                //.populate("categoryId");  //!POPULATE() categoryId yi okumak için.
 
     res.status(200).send({
       error: false, //success:true da olur.
