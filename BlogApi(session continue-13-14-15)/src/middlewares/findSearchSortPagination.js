@@ -1,4 +1,7 @@
 "use strict"
+
+const { countDocuments } = require("../models/user.model");
+
 module.exports= async (req,res, next)=>{
      //* FILTERING
     //Filter: absolute equality
@@ -45,8 +48,32 @@ module.exports= async (req,res, next)=>{
     console.log(page, limit, skip);
 
 
-    res.getModelList= async(Model)=>{
-        return await Model.find({ ...filter, ...search }).sort(sort).skip(skip).limit(limit).populate(["userId", "categoryId"])
+    res.getModelList = async (Model, populate = null) => {
+        return await Model.find({ ...filter, ...search }).sort(sort).skip(skip).limit(limit).populate(populate)
+    };
+    res.getModelListDetails= async(Model)=>{
+        const count= await Model.countDocuments({...filter, ...search})
+        console.log(count);
+        let details= {
+            filter,
+            search,
+            sort,
+            skip, 
+            limit,
+            page,
+            totalRecords: count,
+            pages:{
+                 previous: (page>1 ? page-1 : false),
+                current: page, 
+                next:page+1> Math.ceil(count/limit)? page+1:false,
+                total: Math.ceil(count/limit)
+            }
+               
+         
+        } 
+          if(details.totalRecords<= limit) details.pages=false
+            return details
     }
+    next()
 
 }

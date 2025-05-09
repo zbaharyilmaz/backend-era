@@ -71,10 +71,11 @@ module.exports.blogCategory = {
 //Todo BlogPost Controller
 module.exports.blogPost = {
   list: async (req, res) => {
-  const result= await res.getModelList(BlogPost)
+    const result = await res.getModelList(BlogPost, ["categoryId", "userId"]);
 
     res.status(200).send({
       error: false, //success:true da olur.
+      details: await res.getModelListDetails(BlogPost),
       result,
     });
   },

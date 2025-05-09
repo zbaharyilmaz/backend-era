@@ -19,6 +19,11 @@ app.use(session({
     //! maxAge: 1000 * 60 * 60 * 24   //1 gün
     //*session a süre verirsen, cookie ye döner. 1 day in miliseconds
 }))
+//User Control Midddleware
+app.use(require("./src/middlewares/userControl"))
+//Query Middleware
+app.use(require("./src/middlewares/findSearchSortPagination"))
+
 
 //🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳🌳
 //* Main Routes
