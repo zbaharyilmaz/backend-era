@@ -55,15 +55,16 @@ module.exports.blogCategory = {
     });
   },
 
-   delete: async (req, res) => {
-     const result = await BlogCategory.deleteOne({_id: req.params.id});
+  delete: async (req, res) => {
+    const result = await BlogCategory.deleteOne({ _id: req.params.id });
 
-if(result?.deletedCount){
-  res.sendStatus(204)
-}else{
-  res.errorStatusCode= 404;
-  throw new Error("Data is not found or it is already deleted.")}
-   },
+    if (result?.deletedCount) {
+      res.sendStatus(204);
+    } else {
+      res.errorStatusCode = 404;
+      throw new Error("Data is not found or it is already deleted.");
+    }
+  },
 };
 
 /* ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ */
@@ -71,9 +72,9 @@ if(result?.deletedCount){
 module.exports.blogPost = {
   list: async (req, res) => {
     //* FILTERING
-    //Filter: absolute equality 
+    //Filter: absolute equality
     //Search: partial equality
-    console.log(req.query)
+    console.log(req.query);
     // {
     //   published: '1',
     //   categoryId: '6819439d6dcb2cacfac67063',
@@ -83,16 +84,38 @@ module.exports.blogPost = {
 
     //*nested query:   filter: { published: '1', categoryId: '6819439d6dcb2cacfac67063' }
 
-    const filter= req.query?.filter || {}
-
+    const filter = req.query?.filter || {};
     console.log(filter);
 
-   //SEARCHING
-   const search= req.query?.search || {}
-   console.log(search);
+    //SEARCHING
+    const search = req.query?.search || {};
+    console.log(search.title);
+    //console.log(search["title"]);
+    //{ "<field>": { "$regex": "pattern", "$options": "<options>"
+    //.populate("categoryId");  //!POPULATE() categoryId yi okumak için.
+    //search["title"]= "this is new value"
 
+    // for(let key in search) console.log(search[key]);
+    for (let key in search)
+      search[key] = { $regex: search[key], $options: "i" };
+    console.log(search);
 
-    const result = await BlogPost.find(filter)                //.populate("categoryId");  //!POPULATE() categoryId yi okumak için.
+    //SORTING
+    const sort = req.query?.sort || {};
+    //PAGINATION
+    //LIMIT
+    let limit = parseInt(req.query?.limit);
+    limit = limit > 0 ? limit : parseInt(process.env.PAGE_SIZE) || 20; //.env den gelen veriler string old için parseInt yap. Number() da NaN verebilir 25a ya mesela.
+    console.log(typeof limit); //string
+    //PAGE
+    let page = parseInt(req.query?.page);
+    page = page > 0 ? page : 1;
+    //SKIP
+    let skip = parseInt(req.query?.skip);
+    skip = skip > 0 ? skip : (page-1)*limit
+    console.log(page, limit, skip);
+
+    const result = await BlogPost.find({ ...filter, ...search }).sort(sort).skip(skip).limit(limit)
 
     res.status(200).send({
       error: false, //success:true da olur.
@@ -109,7 +132,11 @@ module.exports.blogPost = {
   },
   read: async (req, res) => {
     // const result = await BlogPost.findOne({ _id: req.params.id });
-    const result = await BlogPost.findById(req.params.id,{title:1, content:1, categoryId:true});
+    const result = await BlogPost.findById(req.params.id, {
+      title: 1,
+      content: 1,
+      categoryId: true,
+    });
     res.status(200).send({
       error: false,
       result,
@@ -129,11 +156,9 @@ module.exports.blogPost = {
 
     // const result = await BlogPost.updateOne({ _id: req.params.id }, req.body);
     // const result = await BlogPost.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true });
-    const result = await BlogPost.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
+    const result = await BlogPost.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
 
     res.status(202).send({
       error: false,
@@ -142,13 +167,14 @@ module.exports.blogPost = {
     });
   },
 
-   delete: async (req, res) => {
-     const result = await BlogPost.deleteOne({_id: req.params.id});
+  delete: async (req, res) => {
+    const result = await BlogPost.deleteOne({ _id: req.params.id });
 
-if(result?.deletedCount){
-  res.sendStatus(204)
-}else{
-  res.errorStatusCode= 404;
-  throw new Error("Data is not found or it is already deleted.")}
-   },
+    if (result?.deletedCount) {
+      res.sendStatus(204);
+    } else {
+      res.errorStatusCode = 404;
+      throw new Error("Data is not found or it is already deleted.");
+    }
+  },
 };
