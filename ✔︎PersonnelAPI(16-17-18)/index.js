@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 8000;
 //&Middlewares
 app.use(express.json());
 require("express-async-errors");
+require("./src/config/dbConnection")
 //*Session-Cookies
 const session = require("cookie-session");
 app.use(
