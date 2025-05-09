@@ -1,4 +1,5 @@
 "use strict";
+const { BlogPost } = require('../models/blog.model');
 /* -------------------------------------------------------
     EXPRESSJS - BLOG Project with Mongoose
 ------------------------------------------------------- */
@@ -10,10 +11,11 @@ module.exports = {
 
     list: async (req, res) => {
 
-        const result = await User.find();
+        const result = await res.getModelList(User)
 
         res.status(200).send({
             error: false,
+            details: await res.getModelListDetails(User),
             result
         });
     },

@@ -5,10 +5,12 @@ const { BlogCategory, BlogPost } = require("../models/blog.model");
 //Todo BlogCategory Controller
 module.exports.blogCategory = {
   list: async (req, res) => {
-    const result = await BlogCategory.find();
+    const result = await res.getModelList(BlogCategory);
+
 
     res.status(200).send({
       error: false, //success:true da olur.
+      details: await res.getModelListDetails(BlogCategory),
       result,
     });
   },
