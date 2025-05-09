@@ -1,8 +1,6 @@
 # BLOG Project with Mongoose
 
-## MONGOOSE
-
-https://mongoosejs.com/
+* Localhost ile veya Cloud ile MongoDB bağlantısı
 
 ## BLOG API
 
