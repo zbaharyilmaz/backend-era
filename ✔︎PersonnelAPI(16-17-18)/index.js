@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 8000;
 //&Middlewares
 app.use(express.json());
 require("express-async-errors");
-require("./src/config/dbConnection")
+require("./src/configs/dbConnection")
 //*Session-Cookies
 const session = require("cookie-session");
 app.use(
@@ -36,3 +36,4 @@ app.use("*", (req, res) => {
 app.use(require(""))
 //Run Server
 app.listen(PORT, ()=>console.log("Running: http://127.0.0.1:"+PORT))
+//?Syncronization
