@@ -24,7 +24,7 @@ app.all("/", (req, res) => {
   });
 });
 app.use("/departments", require("./src/routes/department"));
-app.use("/personnel", require("./src/routes/department"));
+app.use("/personnels", require("./src/routes/personnel"));
 app.use("*", (req, res) => {
   res.status(404).send({
     error: true,
@@ -36,4 +36,4 @@ app.use(require("./src/middlewares/errorHandler"));
 //Run Server
 app.listen(PORT, () => console.log("Running: http://127.0.0.1:" + PORT));
 //?Syncronization
-//require("./src/helpers/sync")
+//require("./src/helpers/sync")()

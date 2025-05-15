@@ -1,6 +1,6 @@
 "use strict";
 const mongoose = require("../configs/dbConnection");
-const passwordEncrypt= require("../helpers/passwordEncrypt")
+const passwordEncrypt = require("../helpers/passwordEncrypt");
 const PersonnelSchema = new mongoose.Schema(
   {
     departmentId: {
@@ -18,7 +18,7 @@ const PersonnelSchema = new mongoose.Schema(
       type: String,
       trim: true,
       required: true,
-      set:(password)=>passwordEncrypt(password)
+      set: (password) => passwordEncrypt(password),
     },
     firstName: {
       type: String,
@@ -35,15 +35,48 @@ const PersonnelSchema = new mongoose.Schema(
       trim: true,
       required: true,
       unique: true,
-      minlength:11,
-      math:[/^\d{11}$/,"Phone numbers is not valid."],
+      minlength: 11,
+      math: [/^\d{11}$/, "Phone numbers is not valid."],
     },
-     email: {
+    email: {
       type: String,
       trim: true,
       required: true,
-      unique:true,
-      validate:[(email)=>email.includes("@") && email.includes("."),"Email is not valid"]
+      unique: true,
+      validate: [
+        (email) => email.includes("@") && email.includes("."),
+        "Email is not valid",
+      ],
+    },
+    title: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    salary: {
+      type: Number,
+      default: 50000,
+    },
+    description: {
+      type: String,
+      trim: true,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    isLead: {
+      type: Boolean,
+      default: false,
+    },
+    startedAt: {
+      type: Date,
+      default: Date.now(),
+      required:true,
     },
   },
   {
@@ -51,3 +84,14 @@ const PersonnelSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+//! Extra fonksiyonlar kullanabilirsin.
+
+// PersonnelSchema.set("toJson",{
+//     transform:(doc,ret)=>{
+//         ret.id=ret._id
+//         delete ret._v
+//         ret.createdAt=ret.createdAt.toLocalDateString("tr-tr")
+
+//     }
+// })
+module.exports=mongoose.model("Personnel", PersonnelSchema)
