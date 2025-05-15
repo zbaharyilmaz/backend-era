@@ -2,12 +2,11 @@
 const Department= require("../models/department")
 module.exports= {
     list:async(req,res)=>{
-        const result= await getModelList(Department)
+        const result= await res.getModelList(Department)
         res.status(200).send(
             error:false,
-
-            details:
-            result
+            details: await res.getModelListDetails(Department),
+            result,
         )
         
     },
@@ -23,4 +22,5 @@ module.exports= {
     delete:async(req,res)=>{
 
     },
-}
+ 
+}   
