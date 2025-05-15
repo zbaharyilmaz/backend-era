@@ -23,8 +23,8 @@ app.all("/", (req, res) => {
     message: "Welcome to Personnel Api",
   });
 });
-app.use("/departments", require(""));
-app.use("/personnel", require(""));
+app.use("/departments", require("./src/routes/department"));
+app.use("/personnel", require("./src/routes/department"));
 app.use("*", (req, res) => {
   res.status(404).send({
     error: true,
