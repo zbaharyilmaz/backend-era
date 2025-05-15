@@ -1,6 +1,6 @@
 "use strict";
 const mongoose = require("../configs/dbConnection");
-const passwordEncrypt= require("../src/")
+const passwordEncrypt= require("../helpers/passwordEncrypt")
 const PersonnelSchema = new mongoose.Schema(
   {
     departmentId: {
@@ -18,19 +18,32 @@ const PersonnelSchema = new mongoose.Schema(
       type: String,
       trim: true,
       required: true,
-      set:(password)=>
+      set:(password)=>passwordEncrypt(password)
     },
-    fistName: {
+    firstName: {
       type: String,
       trim: true,
       required: true,
-      unique: true,
     },
     lastName: {
       type: String,
       trim: true,
       required: true,
+    },
+    phone: {
+      type: String,
+      trim: true,
+      required: true,
       unique: true,
+      minlength:11,
+      math:[/^\d{11}$/,"Phone numbers is not valid."],
+    },
+     email: {
+      type: String,
+      trim: true,
+      required: true,
+      unique:true,
+      validate:[(email)=>email.includes("@") && email.includes("."),"Email is not valid"]
     },
   },
   {
