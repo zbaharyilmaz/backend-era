@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EJS INTRO</title>
+    <title>EJS Intro</title>
 </head>
-
 <body>
-    <h1>Last days of IT Courses</h1>
-    <% console.log("first ejs code");
-    console.log("hello again ejs class") %>
-        <!-- Safe print-->
-        <%= 5+9 %>
-            <!--Direct print -->
-            <%- '<p> Selam </p>' %>
-            <div>
-                <a href="/view">To Do Template</a>
-            </div>
-            <div>
-                <a href="/api/v1/todo">To Do API</a>
-            </div>
-</body>
+    <h1>Hello EJS</h1>
+    <!-- send code to nodejs -->
+    <% 
+    console.log('this is first console with ejs')
+    console.log('hello everybody')
+    %>
 
+    <!-- safe print to html -->
+    <%= 5+9 %>
+    
+    <!-- direct print to html -->
+    <%- '<p> Selam <b> Yunus </b>  </p>' %>
+    
+    <!-- comment with ejs -->
+    <%# 
+    comment
+    second line
+    %>
+
+</body>
 </html>

@@ -13,14 +13,15 @@ const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 8000;
 
-require("express-async-errors");
+require('express-async-errors');
 
 // Accept json data:
 app.use(express.json());
-
 /* ------------------------------------------------------- */
-// TEMPLATES:
-// npm i ejs
+// Templates:
+// https://ejs.co/
+// https://expressjs.com/en/guide/using-template-engines.html
+// $ npm i ejs
 app.set('view engine', 'ejs'); // Default folder is: ./views
 app.set('views', './public'); // new ejs folder name 
 
@@ -46,6 +47,6 @@ app.use('/view', require('./routes/todo.router.view'));
 
 /* ------------------------------------------------------- */
 // ErrorHandler
-app.use(require("./middlewares/errorHandler"));
+app.use(require('./middlewares/errorHandler'));
 /* ------------------------------------------------------- */
 app.listen(PORT, () => console.log("Running: http://127.0.0.1:" + PORT));
