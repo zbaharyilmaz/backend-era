@@ -19,6 +19,13 @@ require('express-async-errors');
 app.use(express.json())
 
 /* ------------------------------------------------------- */
+// TEMPLATES:
+// npm i ejs
+app.set("view engine", "ejs")
+
+
+
+/* ------------------------------------------------------- */
 // ROUTERS:
 
 app.all('/', (req, res) => {
