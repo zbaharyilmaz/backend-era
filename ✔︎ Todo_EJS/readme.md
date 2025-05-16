@@ -1,0 +1,1 @@
+# Server tarafında renderlama(browserda clg olmadı.)

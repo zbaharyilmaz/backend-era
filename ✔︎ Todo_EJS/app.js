@@ -13,29 +13,35 @@ const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 8000;
 
-require('express-async-errors');
+require("express-async-errors");
 
 // Accept json data:
-app.use(express.json())
+app.use(express.json());
 
 /* ------------------------------------------------------- */
 // TEMPLATES:
 // npm i ejs
-app.set("view engine", "ejs")
-
-
+app.set("view engine", "ejs"); //default folder is "./views"
+app.set("views", "./public"); //new ejs folder name
 
 /* ------------------------------------------------------- */
 // ROUTERS:
 
-app.all('/', (req, res) => {
-    res.send('WELCOME TO TODO API')
+app.all("/", (req, res) => {
+  //res.render("index.ejs");
+  //res.send('WELCOME TO TODO API')
+  res.send(`<div>
+                <a href="/view">To Do Template</a>
+            </div>
+            <div>
+                <a href="/api/v1/todo">To Do API</a>
+            </div>`);
 });
 
-app.use(require('./routes/todo.router'));
+app.use("/aoi/v1", require("./routes/todo.router"));
 
 /* ------------------------------------------------------- */
 // ErrorHandler
-app.use(require('./middlewares/errorHandler'));
+app.use(require("./middlewares/errorHandler"));
 /* ------------------------------------------------------- */
 app.listen(PORT, () => console.log("Running: http://127.0.0.1:" + PORT));
