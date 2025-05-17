@@ -38,4 +38,14 @@ module.exports = {
       res.errorStatusCode = 401;
       throw new Error("username/email and password are required.");
     }
-  }}
+  },
+logout: async(req,res)=>{
+  const token= req.user ? await Token.deleteOne({userId: req.user._id}): null
+  console.log(req.user);
+  res.status(200).send({
+    error:false,
+    message: token?.deletedCount ? "Token is deleted. Logout is successfully done." : "Logout is successfully done."
+  })
+
+}
+}

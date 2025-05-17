@@ -1,5 +1,6 @@
 "use strict"
 const router= require("express").Router()
-const {login}= require("../controllers/auth")
+const {login, logout}= require("../controllers/auth")
 router.post("/login", login)
-module.exports=router
+router.all("/logout", logout)
+module.exports= router
