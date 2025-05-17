@@ -9,4 +9,4 @@ router
   .patch(update)
   .delete(deletee)
 module.exports = router;
-//! delete strict modda sıkıntı yaptı. deletee olarak değişiklik yaptık.
+//! delete strict modda sıkıntı yaptı. deletee olarak değişiklik yaptık. özel bir keyword. ya da deleteToken vs kullan.

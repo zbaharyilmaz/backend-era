@@ -25,7 +25,8 @@ app.all("/", (req, res) => {
 });
 app.use("/departments", require("./src/routes/department"));
 app.use("/personnels", require("./src/routes/personnel"));
-app.use("/tokens", require("./src/routes/token"))
+app.use("/tokens", require("./src/routes/token"));
+app.use("/auth", require("./src/routes/auth"));
 app.use("*", (req, res) => {
   res.status(404).send({
     error: true,
