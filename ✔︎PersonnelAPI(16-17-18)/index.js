@@ -3,10 +3,11 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 8000;
-//&Middlewares
+//&Middlewares:
+
 app.use(express.json());
 require("express-async-errors");
-require("./src/configs/dbConnection");
+
 //*Session-Cookies
 const session = require("cookie-session");
 app.use(
@@ -16,6 +17,10 @@ app.use(
 );
 //!Query Handler
 app.use(require("./src/middlewares/queryHandler"));
+//Db conncetion
+require("./src/configs/dbConnection");
+// Authentication
+app.use(require('./src/middlewares/authentication'));
 
 //Routes
 app.all("/", (req, res) => {

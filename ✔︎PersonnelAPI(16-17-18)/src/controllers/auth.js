@@ -38,5 +38,4 @@ module.exports = {
       res.errorStatusCode = 401;
       throw new Error("username/email and password are required.");
     }
-  },
-};
+  }}
