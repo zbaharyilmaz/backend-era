@@ -1,6 +1,8 @@
 "use strict";
 const router = require("express").Router();
+const {isAdmin}= require("../middlewares/permissions")
 const {list, create, read, update, deletee } = require("../controllers/token");
+router.use(isAdmin)
 router.route("/").get(list).post(create);
 router
   .route("/:id")
