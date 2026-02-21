@@ -4,7 +4,7 @@
 -- * INNER JOIN -- Yalnızca kesişen kayıtları getirir.
 -- * (Alternatif Yazım: JOIN) Default JOIN yöntemi INNER JOIN'dir. (Piyasa kullanımı: INNER JOIN)
 
-SELECT * FROM "Album";
+SELECT * FROM Album;
 SELECT * FROM "Artist";
 
 SELECT * 
@@ -21,7 +21,7 @@ SELECT
     l."AlbumId", 
     l."Title" 
 FROM "Artist" AS a
-JOIN "Album" l  ON a."ArtistId" = l."ArtistId";
+JOIN "Album" AS l  ON a."ArtistId" = l."ArtistId";
 
 -- * LEFT JOIN -- Üst (FROM) tablodaki BÜTÜN kayıtlar ve JOIN tablodaki KESİŞEN kayıtları getir
 SELECT 
@@ -57,6 +57,8 @@ SELECT t1."ArtistId", "Name", "Title", t2."AlbumId"
 FROM "Artist" t1
 JOIN "Album" t2 USING ("ArtistId");
 
+--! USING ("ArtistId") yazıldığı için tek kolon gibi davranıyor. SQL’de tablo prefix (t1. / t2.) yazmak: Kolon sadece 1 tabloda varsa	❌ Gerekli değil. Kolon 2 tabloda da varsa; gerekli.
+
 
 --? Bütün sanatçıları göster. Hangi sanatçı hangi albüme sahip onu da göster. Ama albüm sahibi olmayan kayıtlara NULL yaz.
 SELECT t1."ArtistId", t1."Name", t2."Title", t2."AlbumId"
@@ -87,6 +89,9 @@ SELECT *
 FROM "Invoice"
 WHERE BillingCountry IN ('USA', 'Canada');
 
+--! WHERE BillingCountry = 'USA'  OR BillingCountry = 'Canada';
+--! WHERE = filtreleme komutu; IN = bir filtreleme yöntemidir
+
 
 /* INSERT & UPDATE & DELETE */
 
@@ -101,7 +106,7 @@ VALUES
     ( 28, 'Türk Halk Müziği'), 
     ( 29, 'Türk Pop Müziği'); 
 
--- **exp-1 olarak bir müzik türünün adını güncelle**
+-- **ex-1 olarak bir müzik türünün adını güncelle**
 UPDATE "Genre"
 SET NAME = 'Alman Rap'
 WHERE "GenreId" = 26;
@@ -112,3 +117,5 @@ DELETE FROM genre;
 DELETE FROM genre
 WHERE "genreid" = 29;
 
+--! DQL(QUERY)	Veri okumak	SELECT
+--! DML (MANIPULATION)	Veri değiştirmek	INSERT, UPDATE, DELETE
