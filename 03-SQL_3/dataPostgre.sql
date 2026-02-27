@@ -1,4 +1,5 @@
--- Active: 1697216999324@@127.0.0.1@3306@test_db
+-- 
+kj : 1697216999324@@127.0.0.1@3306@test_db
 -- Tablo Sil (Eğer mevcutsa):
 DROP TABLE IF EXISTS Album;
 -- Yeni Tablo Oluştur (Eğer mevcut değilse):
