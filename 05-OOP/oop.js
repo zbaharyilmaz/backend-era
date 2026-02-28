@@ -1,25 +1,29 @@
-"use strict"
+"use strict";
 
 /* -------------------------------------------------------
                 OBJECTS & OOP & CLASSES
 ------------------------------------------------------- *
 
-//? OBJECTS
+? OBJECTS
 const expObj = {
 
-    propertyName: 'value', // attribute, field // object, array, boolean, number, string, function
+    propertyName: 'value', // attribute, field // object, array, boolean, number, string, function olabilir.
 
     methodName: function () {
         return console.log('Functions called method in object')
     },
 
-    methodNameAltarnative() {
-        return console.log('this is altarnative decleration of function in object')
+    methodNameAlternative() {
+        return console.log('this is alternative declaration of function in object')
     }
 };
 
+!DOT NOTATION:
+
 console.log(expObj.propertyName);
 expObj.methodName();
+
+!BRACKET NOTATION:
 
 console.log(expObj['propertyName']);
 expObj['methodName']();
@@ -27,7 +31,7 @@ expObj['methodName']();
 console.clear()
 
 /*------------------------------------------------------- *
-//? 'THIS' KEYWORD Refers to the execution context (object)
+? 'THIS' KEYWORD Refers to the execution context (object)
 
 
 const Car = {
@@ -41,21 +45,23 @@ const Car = {
     },
 
     getDetail: function () {
-        // console.log(this);
-        return console.log(this.details)
+         console.log(this);
+        return console.log(this.details) // this ifadesi Car objesini gösterir. Dot notation ile details a erişilir.
     },
 
     getDetailArr: () => {
-        return console.log(this.details)
+        return console.log(this.details)    //! UNDEFINED, arrow functionlarda this global scope u gösterir.Arrow function kendi this’ini oluşturmaz. this burada objeyi değil, global scope’u gösterir. Global scope’ta details olmadığı için → undefined . Global scope: Kodun en dış alanıdır. Tarayıcıda window, Node.js’te global, Modern JS modüllerinde ise undefined olabilir. Yani global scope, uygulamanın en üst seviyesi demektir.
+        
     }
 };
 
 
-// Car.getDetail()
+Car.getDetail()
 Car.getDetailArr()
 
 /*------------------------------------------------------- *
-//? "NEW" KEYWORD Creates a new instance of an object
+? "NEW" KEYWORD Creates a new instance of an object
+! Constructor (yapıcı metot), bir class’tan yeni bir nesne (instance) oluşturulurken otomatik olarak çalışan özel bir metottur. Amacı: Nesnenin başlangıç değerlerini (initial state) ayarlamaktır.
 
 const carConstructor = function (brand, model, year) {
     this.brand = brand
@@ -69,28 +75,45 @@ console.log(car);
 console.log(car.brand);
 
 const car2 = new carConstructor('BMW', '2.15', 1967)
-
+🔥 new Keyword Arkada Ne Yapıyor?
+1️⃣ Boş bir obje oluşturur
+const obj = {}
+2️⃣ this o objeyi gösterir
+this = obj
+Yani constructor içindeki: this.brand = brand ...
 console.log(car2);
 console.log(car2.brand);
 
+!note: 
+Bu yapı aslında eski tip constructor function kullanımıdır.
+
+Modern JS'te genelde bunun yerine class kullanılır:
+
+class Car {
+    constructor(brand, model, year) {
+        this.brand = brand
+        this.model = model
+        this.year = year
+    }
+}
 /*------------------------------------------------------- *
-//? OOP: Object Oriented Programming
+? OOP: Object Oriented Programming
 
 //* Class is a blueprint for creating objects. It defines properties  and methods that objects will have.
 //* OOP is a way of structuring code using objects.
 //* OOP helps organize code by preventing:
-//- Code duplication (Inheritance)
-//- Messy logic (Encapsulation & Abstraction)
-//- Difficult code reuse (Polymorphism)
+ Code duplication (Inheritance)
+ Messy logic (Encapsulation & Abstraction)
+ Difficult code reuse (Polymorphism)
 
 
 //* OOP is the concept.
 //* Classes are the way to implement OOP.
 
-// Class Declaration:
+- Class Declaration:
 class PascalCaseDeclaration { }
 
-// Class Expression:
+- Class Expression:
 const PascalCaseExpression = class {
 
     undefinedProperty // only definatin, undefined
@@ -339,50 +362,48 @@ Ford.getDetails()
 //? GETTER & SETTER METHODS:
 //? "STATIC" KEYWORD: Class'dan direct access. (Instance does not access)
 
-
 class Car {
-    isRunning = false
-    #price = 5000
+  isRunning = false;
+  #price = 5000;
 
-    constructor(brand, model, year,) {
-        this.brand = brand
-        this.model = model
-        this.year = year
-    }
+  constructor(brand, model, year) {
+    this.brand = brand;
+    this.model = model;
+    this.year = year;
+  }
 
-    startEngine() {
-        this.isRunning = true
-        return console.log(`${this.brand} ${this.model}'s engine started!`);
-    }
+  startEngine() {
+    this.isRunning = true;
+    return console.log(`${this.brand} ${this.model}'s engine started!`);
+  }
 
-    get getPrice() {
-        console.log('Fiyat goruntulendi..');
-        return this.#price
-    }
+  get getPrice() {
+    console.log("Fiyat goruntulendi..");
+    return this.#price;
+  }
 
-    set setPrice(newPrice) {
-        console.log('Fiyat guncellendi..');
-        this.#price = newPrice
-    }
+  set setPrice(newPrice) {
+    console.log("Fiyat guncellendi..");
+    this.#price = newPrice;
+  }
 
-    // Static method & attribute
-    // Statik property veya methodlara intance ile erişilmez.
-    static staticProperty = 'this is static attribute'
+  // Static method & attribute
+  // Statik property veya methodlara intance ile erişilmez.
+  static staticProperty = "this is static attribute";
 
-    // Static methodlarda this ifadesi sadece statikleri çağırır.
-    static staticMethod() {
-        console.log('this is static method');
-        return this
-    }
-
+  // Static methodlarda this ifadesi sadece statikleri çağırır.
+  static staticMethod() {
+    console.log("this is static method");
+    return this;
+  }
 }
 
-const Ford = new Car('Ford', 'Mustang', 1967);
+const Ford = new Car("Ford", "Mustang", 1967);
 console.log(Ford.price);
 /// getter ve setter methodlar bir property gibi kullanılılır:
 console.log(Ford.getPrice);
 // Ford.setPrice(5000) // Setter method normal method gibi çağrılmaz.
-Ford.setPrice = 6000
+Ford.setPrice = 6000;
 console.log(Ford.getPrice);
 
 // How to access static attributes & methods // Object.entries()
