@@ -116,7 +116,7 @@ class PascalCaseDeclaration { }
 - Class Expression:
 const PascalCaseExpression = class {
 
-    undefinedProperty // only definatin, undefined
+    undefinedProperty // only definitin, undefined
 
     propertyName = 'value'
 
@@ -136,12 +136,12 @@ console.log(exp1Instance.pamametre1);
 console.log(exp1Instance.methodName());
 
 /*------------------------------------------------------- *
-//? ENCAPSULATION
-// Bundling data (variables) and methods (functions) into a single unit (object).
-// Protects data from direct access by restricting modification.
+? ENCAPSULATION
+Bundling data (variables) and methods (functions) into a single unit (object).
+Protects data from direct access by restricting modification.
 
 
-// Worst Approach
+? Worst Approach
 let brand = 'BMW';
 let speed = 100;
 
@@ -149,10 +149,10 @@ function accelerate() {
     speed += 10;
     console.log(`${brand} is going at ${speed} km/h`)
 }
-// accelerate();
+ accelerate();
 
 
-// Better Approach
+? Better Approach
 class Car {
 
     #speed; // Priviate variable
