@@ -424,12 +424,12 @@ class Car {
 const Ford = new Car("Ford", "Mustang", 1967);
 console.log(Ford.price);
 /// getter ve setter methodlar bir property gibi kullanılılır:
-console.log(Ford.getPrice);
-// Ford.setPrice(5000) // Setter method normal method gibi çağrılmaz.
+console.log(Ford.getPrice);    
+// Ford.setPrice(5000) // Setter method normal method gibi çağrılmaz. getPrice olarak çağır. getPrice() değil.
 Ford.setPrice = 6000;
 console.log(Ford.getPrice);
 
 // How to access static attributes & methods // Object.entries()
-console.log(Car.isRunning);
-console.log(Car.staticProperty);
+console.log(Car.isRunning); //! undefined, static propertylere instance ile erişilemez. 
+console.log(Car.staticProperty); //static oldugunu önceden belirttigimiz için class ismi ile erişebiliriz.
 console.log(Car.staticMethod());
