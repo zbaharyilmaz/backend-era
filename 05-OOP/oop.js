@@ -159,6 +159,12 @@ class Car {
 
     #speed; //! Priviate variable oluşturulur, # ile başlayan değişkenler sadece class içinde erişilebilir. Dışarıdan erişilemez.
 
+
+    &this.name = name :
+    !this → oluşturulan nesneyi temsil eder.
+    !this.name → nesnenin özelliği (property)
+    !name → constructor’a gelen parametre  'bmw' gibi
+
     constructor(brand, speed) {
         this.brand = brand
         this.#speed = speed   // Priviate variable 
@@ -274,7 +280,7 @@ console.clear();
  Parent Class
 class Animal {
     constructor(name) {
-        this.name = name
+        this.name = name  //2.si parametre, 1.si instance oluşturulurken verilen değer.
     }
 
     makeSound() {
@@ -301,12 +307,26 @@ class Cat extends Animal {
      console.log(`${this.name} says: ${word}`); }
 
 const genereicAnimal = new Animal('Generic Animal');
-const myDog = new Dog('Magetron');
-const myCat = new Cat('Supa');
+! OVERRIDING: Parent class ın makeSound methodu, child classlarda farklı şekilde tanımlanır. Parent class ın makeSound methodu, child classlarda override edilir. Child classlarda makeSound methodu, parent class ın makeSound methodunu geçersiz kılar. Child classlarda makeSound methodu, parent class ın makeSound methodundan farklı bir şekilde çalışır.
+const myDog = new Dog('Magetron');  woof! sesi çıkarır.
+const myCat = new Cat('Supa');      meow sesi çıkarır.
 
 genereicAnimal.makeSound()
 myDog.makeSound()
 myCat.makeSound()
+
+
+&note:
+🔹 3️⃣ Senin örnekte neden super yok?
+
+Çünkü sen:
+
+✔ Parent metodunu kullanmıyorsun
+✔ Sadece override ediyorsun
+✔ Parent davranışını tamamen değiştiriyorsun
+
+Bu yüzden super gerekmiyor.
+
 
 /*------------------------------------------------------- *
 ? Access Modifiers:
