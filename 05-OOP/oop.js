@@ -155,9 +155,6 @@ function accelerate() {
 
 ? Better Approach
 
-
-
-
 class Car {
 
     #speed; //! Priviate variable oluşturulur, # ile başlayan değişkenler sadece class içinde erişilebilir. Dışarıdan erişilemez.
@@ -177,10 +174,9 @@ const bmw = new Car(brand, 100);  //* Instance oluşturduk.
 console.log(bmw.speed);
 bmw.accelerate()   //* new Car("BMW", 100).accelerate()
 
-console.clear();
 /*------------------------------------------------------- *
-//? ABSTRACTION
-// Hides complex logic and only exposes necessary details.
+? ABSTRACTION
+ Hides complex logic and only exposes necessary details.
 
 class Payment{
 
@@ -195,15 +191,15 @@ class Payment{
 
 };
 
-const pay = new Payment();
+const pay = new Payment();  //instance oluşturduk.
 pay.proccessPayment(200)
 
 /*------------------------------------------------------- *
-//? INHERITANCE
-// Allows a child class to inherit properties and methods from a parent class.
-// SUPER: Parent Class - THIS: Child Class
+? INHERITANCE
+ Allows a child class to inherit properties and methods from a parent class.
+ SUPER: Parent Class - THIS: Child Class
 
-// Parent Class;
+ Parent Class;
 class Vehicle {
 
     isRunning = false
@@ -225,11 +221,14 @@ class Vehicle {
     }
 };
 
-// Child Class; (inherits from Vehcile)
+
+! extends keyword: Child class, parent class ın özelliklerini ve metodlarını kullanabilir. Child class, parent class ın özelliklerini ve metodlarını miras alır.
+Child Class; (inherits from Vehcile)
+
 class Car extends Vehicle {
 
     constructor(brand, model, year, fuelType) {
-        super(brand, model, year) // Calling parent constructor
+        super(brand, model, year) //* Calling parent constructor, super
         this.fuelType = fuelType
     }
 
@@ -242,7 +241,7 @@ const myCar = new Car('Toyata', 'Carolla', 2024, 'Petrol');
 myCar.startEngine();
 myCar.stopEngine();
 
-// GrandChild Class; (inheritence from Car)
+GrandChild Class; (inheritence from Car)
 class ElectiricCar extends Car {
 
     constructor(brand, model, year, batteryCapacity) {
@@ -267,12 +266,12 @@ myTesla.stopEngine();
 console.clear();
 
 /*------------------------------------------------------- *
-//? POLYMORPHISIM:
-//  A child class to have different behaviors for the same method as the parent class.
-// - Method Overriding: Child class redefines a method from the parent class.
-// - Method Overloading: JavaScript does not support it natively, but TypeScript does.
+? POLYMORPHISIM:
+  A child class to have different behaviors for the same method as the parent class.
+ - Method Overriding: Child class redefines a method from the parent class.
+ - Method Overloading: JavaScript does not support it natively, but TypeScript does.
 
-// Parent Class
+ Parent Class
 class Animal {
     constructor(name) {
         this.name = name
@@ -283,14 +282,14 @@ class Animal {
     }
 };
 
-// Child Class: Dog (inherits from Animal)
+ Child Class: Dog (inherits from Animal)
 class Dog extends Animal {
     makeSound() {
         console.log(`${this.name} barks: Woof!`);
     }
 };
 
-// Child Class: Cat (inherits from Animal)
+ Child Class: Cat (inherits from Animal)
 class Cat extends Animal {
     makeSound() {
         console.log(`${this.name} meows: Meows!`);
@@ -298,9 +297,8 @@ class Cat extends Animal {
 };
 
 
-// makeSound(word){ // Overloading exp
-//     console.log(`${this.name} says: ${word}`);
-// }
+ makeSound(word){ // Overloading exp
+     console.log(`${this.name} says: ${word}`); }
 
 const genereicAnimal = new Animal('Generic Animal');
 const myDog = new Dog('Magetron');
@@ -311,10 +309,10 @@ myDog.makeSound()
 myCat.makeSound()
 
 /*------------------------------------------------------- *
-//? Access Modifiers:
-// - PUBLIC: (Parent: Yes, Child: Yes, Instance: Yes)
-// - PROTECTED: (Parent: Yes, Child: Yes, Instance: No) (JS does not support.)
-// - PRIVATE: (Parent: Yes, Child: No, Instance: No)
+? Access Modifiers:
+ - PUBLIC: (Parent: Yes, Child: Yes, Instance: Yes)
+ - PROTECTED: (Parent: Yes, Child: Yes, Instance: No) (JS does not support.)
+ - PRIVATE: (Parent: Yes, Child: No, Instance: No)
 
 class Vehicle {
 
