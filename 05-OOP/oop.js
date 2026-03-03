@@ -142,8 +142,9 @@ Protects data from direct access by restricting modification.
 
 
 ? Worst Approach
-let brand = 'BMW';
-let speed = 100;
+
+let brand= "BMW";
+le speed= 100;
 
 function accelerate() {
     speed += 10;
@@ -153,13 +154,17 @@ function accelerate() {
 
 
 ? Better Approach
+
+
+
+
 class Car {
 
-    #speed; // Priviate variable
+    #speed; //! Priviate variable oluşturulur, # ile başlayan değişkenler sadece class içinde erişilebilir. Dışarıdan erişilemez.
 
     constructor(brand, speed) {
         this.brand = brand
-        this.#speed = speed
+        this.#speed = speed   // Priviate variable 
     }
 
     accelerate() {
@@ -168,11 +173,11 @@ class Car {
     }
 };
 
-const bmw = new Car(brand, 100);
+const bmw = new Car(brand, 100);  //* Instance oluşturduk.
 console.log(bmw.speed);
-bmw.accelerate()
+bmw.accelerate()   //* new Car("BMW", 100).accelerate()
 
-
+console.clear();
 /*------------------------------------------------------- *
 //? ABSTRACTION
 // Hides complex logic and only exposes necessary details.
