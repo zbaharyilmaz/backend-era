@@ -1,7 +1,8 @@
 //! Express is microframework for Node.js
 
-const express = require("express");
-const app = express();
+const express = require("express");  //! express modülünü projemize dahil eder. express, Node.js için popüler bir web framework'üdür ve web uygulamaları geliştirmek için kullanılır.
+const app = express();   //! express() → Express uygulaması (instance) oluşturur. app → artık bu uygulamayı temsil eden değişken. app → Server instance’ı (bellekte çalışan örnek)
+//!Bu app üzerinden server’ı kontrol edebiliriz: Route ekleyebiliriz → /, /users vs. Middleware ekleyebiliriz. Server’ı başlatabiliriz
 require("dotenv").config();
 const PORT = process.env?.PORT || 8000;
 
@@ -72,4 +73,41 @@ app.get("/blogs/:blogId/:author/search", (req, res) => {
   });
 });
 
-app.listen(PORT, () => console.log("Running at : http://127.0.0.1:" + PORT));
+app.listen(PORT, () => console.log("Running at : http://127.0.0.1:" + PORT));  //! app.listen(PORT) → Server’ı çalıştırır ve dinlemeye başlar
+
+
+
+//& NOTE
+
+//! Node.js http vs Express Server
+
+//Node.js http server               Express server (app)
+/* const http = require("http");      const express = require("express");
+const server = http.createServer(  const app = express();
+  (req, res) => {                  app.get("/", (req, res) => {
+    if (req.url === "/") {           res.send("Hello World");
+      res.end("Hello World");      });
+    }
+  }
+);                                app.listen(3000, () => console.log("Server running"));
+server.listen(3000);
+
+!Farklar:
+Özellik	Node.js http	Express
+Server oluşturma	http.createServer()	express() → app instance
+Route yönetimi	Manual if(req.url ...)	app.get(), app.post()
+Middleware desteği	Yok / manuel	Built-in / kolay eklenir
+Kod okunabilirliği	Daha uzun / manuel	Kısa ve temiz
+Development kolaylığı	Az	Çok kolay
+🔑 Özet
+
+Node.js http → low-level, daha fazla kod, her şeyi manuel yapman gerekir
+
+Express (app) → high-level, server’ı daha kolay kurar ve yönetir
+
+app → artık senin server’ın “çalışan örneği” */
+
+//!comment
+/* single line comment: Cmd + 
+multi-line comment: Shift + Option + A */
+

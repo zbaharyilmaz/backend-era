@@ -1,15 +1,49 @@
 # Express & Routing
 
- Initial commands;
-* npm init -y
-* npm i -D nodemon
-* npm i express dotenv
-* echo PORT=8000 > .env
-* add .gitigore file
+Initial commands;
 
-/* Alt shift A */
+- npm init -y
+- npm i -D nodemon
+- npm i express dotenv
+- echo PORT=8000 > .env
+- add .gitigore file
+
+/_ Alt shift A _/
 
 Coommand+F (terminalde arama)
+
+## Environment Variables
+
+# Backend
+
+Secret keys, database passwords, and other sensitive data are stored in the .env file.
+
+Important: These values are never exposed to the frontend.
+
+Access in Node.js:
+
+require('dotenv').config();
+const DB_PASSWORD = process.env.DB_PASSWORD;
+
+# Frontend
+
+Only values that the client needs to know should be stored in environment variables, such as:
+
+API URLs
+
+Ports
+
+Feature flags
+
+Example in React:
+
+REACT_APP_API_URL=http://localhost:8000
+
+Access in code:
+
+fetch(process.env.REACT_APP_API_URL + "/users")
+
+Note: Frontend environment variables are visible to anyone who can access the app.
 
 ## MVC(Model View Controller)
 
@@ -18,7 +52,6 @@ Database-Model(database boss)-Controller-View
 database-model= data layer
 controller=brain(logic layer)
 view=presentation layer(UI)-with just backend
-
 
 🧱 Katmanları Netleştirelim
 1️⃣ Model (Data Layer)
@@ -48,7 +81,6 @@ Sonucu View’a yollar
 Controller = beynin kendisi
 
 3️⃣ View (Presentation Layer)
-
 
 View = Kullanıcıya gösterilen şey.
 
@@ -126,11 +158,10 @@ Yani bu aslında:
 MVC değil, REST API mimarisi
 
 🧠 Özetle
-Durum	View Nerede?
-Express + EJS	Backend’te
-React + Node API	Frontend’te
-Sadece Node API	View yok
-
+Durum View Nerede?
+Express + EJS Backend’te
+React + Node API Frontend’te
+Sadece Node API View yok
 
 Backend tarafındaki View:
 
@@ -139,7 +170,7 @@ Backend tarafındaki View:
 
 Ama modern projelerde genelde backend sadece API olur, View frontend’dedir.
 
-------------------------------
+---
 
 http request- API call- router tarafından karşılanır- controller istege bakar, modele istek yollar isteneni- model database ile iletişim kurar, istenen veri doğrultusunda - veri array veya obje cinsinden gelir; frontendin istediği kısma dönüüştürülür- http response (html)
 
@@ -205,25 +236,25 @@ Frontend bunu alır ve kullanıcıya gösterir.
 
 🌐 Örnek Basit Akış
 Frontend (React / Tarayıcı)
-       │
-       │  HTTP GET /users
-       ▼
+│
+│ HTTP GET /users
+▼
 Server (Node.js + Express)
-       │
+│
 Router → /users
-       │
+│
 Controller → userController.listUsers
-       │
+│
 Model → UserModel.findAll()
-       │
+│
 Database → MongoDB / MySQL / PostgreSQL
-       │
+│
 Data (Array/Object)
-       │
+│
 Controller → JSON formatla
-       ▼
+▼
 HTTP Response → Frontend
-       │
+│
 Frontend render → Kullanıcı ekranı
 🔑 Özet
 
@@ -241,10 +272,9 @@ HTTP Response → Cevap
 
 Frontend → Ekrana gösterir
 
+---
 
-------------------------------------------------
-
- ## Structure of Url
+## Structure of Url
 
 URL = Uniform Resource Locator
 
@@ -256,16 +286,14 @@ http://localhost:8000/users/123?sort=asc
 
 Bunu parçalayalım:
 
-
 2️⃣ URL’nin Parçaları
-Parça	Örnek	Açıklama
-Protocol / Scheme	http://	İletişim protokolü (http / https)
-Host / Domain	localhost	Server’ın adresi
-Port	8000	Hangi kapıda dinlendiği
-Path / Route	/users/123	Kaynağın yolu (endpoint)
-Query String	?sort=asc	Opsiyonel parametreler, filtreler
-Fragment	#section1	Sayfa içi yönlendirme, genelde frontend
-
+Parça Örnek Açıklama
+Protocol / Scheme http:// İletişim protokolü (http / https)
+Host / Domain localhost Server’ın adresi
+Port 8000 Hangi kapıda dinlendiği
+Path / Route /users/123 Kaynağın yolu (endpoint)
+Query String ?sort=asc Opsiyonel parametreler, filtreler
+Fragment #section1 Sayfa içi yönlendirme, genelde frontend
 
 1️⃣ Protocol: HTTP / HTTPS
 
@@ -294,7 +322,6 @@ Tarayıcı ve server’ın aynı dili konuşmasını sağlar
 
 Hangi port kullanılacağını, mesaj formatını ve response kodlarını belirler
 
-
 3️⃣ URL Backend Perspektifi
 
 Backend’te genelde path (route) ve query önemli:
@@ -306,11 +333,11 @@ Backend’te genelde path (route) ve query önemli:
 /users?sort=asc → kullanıcıları sıralı getir
 
 4️⃣ RESTful API Örnekleri
-HTTP Method	URL (Route)	Ne İşe Yarar
-GET	/users	Tüm kullanıcıları al
-GET	/users/123	ID 123 kullanıcıyı al
-POST	/users	Yeni kullanıcı ekle
-PUT	/users/123	ID 123 kullanıcıyı güncelle
-DELETE	/users/123	ID 123 kullanıcıyı sil
+HTTP Method URL (Route) Ne İşe Yarar
+GET /users Tüm kullanıcıları al
+GET /users/123 ID 123 kullanıcıyı al
+POST /users Yeni kullanıcı ekle
+PUT /users/123 ID 123 kullanıcıyı güncelle
+DELETE /users/123 ID 123 kullanıcıyı sil
 5️⃣ URL + Controller + Model
 GET /users/123 → Router → Controller.listUser → Model.findById(123) → Database → Response
