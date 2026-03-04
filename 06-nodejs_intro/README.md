@@ -192,6 +192,21 @@ Garson → Müşteriye getirir (res)
 Server = Mutfak
 Frontend = Müşteri salonu
 
+API = Server’ın dış dünyaya açtığı veri kapılarıdır.
+Node.js → Server yazmanı sağlar
+Server → İstek dinler
+Route (/list) → API endpoint
+Endpoint’lerin tamamı → API
+
+Menü = API
+
+Menüdeki her yemek = Endpoint
+
+Sipariş = Request
+
+Yemek = Response
+
+
 💡 En Net Özet
 
 Node.js → JS’i server’da çalıştırır
