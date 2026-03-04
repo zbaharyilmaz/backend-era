@@ -15,6 +15,193 @@ npm install dotenv
 const express = require("express");
 const app = express();
 
+ÖZET:
+🖥 1️⃣ Node.js Nedir?
+
+Node.js = JavaScript’i tarayıcı dışında çalıştıran ortamdır.
+
+Normalde JavaScript:
+
+Sadece tarayıcıda çalışır (Chrome, Firefox)
+
+Node.js sayesinde:
+
+JS ile server yazabiliyoruz
+
+Dosya okuyabiliyoruz
+
+Database’e bağlanabiliyoruz
+
+Yani:
+
+Node.js = JavaScript’in bilgisayar tarafında çalışan versiyonu
+
+🌐 2️⃣ Server Nedir?
+
+Server = Sürekli açık duran ve gelen isteklere cevap veren program.
+
+Sen şunu yazınca:
+
+http.createServer(...)
+
+şunu diyorsun:
+
+"Ben hazırım. Biri gelirse cevap vereceğim."
+
+🔢 3️⃣ Port Nedir?
+
+Bilgisayarı bir apartman gibi düşün.
+
+IP adresi = apartmanın adresi
+Port = daire numarası
+
+Örneğin:
+
+http://localhost:8000
+
+localhost → bu bilgisayar
+
+8000 → o bilgisayardaki kapı (port)
+
+Aynı bilgisayarda:
+
+3000 portunda başka app
+
+5000 portunda başka app
+
+8000 portunda senin server olabilir
+
+Port = uygulamanın dinlediği kapı
+
+🏠 4️⃣ Host Nedir?
+
+Host = Server’ın bulunduğu adres
+
+Örnek:
+
+127.0.0.1
+localhost
+192.168.1.5
+
+127.0.0.1 → kendi bilgisayarın
+
+Gerçek projede → domain olur (örn: google.com)
+
+📩 5️⃣ req Kim Atar?
+
+req = request (istek)
+
+İsteği kim atar?
+
+Tarayıcı
+
+Postman
+
+Başka bir frontend uygulaması
+
+Mobil app
+
+Başka bir server
+
+Mesela sen tarayıcıya şunu yazınca:
+
+http://localhost:8000/list
+
+Tarayıcı bir HTTP isteği gönderir.
+
+Bu istek server’a gelir.
+
+O istek = req
+
+📤 6️⃣ res Kim Verir?
+
+res = response (cevap)
+
+Server cevabı verir.
+
+res.end("Hello")
+
+Bu şu demek:
+
+"Tamam isteğini aldım, işte cevabın."
+
+🔁 Olayın Akışı
+Tarayıcı → Request (req) → Server
+Tarayıcı ← Response (res) ← Server
+🧠 7️⃣ Arada Yardımcı Olan Şeyler Ne?
+HTTP Protokolü
+
+İnternette konuşma dili.
+
+Kuralları belirler:
+
+GET nedir
+
+POST nedir
+
+Status code nedir (200, 404, 500)
+
+Node http Modülü
+
+Node’un içindeki araç.
+
+Şunu sağlar:
+
+http.createServer()
+
+Yani:
+
+“Server oluşturma makinesi”
+
+Express (kullanırsan)
+
+Node’un işini kolaylaştırır.
+
+Senin yazdığın:
+
+if(req.url == "/")
+
+Express’te:
+
+app.get("/")
+
+olur.
+
+🎯 Şu Anda Sen Ne Yapıyorsun?
+
+Sen:
+
+Bilgisayarında bir kapı açıyorsun (port)
+
+Orada bekleyen bir görevli koyuyorsun (server)
+
+Gelen isteğe göre cevap yazıyorsun
+
+🏗 Gerçek Dünya Örneği
+
+Restoran:
+
+Müşteri → Sipariş verir (req)
+
+Garson → Mutfağa iletir
+
+Mutfak → Yemeği hazırlar
+
+Garson → Müşteriye getirir (res)
+
+Server = Mutfak
+Frontend = Müşteri salonu
+
+💡 En Net Özet
+
+Node.js → JS’i server’da çalıştırır
+Server → İstek dinler
+Port → Hangi kapıda beklediğini belirler
+Host → Server’ın adresi
+req → Gelen istek
+res → Verilen cevap
+
+-----------------------------
 
 📌 Node.js + Express Basic Server & Module Usage
 
