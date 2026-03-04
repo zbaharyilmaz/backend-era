@@ -13,29 +13,16 @@ app.listen(port, () => {
 // testFunct()
 
 //! ÇOKLU FONKSİYON İÇİN KULLANILDI
-// const {testing, imrenbirth, baharbirth, imren}= require("./module/module")
-// imrenbirth()
-// baharbirth()
-// testing()
-// console.log(imren);
+const { testing, imrenbirth, baharbirth, imren } = require("./module/module");
+imrenbirth();
+baharbirth();
+testing();
+console.log(imren);
 
-
-require("./module/module");
 const {
-  testFunct,
-  birthday1,
-  birthday2,
-  imren,
   numbers: [oddNumber, evenNumber],
 } = require("./module/module");
 
-testFunct();
-birthday1();
-birthday2();
 console.log(imren);
 oddNumber();
 evenNumber();
-
-console.log("nodemon yüklendi");
-
-console.log("again, checked");
