@@ -3,7 +3,7 @@ console.log("server");
 
 //npm install dotenv
 
-require("dotenv").config(); 
+require("dotenv").config();
 //!.env dosyasını kullanabilmek için dotenv modülünü dahil ettik.
 
 const PORT = process.env?.PORT || 8000; //PORT değişkenini .env dosyasından alıyoruz. Eğer yoksa 3000 portunu kullanıyoruz.
@@ -39,7 +39,9 @@ const app = http.createServer((req, res) => {
       res.end("can not use the method");
     }
   } else if (req.url == "/list") {
-    //TODO : JSON.stringify(obj)
+    //JSON.stringify(obj)
+
+    // default status code 200 dür. yani başarılı bir şekilde yanıt verildiğini belirtir.
     const obj = {
       error: false,
       message: "this is list page",
@@ -47,4 +49,4 @@ const app = http.createServer((req, res) => {
     res.end(JSON.stringify(obj));
   }
 });
-app.listen(PORT, () => console.log(`server running: http://${HOST}:${PORT}`));  // belirtilen host ve portta server çalışıyor.
+app.listen(PORT, () => console.log(`server running: http://${HOST}:${PORT}`)); // belirtilen host ve portta server çalışıyor.
