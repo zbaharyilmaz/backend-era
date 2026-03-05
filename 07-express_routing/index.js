@@ -65,36 +65,68 @@ app
   .put((req, res) => res.send({ method: "PUT" }))
   .delete((req, res) => res.send({ method: "DELETE" }));
 
-app.get("/", (req, res) => res.send("in 'root' path"));
+app.get("/", (req, res) => res.send("in 'root' path")); // content-type: text/html
 app.get("/path", (req, res) => res.send("in path"));
-//express-urls supported JOKERCHAR
-app.get("/abc(x?)123", (req, res) => res.send("in abc(x?)123"));
-app.get("/abc(x+)123", (req, res) => res.send("in abc(x+)123"));
-app.get("/abc*123", (req, res) => res.send("in abcbahar123"));
-app.get("/path", (req, res) => res.send("in path"));
-//express-urls supported REGEXP
-// app.get(/xyz/, (req,res)=>res.send("in /xyz/"));
+//?express-urls supported JOKERCHAR
+app.get("/abc(x?)123", (req, res) => res.send("in abc(x?)123")); // → 0 veya 1 adet x olabilir. abc123 veya abcx123
+app.get("/abc(x+)123", (req, res) => res.send("in abc(x+)123")); //+ → 1 veya daha fazla x olabilir. abc123, abcx123, abcxx123 vs.
+app.get("/abc*123", (req, res) => res.send("in abcbahar123")); // → 0 veya daha fazla karakter olabilir.  //abc123, abcbahar123, abcxyz123 vs.
+
+//?express-urls supported REGEXP
+app.get(/xyz/, (req, res) => res.send("in /xyz/"));
 app.get(/^\/xyz/, (req, res) => res.send("starts with /xyz/")); //starts with xyz
 app.get(/xyz$/, (req, res) => res.send("ends with /xyz/")); //ends with xyz
 
-//TODO URL PARAMETERS
+//& URL PARAMETERS
+
+//URL = Resource adresi
+// Path Params: URL yolunun değişken kısmıdır.
+// Query param → URL’nin ? sonrası kısmıdır.
+//PARAMS: hangi veri
+//QUERY: nasıl filtrele
+
+//   /blogs/123/nur/search  params: 123, nur
+//   ?title=whatisexpress  query: filter condition
+
+//ex: http://localhost:8000/blogs/123/nur/search?title=whatisexpress
 app.get("/blogs/:blogId/:author/search", (req, res) => {
-  console.log(req); //  params: { blogId: '123', author: 'nur' }, query: { title: 'whatisexpress' },
+  console.log(req); //! req bir object’tir ve bu object’in içinde birçok property bulunur. Bunlardan bazıları: params, query, protocol, subdomains, hostname, path, originalUrl vs. Bu property’ler sayesinde gelen isteği detaylı bir şekilde analiz edebiliriz.
   res.send({
-    params: req.params,
-    blogId: req.params.blogId,
+    params: req.params, // req.params → URL’deki parametreleri içeren bir object’tir. Bu object’in içinde blogId ve author gibi parametreler bulunur. Yani 123.// → { blogId: '123', author: 'nur' }
+    blogId: req.params.blogId, // req.params.blogId → URL’deki :blogId parametresinin değerini verir.
     author: req.params.author,
-    queries: req.query,
+    queries: req.query, // req.query → URL’deki query string’ini içeren bir object’tir. Bu object’in içinde title gibi query parametreleri bulunur. Yani whatisexpress → { title: 'whatisexpress' }
     title: req.query.title,
     url: {
-      protocol: req.protocol,
+      protocol: req.protocol, // req.protocol → İstek protokolünü verir. Genellikle http veya https olur.
       subdomain: req.subdomains,
-      hostname: req.hostname,
-      path: req.path,
-      origialUrl: req.originalUrl,
+      hostname: req.hostname, // req.hostname → İstek yapılan host adını verir.
+      path: req.path, // req.path → İstek yapılan URL’nin path kısmını verir. Yani /blogs/123/nur/search
+      origialUrl: req.originalUrl, // req.originalUrl → İstek yapılan URL’nin tam halini verir. Yani /blogs/123/nur/search?title=whatisexpress
     },
   });
 });
+
+/* 
+Result:
+{
+  "params": {
+    "blogId": "123",
+    "author": "nur"
+  },
+  "blogId": "123",
+  "author": "nur",
+  "queries": {
+    "title": "whatisexpress"
+  },
+  "title": "whatisexpress",
+  "url": {
+    "protocol": "http",
+    "hostname": "localhost",
+    "path": "/blogs/123/nur/search",
+    "origialUrl": "/blogs/123/nur/search?title=whatisexpress"
+  }
+} */
 
 app.listen(PORT, () => console.log("Running at : http://127.0.0.1:" + PORT)); //! app.listen(PORT) → Server’ı çalıştırır ve dinlemeye başlar. Express ile yazılan API servis ayağa kaldıırldı.
 
