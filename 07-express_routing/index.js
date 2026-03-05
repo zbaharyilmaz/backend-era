@@ -9,6 +9,8 @@ const PORT = process.env?.PORT || 8000;
 
 //& HTTP Methods
 // app.METHOD(PATH, HANDLER)
+// (req, res) => { ... } → Request’i al → İşlemi yap → Response gönder. arrow function içi:controller
+
 
 app.get("/", (req, res) => res.end("Hello get"));
 app.post("/", (req, res) => res.end("Hello post"));
@@ -127,6 +129,15 @@ Result:
     "origialUrl": "/blogs/123/nur/search?title=whatisexpress"
   }
 } */
+
+app.get("/", (req, res) => {
+  res.status(201).send({
+    message: "Response Methods",
+  }); // → HTTP status kodunu 201 olarak ayarlar. 201 → Created anlamına gelir ve genellikle yeni bir kaynak oluşturulduğunda kullanılır.
+});
+app.get("/download", (req, res) =>
+  res.download("./index.js", "algulumvergulum.js"),
+); // → index.js dosyasını algulumvergulum.js adıyla indirmeye başlar. res.download() metodu, belirtilen dosyayı istemciye indirme olarak gönderir. İlk parametre dosyanın sunucudaki yolu, ikinci parametre ise istemciye önerilen dosya adıdır.
 
 app.listen(PORT, () => console.log("Running at : http://127.0.0.1:" + PORT)); //! app.listen(PORT) → Server’ı çalıştırır ve dinlemeye başlar. Express ile yazılan API servis ayağa kaldıırldı.
 
