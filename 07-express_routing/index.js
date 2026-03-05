@@ -1,7 +1,7 @@
 //! Express is microframework for Node.js
 
-const express = require("express");  //! express modülünü projemize dahil eder. express, Node.js için popüler bir web framework'üdür ve web uygulamaları geliştirmek için kullanılır.
-const app = express();   //! express() → Express uygulaması (instance) oluşturur. app → artık bu uygulamayı temsil eden değişken. app → Server instance’ı (bellekte çalışan örnek)
+const express = require("express"); //! express modülünü projemize dahil eder. express, Node.js için popüler bir web framework'üdür ve web uygulamaları geliştirmek için kullanılır.
+const app = express(); //! express() → Express uygulaması (instance) oluşturur. app → artık bu uygulamayı temsil eden değişken. app → Server instance’ı (bellekte çalışan örnek)
 //!Bu app üzerinden server’ı kontrol edebiliriz: Route ekleyebiliriz → /, /users vs. Middleware ekleyebiliriz. Server’ı başlatabiliriz
 require("dotenv").config();
 
@@ -10,11 +10,11 @@ const PORT = process.env?.PORT || 8000;
 //& HTTP Methods
 // app.METHOD(PATH, HANDLER)
 
-app.get("/", (req, res)=> res.end("Hello get"))
-app.post("/", (req, res)=>res.end("Hello post"))
-app.put("/", (req, res)=> res.end("Hello put"))
+app.get("/", (req, res) => res.end("Hello get"));
+app.post("/", (req, res) => res.end("Hello post"));
+app.put("/", (req, res) => res.end("Hello put"));
 //PUT genelde var olan veriyi tamamen güncellemek için kullanılır.
-app.patch("/", (req, res)=> res.end("Hello patch"))
+app.patch("/", (req, res) => res.end("Hello patch"));
 //PATCH genelde verinin bir kısmını güncellemek için tercih edilir.
 
 // app.all("/", (req, res)=>res.end("Hello all"))
@@ -33,16 +33,33 @@ app.get("/", (req, res) => {
 });
 
 // Extra Methods
-app.get("/download", (req,res)=> res.download("./index.js", "algulumvergulum.js"));
-
+app.get("/download", (req, res) =>
+  res.download("./index.js", "algulumvergulum.js"),
+);
 
 app
   .route("/")
-  .get((req, res) => res.send({ method: "GET" }))  // res.send ile object gönderebiliriz, Express bunu otomatik olarak JSON formatına çevirir.
-//! Express.js şu kodu gördüğünde: es.send({ method: "GET" }) arka planda şu işlemi yapar: JSON.stringify({ method: "GET" })
-// Sonuç: {"method":"GET"} anahtarlar tırnak içine alınır ve bu artık bir stringtir. 
-// JavaScript object: { method: "GET" } JSON’a çevrildiğinde: {"method":"GET"}
+  .get((req, res) => res.send({ method: "GET" })) // res.send ile object gönderebiliriz, Express bunu otomatik olarak JSON formatına çevirir.
+  //! Express.js şu kodu gördüğünde: res.send({ method: "GET" }) arka planda şu işlemi yapar: JSON.stringify({ method: "GET" })
+  // Sonuç: {"method":"GET"} anahtarlar tırnak içine alınır ve bu artık bir stringtir.
+  // JavaScript object: { method: "GET" } JSON’a çevrildiğinde: {"method":"GET"}
 
+  // Backend Memory Object
+  //↓
+  // JSON.stringify()
+  //↓
+  // Network Response Body
+  //↓
+  // Browser Memory
+  //↓
+  // JSON.parse()
+  //↓
+  // Frontend Object
+
+  // 👉 JSON database’de yaşamaz.
+  // 👉 JSON network transport formatıdır.
+  // 👉 Backend logic object kullanır.
+  // 👉 Client runtime tekrar object’e çevirir.
 
   .post((req, res) => res.send({ method: "POST" }))
   .put((req, res) => res.send({ method: "PUT" }))
@@ -79,11 +96,7 @@ app.get("/blogs/:blogId/:author/search", (req, res) => {
   });
 });
 
-
-
-app.listen(PORT, () => console.log("Running at : http://127.0.0.1:" + PORT));  //! app.listen(PORT) → Server’ı çalıştırır ve dinlemeye başlar. Express ile yazılan API servis ayağa kaldıırldı.
-
-
+app.listen(PORT, () => console.log("Running at : http://127.0.0.1:" + PORT)); //! app.listen(PORT) → Server’ı çalıştırır ve dinlemeye başlar. Express ile yazılan API servis ayağa kaldıırldı.
 
 //& NOTE
 
@@ -118,4 +131,3 @@ app → artık senin server’ın “çalışan örneği” */
 //!comment
 /* single line comment: Cmd + 
 multi-line comment: Shift + Option + A */
-
