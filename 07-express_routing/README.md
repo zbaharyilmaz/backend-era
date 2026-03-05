@@ -343,34 +343,3 @@ DELETE /users/123 ID 123 kullanıcıyı sil
 GET /users/123 → Router → Controller.listUser → Model.findById(123) → Database → Response
 
 
-
-
-NOT:
-
-MVC veri akışı (en net şema)
-Frontend
-   │
-   │ HTTP Request
-   ▼
-Router
-   │
-   ▼
-Controller
-   │
-   ▼
-Model
-   │
-   ▼
-Database
-   │
-   ▼
-Model
-   │
-   ▼
-Controller
-   │
-   ▼
-JSON Response
-   │
-   ▼
-Frontend

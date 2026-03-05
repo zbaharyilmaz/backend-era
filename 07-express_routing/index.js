@@ -39,7 +39,11 @@ app.get("/download", (req,res)=> res.download("./index.js", "algulumvergulum.js"
 app
   .route("/")
   .get((req, res) => res.send({ method: "GET" }))  // res.send ile object gönderebiliriz, Express bunu otomatik olarak JSON formatına çevirir.
-  //res.json(user). Express zaten içeride: JSON.stringify(user) yaparak objeyi JSON string'e çevirir ve gönderir.
+//! Express.js şu kodu gördüğünde: es.send({ method: "GET" }) arka planda şu işlemi yapar: JSON.stringify({ method: "GET" })
+// Sonuç: {"method":"GET"} anahtarlar tırnak içine alınır ve bu artık bir stringtir. 
+// JavaScript object: { method: "GET" } JSON’a çevrildiğinde: {"method":"GET"}
+
+
   .post((req, res) => res.send({ method: "POST" }))
   .put((req, res) => res.send({ method: "PUT" }))
   .delete((req, res) => res.send({ method: "DELETE" }));
