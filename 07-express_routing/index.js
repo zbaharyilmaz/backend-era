@@ -4,19 +4,20 @@ const express = require("express");  //! express modülünü projemize dahil ede
 const app = express();   //! express() → Express uygulaması (instance) oluşturur. app → artık bu uygulamayı temsil eden değişken. app → Server instance’ı (bellekte çalışan örnek)
 //!Bu app üzerinden server’ı kontrol edebiliriz: Route ekleyebiliriz → /, /users vs. Middleware ekleyebiliriz. Server’ı başlatabiliriz
 require("dotenv").config();
+
 const PORT = process.env?.PORT || 8000;
 
-// http istekleri:
+//& HTTP Methods
 // app.METHOD(PATH, HANDLER)
 
-//? app.get("/", (req, res)=> res.end("Hello get"))
-//* app.post("/", (req, res)=>res.end("Hello post"))
-//? app.put("/", (req, res)=> res.end("Hello put"))
+app.get("/", (req, res)=> res.end("Hello get"))
+app.post("/", (req, res)=>res.end("Hello post"))
+app.put("/", (req, res)=> res.end("Hello put"))
 //PUT genelde var olan veriyi tamamen güncellemek için kullanılır.
-//* app.patch("/", (req, res)=> res.end("Hello patch"))
+app.patch("/", (req, res)=> res.end("Hello patch"))
 //PATCH genelde verinin bir kısmını güncellemek için tercih edilir.
 
-//&  app.all("/", (req, res)=>res.end("Hello all"))
+// app.all("/", (req, res)=>res.end("Hello all"))
 // app.all() metodu, belirtilen URL'ye gelen tüm HTTP isteklerini yakalamak için kullanılır.
 
 //& Response Methods
@@ -37,7 +38,8 @@ app.get("/download", (req,res)=> res.download("./index.js", "algulumvergulum.js"
 
 app
   .route("/")
-  .get((req, res) => res.send({ method: "GET" }))
+  .get((req, res) => res.send({ method: "GET" }))  // res.send ile object gönderebiliriz, Express bunu otomatik olarak JSON formatına çevirir.
+  //res.json(user). Express zaten içeride: JSON.stringify(user) yaparak objeyi JSON string'e çevirir ve gönderir.
   .post((req, res) => res.send({ method: "POST" }))
   .put((req, res) => res.send({ method: "PUT" }))
   .delete((req, res) => res.send({ method: "DELETE" }));
@@ -73,7 +75,9 @@ app.get("/blogs/:blogId/:author/search", (req, res) => {
   });
 });
 
-app.listen(PORT, () => console.log("Running at : http://127.0.0.1:" + PORT));  //! app.listen(PORT) → Server’ı çalıştırır ve dinlemeye başlar
+
+
+app.listen(PORT, () => console.log("Running at : http://127.0.0.1:" + PORT));  //! app.listen(PORT) → Server’ı çalıştırır ve dinlemeye başlar. Express ile yazılan API servis ayağa kaldıırldı.
 
 
 
