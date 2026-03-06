@@ -1,30 +1,38 @@
-"use strict";  // Modern JavaScript hatalarını yakalamak için kullanılır.
+"use strict"; // Modern JavaScript hatalarını yakalamak için kullanılır.
 
 /* Routes */
-const express= require("express");
-const app= express();
 
-require("dotenv").config();
-const PORT= process.env?.PORT || 8000;   // process.env.PORT ?? 8000
+//! Express is microframework for Node.js
 
-// app.route("/").get((req, res)=> {
-//     res.send({
-//         method: "GET" })})
+const express = require("express"); //! express modülünü projemize dahil eder. express, Node.js için popüler bir web framework'üdür ve web uygulamaları geliştirmek için kullanılır.
+const app = express(); //! express() → Express uygulaması (instance) oluşturur. app → artık bu uygulamayı temsil eden değişken. app → Server instance’ı (bellekte çalışan örnek)
+//!Bu app üzerinden server’ı kontrol edebiliriz: Route ekleyebiliriz → /, /users vs. Middleware ekleyebiliriz. Server’ı başlatabiliriz
+require("dotenv").config(); //! .env dosyasındaki değişkenleri process.env içine yükler. Bu sayede uygulama içinde bu değişkenlere erişebiliriz.
+
+const PORT = process.env.PORT ?? 8000;
+
+//app.route("/").get((req, res)=> {
+//res.send({
+// method: "GET" })})
+//*bunun yerine de aşağıdaki gibi yazabiliriz. app.route() → Belirli bir rota için birden fazla HTTP metodunu zincirleme olarak tanımlamamıza olanak tanır. Bu, kodun daha düzenli ve okunabilir olmasını sağlar.
 
 //& ROUTER
+//? Router is a special app for URL control in ExpressJS. It allows us to create modular, mountable route handlers. A Router instance is a complete middleware and routing system; for this reason, it is often referred to as a "mini-app".
 
-// const router= express.Router();
-// router.get("/",(req,res)=>res.send({method:"GET"}))
-// router.post("/",(req,res)=>res.send({method:"POST"}))
+const router = express.Router();
+// router.get("/", (req, res) => res.send({ method: "GET" }));
+// router.post("/", (req, res) => res.send({ method: "POST" }));
 // router.delete("/",(req,res)=>res.send({method:"DELETE"}))
-// router.route("/")
-// .get((req,res)=>res.send({method:"GET"}))
-// .post((req,res)=>res.send({method:"POST"}))
-// .put((req,res)=>res.send({method:"PUT"}))
+//!yerine
+//router.route("/")
+//.get((req,res)=>res.send({method:"GET"}))
+//.post((req,res)=>res.send({method:"POST"}))
+//.put((req,res)=>res.send({method:"PUT"}))
+//! yerine dosya aç.
 
-const router=require("./routes/index")
-app.use(router); //tanışma merasimi
+//const router = require("./routes/index");
+app.use(router); //! tanışma merasimi (after finished route design, it will call it in app.use())
 
-
-
-
+app.listen(PORT, () => {
+  console.log("Running at : http://127.0.0.1:" + PORT); //yani localhostta çalışıyor.
+});

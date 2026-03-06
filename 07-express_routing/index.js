@@ -3,7 +3,7 @@
 const express = require("express"); //! express modülünü projemize dahil eder. express, Node.js için popüler bir web framework'üdür ve web uygulamaları geliştirmek için kullanılır.
 const app = express(); //! express() → Express uygulaması (instance) oluşturur. app → artık bu uygulamayı temsil eden değişken. app → Server instance’ı (bellekte çalışan örnek)
 //!Bu app üzerinden server’ı kontrol edebiliriz: Route ekleyebiliriz → /, /users vs. Middleware ekleyebiliriz. Server’ı başlatabiliriz
-require("dotenv").config();
+require("dotenv").config(); //! .env dosyasındaki değişkenleri process.env içine yükler. Bu sayede uygulama içinde bu değişkenlere erişebiliriz.
 
 const PORT = process.env?.PORT || 8000;
 

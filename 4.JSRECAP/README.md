@@ -5,7 +5,7 @@
 if (true) {
   let b = 5;
 }
-console.log(b);
+console.log(b); b undefined
 
 ## const
 - yeniden tanımlama yok. let a = 1 bitti. tekrar let a=.... olmaz. redeclared yapılamaz.
@@ -18,7 +18,7 @@ Referans sabittir, içeriği değişebilir.
 if (true) {
   let b = 5;
 }
-console.log(b);
+console.log(b); b undefined
 
 ## var
 - Modern JavaScript'te önerilmez.
