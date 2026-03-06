@@ -129,7 +129,7 @@ Bu şu demek:
 Tarayıcı → Request (req) → Server
 Tarayıcı ← Response (res) ← Server
 🧠 7️⃣ Arada Yardımcı Olan Şeyler Ne?
-HTTP Protokolü
+- HTTP Protokolü
 
 İnternette konuşma dili.
 
@@ -141,7 +141,7 @@ POST nedir
 
 Status code nedir (200, 404, 500)
 
-Node http Modülü
+- Node http Modülü
 
 Node’un içindeki araç.
 
@@ -196,7 +196,8 @@ API = Server’ın dış dünyaya açtığı veri kapılarıdır.
 Node.js → Server yazmanı sağlar
 Server → İstek dinler
 Route (/list) → API endpoint
-Endpoint’lerin tamamı → API
+
+- Endpoint’lerin tamamı → API
 
 Menü = API
 

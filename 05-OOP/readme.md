@@ -1,10 +1,24 @@
 JavaScript’te OOP (Object Oriented Programming) yani Nesne Yönelimli Programlama, kodu nesneler üzerinden organize etme yaklaşımıdır.
+OOP (Object-Oriented Programming) temel fikir: veri ve davranışı aynı yapı içinde toplamak.
+OOP’i en basit şekilde düşün: gerçek hayattaki bir şeyi programda modellemek.
 
 Basitçe:
 
 Gerçek dünyadaki varlıkları (Car, User, Animal gibi) kodda modellememizi sağlar.
 
-🧠 JavaScript’te OOP Nedir?
+Class → plan, şablon
+Object → o plandan üretilen gerçek şey
+
+8️⃣ Görsel mantık
+Class (plan)
+   ↓
+Car
+   ↓
+Objects
+   ↓
+car1, car2, car3
+
+## 🧠 JavaScript’te OOP Nedir?
 
 JavaScript’te OOP:
 
@@ -20,7 +34,7 @@ Encapsulation teknikleri
 
 ES6 ile gelen class yapısı sayesinde klasik OOP daha okunabilir hale gelmiştir.
 
-🎯 OOP'nin 4 Temel Prensibi
+## 🎯 OOP'nin 4 Temel Prensibi
 
 Encapsulation (Kapsülleme)
 
