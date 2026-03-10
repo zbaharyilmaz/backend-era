@@ -449,3 +449,29 @@ Bu projede Express kullanmadan:
 
 
 
+
+## Note
+Layer   Format
+JavaScript	Object
+API	JSON
+NoSQL	Document
+SQL	Table
+
+## Network Transfer → JSON
+API iletişiminde veri:
+
+👉 JSON formatına serialize edilir.
+Neden JSON?
+
+Lightweight
+
+Language independent
+
+Standard web format
+
+----------------
+Backend memory → object
+
+Network transfer → JSON
+
+Database → storage format

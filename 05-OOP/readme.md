@@ -45,7 +45,7 @@ Inheritance (Kalıtım)
 Polymorphism (Çok Biçimlilik)
 
 
-1️⃣ Encapsulation (Kapsülleme)
+- 1️⃣ Encapsulation (Kapsülleme)
 
 Veriyi ve o veriye ait metodları bir arada tutmaktır.
 Ayrıca dışarıdan doğrudan erişimi kontrol etmektir.
@@ -71,7 +71,7 @@ Kullanıcı sadece metodlar üzerinden işlem yapabilir
 
 👉 Veri korunmuş oldu.
 
-2️⃣ Abstraction (Soyutlama)
+- 2️⃣ Abstraction (Soyutlama)
 
 Gereksiz detayları gizleyip sadece gerekli kısmı göstermektir.
 
@@ -98,7 +98,7 @@ Yakıt nasıl enjekte edildiğini bilmek zorunda değildir.
 
 👉 İç detay gizlendi.
 
-3️⃣ Inheritance (Kalıtım)
+- 3️⃣ Inheritance (Kalıtım)
 
 Bir sınıfın başka bir sınıfın özelliklerini miras almasıdır.
 
@@ -129,7 +129,7 @@ miras alır.
 
 👉 Kod tekrarını azaltır.
 
-4️⃣ Polymorphism (Çok Biçimlilik)
+- 4️⃣ Polymorphism (Çok Biçimlilik)
 
 Aynı metodun farklı sınıflarda farklı davranmasıdır.
 
@@ -150,7 +150,7 @@ Dog → "Woof!"
 
 Bu method overriding ile olur.
 
-🔥 JavaScript’te OOP’nin Önemli Gerçeği
+## 🔥 JavaScript’te OOP’nin Önemli Gerçeği
 
 JavaScript aslında:
 
