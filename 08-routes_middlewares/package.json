@@ -1,6 +1,7 @@
 {
-  "name": "9.routes_middlewares",
+  "name": "08-routes_middlewares",
   "version": "1.0.0",
+  "description": "Kullanıcı bir istek gönderir (GET, POST, PUT, vs)          ⬇ Express sunucusu (router.js) bu isteği yakalar          ⬇ `app.use(router)` ile routes/index.js'e yönlendirir          ⬇ routes/index.js içindeki router.route(\"/\") yakalar          ⬇ Uygun HTTP metoduna göre (GET, POST, PUT) cevap döner",
   "main": "router.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -8,12 +9,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "type": "commonjs",
   "dependencies": {
-    "dotenv": "^16.6.1",
-    "express": "^5.2.1"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.10"
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
   }
 }
