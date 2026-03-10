@@ -23,7 +23,7 @@ const PORT = process.env.PORT ?? 8000;
 //& ROUTER
 //? Router is a special app for URL control in ExpressJS. It allows us to create modular, mountable route handlers. A Router instance is a complete middleware and routing system; for this reason, it is often referred to as a "mini-app".
 
-const router = express.Router(); //Bu satır mini bir route sistemi oluşturur. express.Router() küçük bir router objesi üretir. router instance'ı, uygulamanın geri kalanından bağımsız olarak kendi middleware'lerini ve route'larını tanımlamamıza olanak tanır. Bu, kodun daha modüler ve organize olmasını sağlar. Router'lar, uygulamanın farklı bölümlerini yönetmek için kullanılabilir, örneğin kullanıcı işlemleri, ürün işlemleri gibi.
+// const router = express.Router(); //Bu satır mini bir route sistemi oluşturur. express.Router() küçük bir router objesi üretir. router instance'ı, uygulamanın geri kalanından bağımsız olarak kendi middleware'lerini ve route'larını tanımlamamıza olanak tanır. Bu, kodun daha modüler ve organize olmasını sağlar. Router'lar, uygulamanın farklı bölümlerini yönetmek için kullanılabilir, örneğin kullanıcı işlemleri, ürün işlemleri gibi.
 // router.get("/", (req, res) => res.send({ method: "GET" })); //! anlamı: Client → GET / → router yakalar → response gönderilir. Eğer "/" endpointine GET request gelirse şu fonksiyon çalışsın.
 // router.post("/", (req, res) => res.send({ method: "POST" }));
 // router.delete("/",(req,res)=>res.send({method:"DELETE"}))
@@ -34,7 +34,7 @@ const router = express.Router(); //Bu satır mini bir route sistemi oluşturur. 
 //.put((req,res)=>res.send({method:"PUT"}))
 //! yerine dosya aç.
 
-//const router = require("./routes/index");
+const router = require("./routes/index");
 app.use(router); //! tanışma merasimi (after finished route design, it will call it in app.use())
 
 app.listen(PORT, () => {
