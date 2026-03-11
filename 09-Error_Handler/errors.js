@@ -18,16 +18,18 @@ app.get("/user/:id", (req, res) => {
   } catch (error) {
     console.log(error);
     res.send("There is an error: " + error.message);
+    res.status(400).send("There is an error: " + error.message);
   }
 });
 
 app.get("/", (req, res) => {
-  throw new Error("There is an error");
+  throw new Error("There is an error", { cause: "This is the cause of the error" });
 });
 
 //& 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 ERROR HANDLER 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
 // 4 parametresi olan bir middleware. Görevi: hata yakalamak. En sonda çağrılır.
+// normalde html formatında gelen hatayı, istediğimiz gibi json formatında göndermek için kullanılır. Hata yönetimi için özel bir middleware'dir. Express, hata oluştuğunda bu middleware'i otomatik olarak çağırır ve hatayı parametre olarak geçirir. Bu sayede, uygulama genelinde tutarlı bir hata yönetimi stratejisi oluşturabiliriz.
 
 const errorHandler = (err, req, res, next) => {
   console.log(err, "Error Handler is working");
@@ -35,11 +37,11 @@ const errorHandler = (err, req, res, next) => {
     error: true,
     message: err.message,
     cause: err.cause,
-    stack: err.stack,
+    stack: err.stack, //! Hata yığını, hatanın nerede oluştuğunu gösterir. Geliştirme aşamasında faydalıdır, ancak üretim ortamında güvenlik nedeniyle genellikle gizlenir.
     status: err.status || 500,
   });
 };
-app.use(errorHandler);
+app.use(errorHandler); //! APP.USE() app.use() Express uygulamasına middleware veya router eklemek için kullanılır.
 
 //& 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳  CATCH AND ERROR HANDLER 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳
 

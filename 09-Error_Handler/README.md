@@ -38,7 +38,87 @@ app.get("/success", async (req, res) => {
 res.json({ message: "Async route worked fine!" });
 });
 
-/_ ----------------------------- Error Handler ------------------------------ _/
+## Error Handler
+
+Express’te varsayılan hata çıktısı genelde HTML olur.
+Ama bu Express’in default error handler’ı tarafından üretilir. Bu yüzden çoğu backend geliştiricisi kendi error middleware’ini yazıp JSON döndürür.
+
+1. Express’in varsayılan hata davranışı
+
+Eğer uygulamada özel bir error handler yoksa ve bir hata oluşursa Express kendi handler’ını kullanır.
+
+Örnek hata:
+
+app.get("/", (req,res)=>{
+  throw new Error("Something went wrong")
+})
+
+Express default olarak şöyle bir HTML sayfası döndürür:
+
+<!DOCTYPE html>
+<html>
+<body>
+<pre>Error: Something went wrong</pre>
+</body>
+</html>
+
+Bu tarayıcı için yapılmıştır, API için değil.
+
+2. API'lerde neden JSON kullanılır
+
+Backend çoğu zaman frontend veya başka servisler tarafından kullanılır.
+
+Bu yüzden hata formatı genelde şöyle olur:
+
+{
+  "error": true,
+  "message": "Something went wrong"
+}
+
+Frontend bunu kolayca okuyabilir.
+
+3. Express error middleware
+
+Error middleware 4 parametreli olur:
+
+(err, req, res, next)
+
+Örnek:
+
+app.use((err, req, res, next) => {
+  res.status(500).json({
+    error: true,
+    message: err.message
+  });
+});
+
+Önemli nokta:
+
+Express bir middleware'in error handler olduğunu
+4 parametresinden anlar.
+4. Hata nasıl bu middleware'e gelir
+
+Hata oluştuğunda:
+
+next(err)
+
+veya
+
+throw new Error()
+
+Express akışı:
+
+Request
+   ↓
+Middleware
+   ↓
+Route
+   ↓
+Hata oluştu
+   ↓
+Error Middleware
+   ↓
+Response
 
 // 📌 Express 5'te async hataları otomatik yakaladığı için burada doğrudan error handler kullanılır
 app.use((err, req, res, next) => {
