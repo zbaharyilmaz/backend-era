@@ -7,10 +7,9 @@
 
 ## MVC: Model View Controller
 
-- Model: Data CRUD işlemleri(Veritabanı Tablosu)(Data Structure tanımlanması) 
+- Model: Data CRUD işlemleri(Veritabanı Tablosu)(Data Structure tanımlanması, datanın rastgele olmaması, kurallı data yapısı, nasıl bir data istiyorum; modelle denetle.)
 - View: Frontend ve Template
 - Controller: Kontrol logic
-
 
 ## 1️⃣ Model
 
@@ -23,7 +22,6 @@ CRUD işlemleri burada tanımlanır (Create, Read, Update, Delete)
 Örnek: User model → kullanıcı verilerini tutar, veritabanına sorgu atar
 
 Model = Veritabanı + Data Logic
-
 
 ## 2️⃣ View
 
@@ -47,34 +45,49 @@ Request ve Response yönetimini yapar
 
 Controller = Route logic + Business logic
 
-
 ## Özet
-Katman	Görev	Örnek
-Model	Veri + CRUD	User.find(), Post.create()
-View	Kullanıcı arayüzü	HTML, React component, EJS template
-Controller	Mantık + yönlendirme	Route handler, validation, middleware kullanımı
+
+Katman Görev Örnek
+Model Veri + CRUD User.find(), Post.create()
+View Kullanıcı arayüzü HTML, React component, EJS template
+Controller Mantık + yönlendirme Route handler, validation, middleware kullanımı
 
 ## ORM
 
-Objects ➡️ ORM ➡️ SQL
-
+Bir translator gibi çalışır.
+Objects ➡️ ORM ➡️ SQL (model ile database arasında ORM)
 Dili çeviren aradaki yazılıma ORM denir.
-Sequlize ORM yazılımıdır.
+Sequlize Modülü: neden kullandık? - SQL kullanmadan veritabanı işlemleri yapayım; ORM imkanı versin. Sequelize bie orm yazılımıdır.
+Note: Bir node.js projesinde Model ve ORM yapısı için Sequelize kullanıyoruz. Sequelize; SQL Veritabanları için kullanılabilen bir ORM modülüdür. Birçok veritabanını destekler. Komutları MongoDB komutlarına çok benzer.
+
 Bir veritabanından başka bir veritabanına geçisi sağlar.
 SQL olmadan veri tabanı işlemleri yapabilmek.
 
-## ERD (Entity Relation Diagram)
+## ERD (Entity Relation Diagram)-veritabanı yol haritası(tablo dökümü ve ilişkiler)
 
-Veritabanı tablo olarak dökümünü bize tablo olarak verebilecek yapıdır.
+ERD (Entity-Relationship Diagram / Varlık-İlişki Diyagramı), bir veritabanındaki varlıkları (tablolar) ve bunlar arasındaki ilişkileri görselleştiren diyagramdır.
 
-Note: Bir node.js projesinde Model ve ORM yapısı için Sequelize kullanıyoruz. Sequelize; SQL Veritabanları için kullanılabilen bir ORM modülüdür. Birçok veritabanını destekler. Komutları MongoDB komutlarına çok benzer.
+Entity (Varlık) → tabloyu temsil eder
 
+Attributes (Özellikler) → tablo sütunları
+
+Relationship (İlişki) → tablolar arasındaki bağlantı (1-1, 1-N, N-M)
+
+- ERD neden kullanılır?
+
+Veritabanı tasarımını görselleştirir
+
+Tablo ve ilişki yapısını net gösterir
+
+Kompleks projelerde veri akışını ve ilişkileri anlamayı kolaylaştırır
+
+Backend geliştirme ve database migration planlamasında yol gösterir
 ## Data Types:
 
 https://sequelize.org/docs/v7/models/data-types/
 
 # Sequelize
 
-* Model oluşturmak,
-* Senkronize etmek,
-* Authentication yapmak için kullanılır.
+- Model oluşturmak,
+- Senkronize etmek,
+- Authentication yapmak için kullanılır.

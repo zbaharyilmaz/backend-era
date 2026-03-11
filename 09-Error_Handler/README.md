@@ -5,7 +5,7 @@
   (npm install express@4.18.2)
 - npm i express-async-errors
 
-## 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 Not 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+## 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
 - JSON alıp verdiğimiz api ler REST API denir.
 - Try Catch i hata yönetimi için kullanabiliriz.
@@ -103,6 +103,8 @@ Hata oluştu
 Error Middleware
    ↓
 Response
+
+## note
 
 // 📌 Express 5'te async hataları otomatik yakaladığı için burada doğrudan error handler kullanılır
 app.use((err, req, res, next) => {
