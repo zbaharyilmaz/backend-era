@@ -20,23 +20,7 @@ const app = express();
 
 app.use(express.json());
 
-/_ --------------------------------- Routes --------------------------------- _/
 
-// ✅ Normal route
-app.get("/", (req, res) => {
-res.send({ message: "Hello from Express 5!" });
-});
-
-// ✅ Async route – hata fırlatır
-app.get("/error", async (req, res) => {
-// Direkt hata fırlatıyoruz (Express 5 bunu yakalayacak)
-throw createError(400, "This is a custom bad request error");
-});
-
-// ✅ Async route – başarılı sonuç döner
-app.get("/success", async (req, res) => {
-res.json({ message: "Async route worked fine!" });
-});
 
 ## Error Handler
 
@@ -138,3 +122,25 @@ console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
 
 
+
+/_ --------------------------------- Routes --------------------------------- _/
+
+// ✅ Normal route
+app.get("/", (req, res) => {
+res.send({ message: "Hello from Express 5!" });
+});
+
+// ✅ Async route – hata fırlatır
+app.get("/error", async (req, res) => {
+// Direkt hata fırlatıyoruz (Express 5 bunu yakalayacak)
+throw createError(400, "This is a custom bad request error");
+});
+
+// ✅ Async route – başarılı sonuç döner
+app.get("/success", async (req, res) => {
+res.json({ message: "Async route worked fine!" });
+});
+
+Express 4’te async fonksiyonlarda throw yakalanmaz, paket (express-async-errors) veya try/catch gerekir.
+
+Express 5 bunu otomatik yapıyor.

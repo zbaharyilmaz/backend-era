@@ -54,14 +54,13 @@ app.get("/user/:id", (req, res) => {
       res.send("id is a number");
     }
   } catch (error) {
-    next(error); //error handler middleware'ine yönlendiriyoruz.
+    next(error); //catch ile yakalanan hatayı error handler middleware'ine yönlendiriyoruz.
   }
 });
 
-//* 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳  ASYNC FONK 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳
-// sistem kilitlenir.
-// hata vermesi muhtemel kodlar ayrı bir async func a yazılır.
-//Kullanılan bir töntem değil.
+//* 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳  ASYNC FONK 🐳🐳🐳🐳🐳🐳🐳🐳 
+// Kullanılan bir yöntem değil.
+
 
 const asyncFunction = async () => {
   //* Hata vermesi muhtemel kodlar ayrı bir async func'a yazılır.
@@ -75,16 +74,18 @@ app.get("/async", async (req, res, next) => {
 
 //& 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳  EXPRESS ASYNC ERRORS MODULE 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳
 
-// express-async-errors modülünü dahil ettik. Bu modül, async fonksiyonlarda hata yakalamak için kullanılır.
+//! express-async-errors modülünü dahil ettik.(npm i express-async-errors) Bu modül, async fonksiyonlarda hata yakalamak için kullanılır. Normalde, async fonksiyonlarda hata yakalamak için try-catch blokları kullanılır, ancak express-async-errors modülü sayesinde bu hatalar otomatik olarak error handler middleware'ine yönlendirilir. Bu sayede, async fonksiyonlarda hata yönetimi daha kolay ve temiz bir şekilde yapılabilir.
 
 // require("express-async-errors");
 
 // app.get("/async", async (req, res, next) => {
+  //res.customErrorCode=404;
 //   throw new Error("Async Error");
 // });
 
 // const errorHandler = (err, req, res, next) => {
 //     console.log(err, "Error Handler is working");
+// const statusCode = res?.customErrorCode || 500;
 //     res.status(500).send({
 //       error: true,
 //       message: err.message,
@@ -94,5 +95,24 @@ app.get("/async", async (req, res, next) => {
 //     });
 //   };
 //   app.use(errorHandler);
+
+
+/* MODUL YOK
+ async route
+   ↓
+promise reject
+   ↓
+express yakalayamaz
+   ↓
+UnhandledPromiseRejection
+
+MODUL VAR
+async route
+   ↓
+error
+   ↓
+next(err)
+   ↓
+error middleware */
 
 app.listen(PORT, () => console.log("Running at http://127.0.0.1:" + PORT));
