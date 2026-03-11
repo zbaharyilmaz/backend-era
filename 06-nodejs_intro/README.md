@@ -11,6 +11,45 @@ nodemon
 npm install express
 npm install dotenv
 
+## Package json varlığı: nodejs projesi göstergesidir.
+
+- package.json nedir?
+
+package.json, bir Node.js projesinin “kalbi” gibidir. İçinde şunlar bulunur:
+
+Proje bilgileri: isim, versiyon, yazar, açıklama
+
+Dependencies (bağımlılıklar): projede kullanılan npm paketleri
+
+Scripts: çalıştırma veya build komutları (npm start, npm test)
+
+Engines / config: Node sürümü veya özel ayarlar
+
+Örnek:
+
+{
+"name": "my-app",
+"version": "1.0.0",
+"description": "A Node.js project",
+"main": "index.js",
+"scripts": {
+"start": "node index.js"
+},
+"dependencies": {
+"express": "^5.0.0"
+}
+}
+
+- package.json varsa Node.js projesi demek
+
+Node.js projelerinde npm (Node Package Manager) kullanılır
+
+npm projelerinin temel göstergesi package.json dosyasıdır
+
+Dosya varsa, proje Node.js tabanlıdır veya Node.js ekosisteminde geliştirilmiştir
+
+⚠️ Not: package.json sadece Node.js projelerinde zorunlu değil, ama npm kullanan her proje mutlaka bunu içerir.
+
 🌐 Express Sunucu Kurulumu
 const express = require("express");
 const app = express();
@@ -129,6 +168,7 @@ Bu şu demek:
 Tarayıcı → Request (req) → Server
 Tarayıcı ← Response (res) ← Server
 🧠 7️⃣ Arada Yardımcı Olan Şeyler Ne?
+
 - HTTP Protokolü
 
 İnternette konuşma dili.
@@ -207,7 +247,6 @@ Sipariş = Request
 
 Yemek = Response
 
-
 💡 En Net Özet
 
 Node.js → JS’i server’da çalıştırır
@@ -217,7 +256,7 @@ Host → Server’ın adresi
 req → Gelen istek
 res → Verilen cevap
 
------------------------------
+---
 
 📌 Node.js + Express Basic Server & Module Usage
 
@@ -264,7 +303,7 @@ const app = express();
 const port = 3000;
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+console.log(`Server is running on port ${port}`);
 });
 
 Yapılanlar:
@@ -283,11 +322,11 @@ Tek bir fonksiyon dışa aktarılabilir.
 
 2️⃣ Çoklu Fonksiyon Export
 module.exports = {
-  testing: testFunct,
-  imrenbirth: birthday1,
-  baharbirth: birthday2,
-  numbers: [evenNumber, oddNumber],
-  imren,
+testing: testFunct,
+imrenbirth: birthday1,
+baharbirth: birthday2,
+numbers: [evenNumber, oddNumber],
+imren,
 };
 
 Birden fazla fonksiyon ve değişken obje yapısıyla export edildi.
@@ -299,7 +338,7 @@ Export edilen fonksiyonlar ve değişkenler destructuring ile alındı.
 
 📌 Array Destructuring Kullanımı
 const {
-  numbers: [oddNumber, evenNumber],
+numbers: [oddNumber, evenNumber],
 } = require("./module/module");
 
 Export edilen array içindeki fonksiyonlar ayrı ayrı değişkenlere atandı.
@@ -321,7 +360,6 @@ Function declaration vs expression
 Strict Mode
 
 Basit Express server kurulumu
-
 
 📌 Node.js Native HTTP Server & Environment Variables
 
@@ -358,7 +396,7 @@ HOST=localhost
 const http = require("http");
 
 const app = http.createServer((req, res) => {
-  ...
+...
 });
 
 Node’un built-in http modülü kullanıldı.
@@ -379,9 +417,9 @@ POST → 400 hata döndürür
 DELETE → 405 hata döndürür
 
 if (req.url == "/") {
-  if (req.method == "GET") {
-    res.end("<h1>Welcome to Homepage</h1>");
-  }
+if (req.method == "GET") {
+res.end("<h1>Welcome to Homepage</h1>");
+}
 }
 
 Burada:
@@ -396,8 +434,8 @@ kullanımını öğrendik.
 
 📦 5️⃣ JSON Response Gönderme
 const obj = {
-  error: false,
-  message: "this is list page",
+error: false,
+message: "this is list page",
 };
 
 res.end(JSON.stringify(obj));
@@ -408,7 +446,7 @@ API mantığının temeli atıldı.
 
 🎯 6️⃣ Server Başlatma
 app.listen(PORT, () =>
-  console.log(`server running: http://${HOST}:${PORT}`)
+console.log(`server running: http://${HOST}:${PORT}`)
 );
 
 Belirtilen host ve portta server çalıştırıldı.
@@ -446,18 +484,16 @@ Bu projede Express kullanmadan:
 ✔ JSON response gönderdik
 ✔ .env ile port/host yönetimini dışarı aldık
 
-
-
-
-
 ## Note
-Layer   Format
-JavaScript	Object
-API	JSON
-NoSQL	Document
-SQL	Table
+
+Layer Format
+JavaScript Object
+API JSON
+NoSQL Document
+SQL Table
 
 ## Network Transfer → JSON
+
 API iletişiminde veri:
 
 👉 JSON formatına serialize edilir.
@@ -469,7 +505,8 @@ Language independent
 
 Standard web format
 
-----------------
+---
+
 Backend memory → object
 
 Network transfer → JSON
