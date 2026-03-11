@@ -1,13 +1,11 @@
 "use strict";
-const express = require("express");
-const app = express();
-
-require("dotenv").config();
-const PORT = process.env?.PORT || 8000;
+const express = require("express"); //! Express modülünü dahil ediyoruz. Express, Node.js üzerinde web uygulamaları geliştirmek için kullanılan popüler bir framework'tür. Express, HTTP sunucusu oluşturmayı ve yönetmeyi kolaylaştırır, yönlendirme (routing) sağlar, middleware desteği sunar ve birçok diğer özellik ile web uygulamalarını hızlı bir şekilde geliştirmeye olanak tanır.
+const app = express(); //! Express uygulaması oluşturuyoruz. Bu, Express framework'ünün temelini oluşturur ve web sunucusunu yönetmek için kullanılır. app değişkeni, Express uygulamasını temsil eder ve bu değişken üzerinden yönlendirme, middleware ekleme ve diğer işlemleri gerçekleştirebiliriz.
+require("dotenv").config(); //! .env dosyasındaki çevresel değişkenleri yükler. Bu, uygulamanın yapılandırmasını kolaylaştırır ve hassas bilgileri (örneğin, veritabanı bağlantı bilgileri, API anahtarları) koddan ayrı tutarak güvenliği artırır. .env dosyası genellikle projenin kök dizininde bulunur ve anahtar-değer çiftleri içerir. Bu komut, bu değişkenleri process.env nesnesine yükler, böylece uygulama içinde bu değişkenlere erişebiliriz.
+const PORT = process.env?.PORT || 8000; //! Uygulamanın çalışacağı port numarasını belirler. process.env.PORT ifadesi, .env dosyasındaki PORT değişkenini okumaya çalışır.
 
 //& 🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑 TRY-CATCH 🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑
-//? 🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑 TRY-CATCH 🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑
-//* 🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑 TRY-CATCH 🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑🦑
+// hata yönetimi için try-catch blokları kullanılır. Try bloğu içinde hata oluşturabilecek kodlar yer alır, catch bloğu ise bu hataları yakalar ve yönetir. Bu yöntem, uygulamanın çökmesini önler ve hataların düzgün bir şekilde ele alınmasını sağlar.
 
 app.get("/user/:id", (req, res) => {
   try {
@@ -28,8 +26,6 @@ app.get("/", (req, res) => {
 });
 
 //& 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 ERROR HANDLER 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-//* 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 ERROR HANDLER 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-//? 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 ERROR HANDLER 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
 // 4 parametresi olan bir middleware. Görevi: hata yakalamak. En sonda çağrılır.
 
@@ -46,8 +42,6 @@ const errorHandler = (err, req, res, next) => {
 app.use(errorHandler);
 
 //& 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳  CATCH AND ERROR HANDLER 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳
-//? 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳  CATCH AND ERROR HANDLER 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳
-//* 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳  CATCH AND ERROR HANDLER 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳
 
 app.get("/user/:id", (req, res) => {
   try {
@@ -78,10 +72,8 @@ app.get("/async", async (req, res, next) => {
 });
 
 //& 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳  EXPRESS ASYNC ERRORS MODULE 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳
-//& 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳  EXPRESS ASYNC ERRORS MODULE 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳
-//& 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳  EXPRESS ASYNC ERRORS MODULE 🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳🐳
-// express-async-errors modülünü dahil ettik. Bu modül, async fonksiyonlarda hata yakalamak için kullanılır.
 
+// express-async-errors modülünü dahil ettik. Bu modül, async fonksiyonlarda hata yakalamak için kullanılır.
 
 // require("express-async-errors");
 
