@@ -1,5 +1,48 @@
 //! Express is microframework for Node.js
 
+/* ## NOTE:
+
+NOT: express bir micro framework. yani içine istediğimiz modülleri ihtiyaca göre ekliyoruz. tüm modüller içinde hazır değil, frameworklerdeki gibi. biz de burda kendi framework ümüzü yazıyoruz aslında, mvc mantığında.
+
+1️⃣ Express neden “micro framework”?
+
+Minimal bir yapı sunar: sadece temel HTTP sunucu ve routing özellikleri vardır.
+
+Diğer özellikler opsiyonel: middleware, authentication, validation, database bağlantısı gibi eklentileri kendimiz ekleriz.
+
+Hazır “her şey dahil” framework değil: Django, Laravel gibi full-stack frameworklerde çoğu şey ön tanımlıdır.
+
+2️⃣ Örnek fark
+Özellik	Express	Full-stack framework (örn. Django)
+Routing	Var	Var
+Middleware	Opsiyonel	Genellikle entegre
+Authentication	Opsiyonel	Hazır modüllerle
+ORM / Database	Opsiyonel	Dahili ORM var
+Template engine	Opsiyonel	Genellikle entegre
+3️⃣ Ne demek “kendi framework’ünü yazıyoruz”?
+
+Express sadece route ve request-response altyapısı sağlar
+
+Geri kalan her şeyi middleware ve modüllerle kendimiz oluşturuyoruz:
+
+Hata yönetimi
+
+JWT auth
+
+Validation
+
+Logger
+
+CORS, rate-limiter
+
+Yani Express aslında bir temel tuğla. Biz de üzerine kendi “framework katmanımızı” inşa ediyoruz.
+
+💡 Özet:
+
+Express = küçük, esnek bir yapı
+Full framework = her şeyi hazır, büyük ama kısıtlı esneklik
+Express ile mikro servis, API veya kendi “framework benzeri” yapını oluşturabilirsin. */
+
 const express = require("express"); //! express modülünü projemize dahil eder. express, Node.js için popüler bir web framework'üdür ve web uygulamaları geliştirmek için kullanılır.
 const app = express(); //! express() → Express uygulaması (instance) oluşturur. app → artık bu uygulamayı temsil eden değişken. app → Server instance’ı (bellekte çalışan örnek)
 //!Bu app üzerinden server’ı kontrol edebiliriz: Route ekleyebiliriz → /, /users vs. Middleware ekleyebiliriz. Server’ı başlatabiliriz
