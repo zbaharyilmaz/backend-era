@@ -5,6 +5,12 @@
   (npm install express@4.18.2)
 - npm i express-async-errors
 
+(
+Express 5 ve üzeri için express-async-errors yüklemeye gerek yok.
+Önceki Express 4 sürümlerinde async route’larda throw edilen hatalar otomatik yakalanmazdı.
+Bu yüzden express-async-errors paketini kullanırdık; paket async fonksiyonlarda throw edilen hatayı next(err) ile error middleware’e yönlendirirdi.
+)
+
 ## 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
 - JSON alıp verdiğimiz api ler REST API denir.
@@ -20,8 +26,6 @@ const app = express();
 
 app.use(express.json());
 
-
-
 ## Error Handler
 
 Express’te varsayılan hata çıktısı genelde HTML olur.
@@ -34,7 +38,7 @@ Eğer uygulamada özel bir error handler yoksa ve bir hata oluşursa Express ken
 Örnek hata:
 
 app.get("/", (req,res)=>{
-  throw new Error("Something went wrong")
+throw new Error("Something went wrong")
 })
 
 Express default olarak şöyle bir HTML sayfası döndürür:
@@ -55,8 +59,8 @@ Backend çoğu zaman frontend veya başka servisler tarafından kullanılır.
 Bu yüzden hata formatı genelde şöyle olur:
 
 {
-  "error": true,
-  "message": "Something went wrong"
+"error": true,
+"message": "Something went wrong"
 }
 
 Frontend bunu kolayca okuyabilir.
@@ -70,17 +74,16 @@ Error middleware 4 parametreli olur:
 Örnek:
 
 app.use((err, req, res, next) => {
-  res.status(500).json({
-    error: true,
-    message: err.message
-  });
+res.status(500).json({
+error: true,
+message: err.message
+});
 });
 
 Önemli nokta:
 
 Express bir middleware'in error handler olduğunu
-4 parametresinden anlar.
-4. Hata nasıl bu middleware'e gelir
+4 parametresinden anlar. 4. Hata nasıl bu middleware'e gelir
 
 Hata oluştuğunda:
 
@@ -93,15 +96,15 @@ throw new Error()
 Express akışı:
 
 Request
-   ↓
+↓
 Middleware
-   ↓
+↓
 Route
-   ↓
+↓
 Hata oluştu
-   ↓
+↓
 Error Middleware
-   ↓
+↓
 Response
 
 ## note
@@ -122,8 +125,6 @@ const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
 console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
-
-
 
 /_ --------------------------------- Routes --------------------------------- _/
 
