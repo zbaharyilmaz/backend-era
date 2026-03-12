@@ -6,6 +6,9 @@
 - 🔙 npm i -D nodemon (-D: in development, not production ) (automatic start for nodejs server)
 - 🔙 npm i express dotenv (dotenv module)
 - 🔙 echo PORT=8000 > .env
-- 🔙 add .gitigore file  (gitignore.io)
+- 🔙 add .gitigore file (gitignore.io)
 
+# Sequelize
 
+- npm i sequelize
+- npm i sqlite3

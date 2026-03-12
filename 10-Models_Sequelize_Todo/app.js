@@ -26,8 +26,15 @@ const { Sequelize, DataTypes } = require("sequelize");
 
 //! data typeları incele, darklı databse ler için: https://sequelize.org/docs/v7/models/data-types/
 const sequelize = new Sequelize("sqlite:" + process.env.SQLITE); //* kullacağım veritabanı: kullanacağım dosya yolu. Burada sequelize instance ı oluşturduk.
-// define metodu sequelize modeli oluşturur. her bir model veritabanında bir tabloya tekabül eder ilk parametre tablo adı, ikinci parametre tablo yapısı.
+// Sequelize bir veritabanı ile çalışmak zorundadır. Sen projede SQLite driver’ı kurduğun için Sequelize bu veritabanını kullanıyor.
+//& SQLite nedir
+// SQLite bir SQL veritabanıdır: ayrı bir server çalıştırmayan ve tek bir dosya içinde veriyi saklayan bir veritabanıdır.
+//Veritabanı yönetim sistemleri(DBMS), veritabanlarını oluşturmak, yönetmek ve sorgulamak için kullanılan yazılımlardır. SQLite, diğer SQL veritabanlarından farklı olarak, sunucu tabanlı değil, dosya tabanlı bir veritabanıdır. Bu nedenle, SQLite'ı kullanmak için ayrı bir sunucu kurmanıza gerek yoktur. Ayrı bir app e bağlanmadan, yerel bir dosya ile çalışır. SQLite, küçük ve orta ölçekli uygulamalar için ideal bir veritabanıdır ve genellikle mobil uygulamalarda, gömülü sistemlerde ve masaüstü uygulamalarında kullanılır.
+
+//ex: database.sqlite (Bütün tablolar bu dosyanın içindedir.)
+
 const Todo = sequelize.define("todos", {
+  // define metodu sequelize modeli oluşturur. her bir model veritabanında bir tabloya tekabül eder ilk parametre tablo adı, ikinci parametre tablo yapısı.
   //? 🔥 🔥 🔥 🔥 ilk sutun olarak ID tanımlaması yapmanıza gerek yok. sequelize otomatik tanımlar ve yönetir. Createdat ve updatedat de id gibi sequelize otomatik tanımlar ve yönetir.
   /* id: {
     type: DataTypes.INTEGER,
@@ -62,8 +69,8 @@ const Todo = sequelize.define("todos", {
 
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-//* SYNCRONIZATION
-
+//* SYNCHRONIZATION
+// Model bilgilerini database e uygula. Model ile tabloyu senkronize eder. Modeldeki değişiklikleri database e uygular. Modeli database e göre oluşturur. Modeli database e göre günceller. Modeli database e göre siler ve yeniden oluşturur.
 //& sync 1  defa çalıştırıldıktan sonra yoruma alınması gerekmektedir.
 // sequelize.sync()  // create table(tablo yoksa oluşturur)
 //! sequelize.sync({force: true}) // mevcutu sil, yeniden oluştur. tabloyu tamamen siliyor. Datayı siliyor.
@@ -74,11 +81,12 @@ const Todo = sequelize.define("todos", {
 //* CONNECT TO DB
 // sync kapayınca DB connected gözüküyor.
 sequelize
-  .authenticate()
+  .authenticate() // veritabanına bağlanmayı dener. Bağlanırsa resolve olur, bağlanamazsa reject olur.
   .then(() => console.log("DB connected"))
   .catch(() => console.log("DB not connected"));
 
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
 const errorHandler = (err, req, res, next) => {
   const errorStatusCode = res.errorStatusCode ?? 500;
   console.log("errorHandler worked.");
