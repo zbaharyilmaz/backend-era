@@ -56,15 +56,13 @@ const Todo = sequelize.define("todos", {
   priority: {
     type: DataTypes.TINYINT,
     allowNull: false,
-    default: 0,
+    defaultValue: 0,
   },
   isDone: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
-    default: false,
+    defaultValue: false,
   },
-  createdAt: false,
-  updatedAt: false,
 });
 
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
@@ -94,20 +92,29 @@ sequelize
 
 const router = express.Router(); // router oluşturduk. router, route işlemlerini tek bir yerde toplamak için kullanılan bir yapıdır. app e benzer ama daha küçük çaplıdır. app e benzer şekilde get, post, put, delete gibi methodları vardır.
 
-router.post("/todos", (req, res) => {
-  const resultTodo = Todo.create({
+router.post("/todos", async (req, res) => {
+  const resultTodo = await Todo.create(req.body); // create metodu tabloya yeni bir kayıt ekler. create metodu async bir işlemdir, bu yüzden await ile bekliyoruz. create metodu, oluşturulan kaydı döner. req.body ile frontend den gelen veriyi alıyoruz. req.body deki verinin yapısı modeldeki yapıya uygun olmalıdır. Modeldeki alanlar: title, description, priority, isDone. req.body de bu alanların olması gerekir.
+  /*   {
     title: req.body.title,
     description: req.body.description,
     priority: req.body.priority,
     isDone: req.body.isDone,
-  });
+  } */
   res.status(201).send({
     error: false,
     message: "Todo created successfully",
     data: resultTodo,
   });
 });
-
+router.get("/todos", async (req, res) => {
+  // SELECT * FROM todos;
+  const resultTodo = await Todo.findAll(); // findAll metodu tabloya kayıtlı tüm verileri döner. findAll metodu async bir işlemdir, bu yüzden await ile bekliyoruz.
+  res.status(200).send({
+    error: false,
+    data: resultTodo,
+  });
+});
+//! İNCELE: https://sequelize.org/docs/v6/core-concepts/model-querying-basics/
 app.use(router); // router ı app e bağladık. app.use ile router ı kullanmaya başladık. Artık router içindeki route işlemleri çalışır hale geldi.
 
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥

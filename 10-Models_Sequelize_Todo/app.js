@@ -56,15 +56,15 @@ const Todo = sequelize.define("todos", {
   priority: {
     type: DataTypes.TINYINT,
     allowNull: false,
-    default: 0,
+    defaultValue: 0,
   },
   isDone: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
     default: false,
   },
-  createdAt: false,
-  updatedAt: false,
+  // createdAt: false, //disable
+  // updatedAt: false, //disable
 });
 
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
