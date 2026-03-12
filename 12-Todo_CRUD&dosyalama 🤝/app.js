@@ -1,12 +1,11 @@
 "use strict";
 const express = require("express");
 const app = express();
-require("express-async-errors");
+
 require("dotenv").config();
 const PORT = process.env?.PORT || 8000;
 
-
-//&Accept json data
+//& Accept json data
 app.use(express.json());
 
 //& Router

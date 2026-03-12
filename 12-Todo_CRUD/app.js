@@ -32,7 +32,7 @@ const sequelize = new Sequelize("sqlite:" + process.env.SQLITE); //* kullacağı
 //Veritabanı yönetim sistemleri(DBMS), veritabanlarını oluşturmak, yönetmek ve sorgulamak için kullanılan yazılımlardır. SQLite, diğer SQL veritabanlarından farklı olarak, sunucu tabanlı değil, dosya tabanlı bir veritabanıdır. Bu nedenle, SQLite'ı kullanmak için ayrı bir sunucu kurmanıza gerek yoktur. Ayrı bir app e bağlanmadan, yerel bir dosya ile çalışır. SQLite, küçük ve orta ölçekli uygulamalar için ideal bir veritabanıdır ve genellikle mobil uygulamalarda, gömülü sistemlerde ve masaüstü uygulamalarında kullanılır.
 
 //ex: database.sqlite (Bütün tablolar bu dosyanın içindedir.)
-
+//modellerin büyük harfle başlaması yaygın bir konvansiyondur. Model isimleri tekil olur. Tablo isimleri çoğul olur. Sequelize, model ismini çoğul yaparak tablo oluşturur. Model ismi: Todo -> tablo ismi: Todos
 const Todo = sequelize.define("todos", {
   // define metodu sequelize modeli oluşturur. her bir model veritabanında bir tabloya tekabül eder ilk parametre tablo adı, ikinci parametre tablo yapısı.
   //? 🔥 🔥 🔥 🔥 ilk sutun olarak ID tanımlaması yapmanıza gerek yok. sequelize otomatik tanımlar ve yönetir. Createdat ve updatedat de id gibi sequelize otomatik tanımlar ve yönetir.
@@ -72,7 +72,7 @@ const Todo = sequelize.define("todos", {
 //* SYNCHRONIZATION
 // Model bilgilerini database e uygula. Model ile tabloyu senkronize eder. Modeldeki değişiklikleri database e uygular. Modeli database e göre oluşturur. Modeli database e göre günceller. Modeli database e göre siler ve yeniden oluşturur.
 //& sync 1  defa çalıştırıldıktan sonra yoruma alınması gerekmektedir.
-sequelize.sync()  // create table(tablo yoksa oluşturur)
+// sequelize.sync()  // create table(tablo yoksa oluşturur)
 //! sequelize.sync({force: true}) // mevcutu sil, yeniden oluştur. tabloyu tamamen siliyor. Datayı siliyor.
 // sequelize.sync({ alter: true }); // önce backup & drop & create(data kaybı yaşamayız) //! GÜVENLİ YOL. alter:değişiklik yapmak
 
@@ -84,6 +84,31 @@ sequelize
   .authenticate() // veritabanına bağlanmayı dener. Bağlanırsa resolve olur, bağlanamazsa reject olur.
   .then(() => console.log("DB connected"))
   .catch(() => console.log("DB not connected"));
+
+//* ROUTERS
+//& CRUD: Create, Read, Update, Delete
+//& CREATE: POST /todos
+//& READ: GET /todos, GET /todos/:id
+//& UPDATE: PUT /todos/:id
+//& DELETE: DELETE /todos/:id
+
+const router = express.Router(); // router oluşturduk. router, route işlemlerini tek bir yerde toplamak için kullanılan bir yapıdır. app e benzer ama daha küçük çaplıdır. app e benzer şekilde get, post, put, delete gibi methodları vardır.
+
+router.post("/todos", (req, res) => {
+  const resultTodo = Todo.create({
+    title: req.body.title,
+    description: req.body.description,
+    priority: req.body.priority,
+    isDone: req.body.isDone,
+  });
+  res.status(201).send({
+    error: false,
+    message: "Todo created successfully",
+    data: resultTodo,
+  });
+});
+
+app.use(router); // router ı app e bağladık. app.use ile router ı kullanmaya başladık. Artık router içindeki route işlemleri çalışır hale geldi.
 
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 // Frontend’e hataları JSON formatında gönderebilmek için error handler middleware tanımladık. Express’in varsayılan hata çıktısı HTML olduğu için, bunu JSON formatına dönüştürmek amacıyla custom error handler middleware kullanıyoruz.
