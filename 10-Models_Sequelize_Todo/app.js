@@ -1,6 +1,6 @@
 "use strict";
 /* -------------------------------------------------------
-    EXPRESSJS - TODO Project with Sequelize
+    EXPRESSJS - Sequelize
 ------------------------------------------------------- */
 
 const express = require("express");
@@ -23,8 +23,10 @@ app.all("/", (req, res) => {
 //Data yapısı bu modele göre olacak. Bir tablo ve modeli.
 
 const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = new Sequelize("sqlite:" + process.env.SQLITE); //* kullacağım veritabanı: kullanacağım dosya yolu
 
+//! data typeları incele, darklı databse ler için: https://sequelize.org/docs/v7/models/data-types/
+const sequelize = new Sequelize("sqlite:" + process.env.SQLITE); //* kullacağım veritabanı: kullanacağım dosya yolu. Burada sequelize instance ı oluşturduk.
+// define metodu sequelize modeli oluşturur. her bir model veritabanında bir tabloya tekabül eder ilk parametre tablo adı, ikinci parametre tablo yapısı.
 const Todo = sequelize.define("todos", {
   //? 🔥 🔥 🔥 🔥 ilk sutun olarak ID tanımlaması yapmanıza gerek yok. sequelize otomatik tanımlar ve yönetir. Createdat ve updatedat de id gibi sequelize otomatik tanımlar ve yönetir.
   /* id: {
@@ -41,7 +43,7 @@ const Todo = sequelize.define("todos", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  description: DataTypes.STRING, //tek parametre varsa, kısayol.
+  description: DataTypes.STRING, //TEK parametre varsa, kısayolda obje belitmeden direkt tip belirtilebilir.
 
   // LOW:-1 NORMAL:0, HIGH:1
   priority: {

@@ -57,11 +57,17 @@ Controller Mantık + yönlendirme Route handler, validation, middleware kullanı
 Bir translator gibi çalışır.
 Objects ➡️ ORM ➡️ SQL (model ile database arasında ORM)
 Dili çeviren aradaki yazılıma ORM denir.
-Sequlize Modülü: neden kullandık? - SQL kullanmadan veritabanı işlemleri yapayım; ORM imkanı versin. Sequelize bie orm yazılımıdır.
-Note: Bir node.js projesinde Model ve ORM yapısı için Sequelize kullanıyoruz. Sequelize; SQL Veritabanları için kullanılabilen bir ORM modülüdür. Birçok veritabanını destekler. Komutları MongoDB komutlarına çok benzer.
 
-Bir veritabanından başka bir veritabanına geçisi sağlar.
-SQL olmadan veri tabanı işlemleri yapabilmek.
+Orm kullanımı ; projeyi farklı bir database e taşıak noktasında bize kolaylık sağlar.
+
+## Sequelize
+
+ORM for nodejs
+It supports relational databases, such as MySql, SqLite, PostgreSQl
+Sequlize Modülü: neden kullandık? - SQL kullanmadan veritabanı işlemleri yapayım; ORM bu imkanı versin. Sequelize bir orm yazılımıdır.SQL olmadan veri tabanı işlemleri yapabilmek.
+Bu node.js projesinde Model ve ORM yapısı için Sequelize kullanıyoruz. Sequelize; SQL Veritabanları için kullanılabilen bir ORM modülüdür. Birçok veritabanını destekler. Komutları MongoDB komutlarına çok benzer.
+
+Not: prisma da bir orm dir.
 
 ## ERD (Entity Relation Diagram)-veritabanı yol haritası(tablo dökümü ve ilişkiler)
 
@@ -82,6 +88,7 @@ Tablo ve ilişki yapısını net gösterir
 Kompleks projelerde veri akışını ve ilişkileri anlamayı kolaylaştırır
 
 Backend geliştirme ve database migration planlamasında yol gösterir
+
 ## Data Types:
 
 https://sequelize.org/docs/v7/models/data-types/
