@@ -24,8 +24,6 @@ const Todo = sequelize.define("todos", {
     allowNull: false,
     defaultValue: false,
   },
-  createdAt: false,
-  updatedAt: false,
 });
 
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
