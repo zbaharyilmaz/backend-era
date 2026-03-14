@@ -91,7 +91,7 @@ sequelize
 //& DELETE: DELETE /todos/:id
 
 const router = express.Router(); // router oluşturduk. router, route işlemlerini tek bir yerde toplamak için kullanılan bir yapıdır. app e benzer ama daha küçük çaplıdır. app e benzer şekilde get, post, put, delete gibi methodları vardır.
-
+//&create
 router.post("/todos", async (req, res) => {
   const resultTodo = await Todo.create(req.body); // create metodu tabloya yeni bir kayıt ekler. create metodu async bir işlemdir, bu yüzden await ile bekliyoruz. create metodu, oluşturulan kaydı döner. req.body ile frontend den gelen veriyi alıyoruz. req.body deki verinin yapısı modeldeki yapıya uygun olmalıdır. Modeldeki alanlar: title, description, priority, isDone. req.body de bu alanların olması gerekir.
   /*   {
@@ -106,6 +106,7 @@ router.post("/todos", async (req, res) => {
     data: resultTodo,
   });
 });
+//&list
 router.get("/todos", async (req, res) => {
   // SELECT * FROM todos;
   const resultTodo = await Todo.findAll(); // findAll metodu tabloya kayıtlı tüm verileri döner. findAll metodu async bir işlemdir, bu yüzden await ile bekliyoruz.
@@ -114,6 +115,68 @@ router.get("/todos", async (req, res) => {
     data: resultTodo,
   });
 });
+//&read
+router.get("/todos/:id",async(req,,res)=>{
+  const resultTodo= await Todo.findOne({           //!findByPK(req.params.id) de kullanılabilir. findByPK, primary key e göre arama yapar. id alanı primary key olduğu için findByPK de kullanılabilir.
+    where:{
+      id:req.params.id
+    }
+  })
+  res.status(200).send({
+    error:false,
+    data:resultTodo
+  })
+})
+//&update
+router.put("/todos/:id", async(req,res)=>{
+  // await Todo.update({...newData}, {...where})
+  const resultTodo= await Todo.update(req.body, {where:{
+    id:req.params.id}})         //returns [1] or [0]  //req.body → istemciden gelen yeni veri (örn. { title: "yeni başlık", completed: true })
+// where: { id: req.params.id } → hangi kaydı güncelleyeceğini belirtiyor
+
+// İstek → PUT /todos/42  →  req.params.id = "42" →  WHERE id = 42 → O kaydı güncelle  //!yani // Yani SQL'de: WHERE id = 42 demek.
+// router.put("/todos/:herhangiBirSey", ...) req.params.herhangiBirSey  // ← o da bu olurdu
+       
+  res.status(202).send({
+    error:false,
+    data:resultTodo,
+    newData: await Todo.findByPk(req.params.id) // güncellenmiş veriyi döndermek için findByPk ile tekrar arama yapıyoruz. update metodu, güncellenen kayıt sayısını döner. Bu yüzden yeni veriyi döndermek için tekrar arama yapmamız gerekiyor.
+  })
+})
+
+//&delete
+router.delete("/todos/:id", async(req,res)=>{
+  const result= await Todo.destroy({where:{
+    id:req.params.id}})         //returns 1 or 0
+ /*  res.status(204).send({         //204 → No Content: İstek başarılı oldu ama döndürülecek veri yok. Bu yüzden data alanını boş bırakıyoruz.
+    error:false,
+    result,
+  }) */
+if(result){
+res.sendStatus(204)
+ }
+ /* else{
+  res.status(404).send({        
+    error:true,
+    message:"Todo not found or already deleted.",
+  })
+ }*/ //!bunun yerine error handler a yönlendirelim. 404 hatası için özel bir durum var. Eğer result 0 ise, yani silinecek kayıt bulunamadıysa, 404 hatası döndürelim. Eğer result 1 ise, yani kayıt başarıyla silindiyse, 204 No Content döndürelim.
+else{
+  res.errorStatusCode=404;
+  throw new Error("Todo not found or already deleted."); // error handler a yönlendirmek için hata fırlatıyoruz. res.errorStatusCode ile hata durumunda döndürülecek status code u belirliyoruz. error handler da bu değeri kullanarak uygun status code u döndüreceğiz.
+
+}
+}
+
+
+
+
+
+
+
+
+
+
 //! İNCELE: https://sequelize.org/docs/v6/core-concepts/model-querying-basics/
 app.use(router); // router ı app e bağladık. app.use ile router ı kullanmaya başladık. Artık router içindeki route işlemleri çalışır hale geldi.
 
