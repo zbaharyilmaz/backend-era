@@ -6,7 +6,7 @@ require("dotenv").config();
 const PORT = process.env?.PORT || 8000;
 
 //& Accept json data
-app.use(express.json());
+app.use(express.json());  // Ağda JSON string olarak seyahat eder: '{"name":"Ali","age":25}'  ← sadece bir string // Backend'e ulaşır, express.json() onu parse eder: javascriptapp.use(express.json()); // string → object'e çevirir
 
 //& Router
 app.all("/", (req, res) => {

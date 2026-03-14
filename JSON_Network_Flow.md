@@ -1,3 +1,4 @@
+## JSON NETWORK
 📥 Direction 1: Frontend → Backend (Request)
 1. There's an object on the frontend:
 javascriptconst data = { name: "Ali", age: 25 }; // JS object
@@ -52,10 +53,11 @@ response.json() ↓
 JS Object
 The rule is always the same: JS objects become strings before hitting the network, and become objects again after leaving it.
 
-----------------------------------------------------------------------------
+
+## JSON AĞ AKIŞI
 
 📤 Backend → Frontend (Response)
-Senin notların bunu anlatıyor:
+
 Backend object → JSON.stringify() → Network → JSON.parse() → Frontend object
 Bunda res.json() veya res.send() otomatik stringify yapar.
 
@@ -65,8 +67,11 @@ Frontend object → JSON.stringify() → Network → JSON.parse() → Backend ob
 Bunda express.json() otomatik parse yapar.
 
 Özet
-Yapılan işlemKim yaparResponseobject → JSON stringres.json() / ExpressRequestJSON string → objectexpress.json() middleware
-JSON her zaman sadece network'te taşınan bir format, her iki yönde de ağa girmeden önce string'e, ağdan çıkınca object'e dönüşüyor. Notların doğru, sadece tek yönü anlatıyordu.o zaman bana iki yönü de detaylı anlat, istemci clientten başla00:58📥 Yön 1: Frontend → Backend (Request)
+
+JSON her zaman sadece network'te taşınan bir format, her iki yönde de ağa girmeden önce string'e, ağdan çıkınca object'e dönüşüyor.
+
+
+📥 Yön 1: Frontend → Backend (Request)
 1. Frontend'de bir object var:
 javascriptconst data = { name: "Ali", age: 25 }; // JS object
 2. Ağa göndermeden önce string'e çevrilmesi lazım, fetch bunu otomatik yapar:
@@ -91,7 +96,7 @@ app.post("/api/user", (req, res) => {
 1. Backend'de bir object var:
 javascriptconst user = { name: "Ali", age: 25 }; // JS object
 2. res.json() onu otomatik stringify edip gönderir:
-javascriptres.json(user); // arka planda JSON.stringify(user) yapılır
+javascriptres.json(user); // arka planda JSON.stringify(user) yapılır (res.json()      →  { name: "Ali" } ➡️ '{"name":"Ali"}')
 ```
 
 **3.** Ağda yine JSON string olarak seyahat eder:
@@ -143,4 +148,21 @@ javascriptfetch("/api/user", {
   body: JSON.stringify(data), // ← body, JSON string buraya girer
 });
 
+## PARSE
 
+res.json vs express.json
+Evet, tam tersi işlemler:
+Ne yaparexpress.json()JSON string → JS object (parse eder)res.json()JS object → JSON string (stringify eder)
+express.json()  →  '{"name":"Ali"}' ➡️ { name: "Ali" }
+res.json()      →  { name: "Ali" } ➡️ '{"name":"Ali"}'
+
+Parse etmek ne demek?
+Parse = string'i okuyup anlamlı bir yapıya çevirmek.
+String yapmak değil, tam tersi:
+javascriptJSON.parse('{"name":"Ali"}')  // string → object  ✅ parse
+JSON.stringify({ name: "Ali" }) // object → string  ❌ bu stringify
+
+Backend ve frontend'de parse aynı şey mi?
+Evet, ikisinde de aynı anlama gelir ama kim yapar değişir:
+Parse edenStringify edenFrontendresponse.json()JSON.stringify()Backendexpress.json()res.json()
+Yani parse her zaman string → object, stringify her zaman object → string demek. Nerede yapıldığı fark etmez.
