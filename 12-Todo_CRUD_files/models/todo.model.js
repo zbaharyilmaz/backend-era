@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 //&     MODELS      MODELS    MODELS     MODELS      MODELS      MODELS      MODELS
@@ -29,8 +29,8 @@ const Todo = sequelize.define("todos", {
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
 //* SYNCRONIZATION
-
-// sequelize.sync({ alter: true });
+//sequelize.sync({ alter: true });
+//sequelize.sync({ force: false }); // tabloyu sıfırlar, veri gider
 
 // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
@@ -40,4 +40,4 @@ sequelize
   .then(() => console.log("DB connected"))
   .catch(() => console.log("DB not connected"));
 
-  module.exports= Todo;
+module.exports = Todo;

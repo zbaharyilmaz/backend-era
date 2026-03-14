@@ -184,6 +184,56 @@ Response gider
 
 ```
 
+Sequelize versiyonu da aynı mantık, sadece MongoDB yerine SQL database kullanıyor ve syntax farklı.
+
+1. Model
+javascript// models/Todo.js
+const { DataTypes } = require("sequelize");
+const sequelize = require("../db");
+
+const Todo = sequelize.define("Todo", {
+  title: { type: DataTypes.STRING, allowNull: false },
+  description: { type: DataTypes.STRING },
+  priority: { type: DataTypes.TINYINT, defaultValue: 0 },
+  isDone: { type: DataTypes.BOOLEAN, defaultValue: false },
+});
+
+module.exports = Todo;
+
+2. Controller
+javascript// controllers/todoController.js
+const Todo = require("../models/Todo");
+
+const getTodos = async (req, res) => {
+  const todos = await Todo.findAll();
+  res.json(todos);
+};
+
+const createTodo = async (req, res) => {
+  const todo = await Todo.create(req.body);
+  res.json(todo);
+};
+
+module.exports = { getTodos, createTodo };
+
+3. Route
+javascript// routes/todoRoutes.js
+const express = require("express");
+const router = express.Router();
+const { getTodos, createTodo } = require("../controllers/todoController");
+
+router.get("/", getTodos);
+router.post("/", createTodo);
+
+module.exports = router;
+
+4. App
+javascript// app.js
+const todoRoutes = require("./routes/todoRoutes");
+
+app.use("/todos", todoRoutes);
+
+
 ---
 
 ## Klasör yapısı:
@@ -198,3 +248,25 @@ src/
 │ └── userRoutes.js
 └── app.js
 Her katmanın tek bir görevi var, birbirinin işine karışmıyor.
+
+
+## Thunder Client
+
+Thunderclient bir HTTP client'ı, yani ağ üzerinden istek atıyor.
+Hatırla:
+Frontend object → JSON.stringify() → HTTP body (JSON string) → Backend
+Thunderclient direkt HTTP body'ye yazıyorsun, yani ağ katmanındasın zaten. Object aşamasını atlıyorsun.
+
+Normal frontend'de şöyle olurdu:
+javascript// Frontend kod yazar
+const data = { title: "todo-6" }; // JS object
+fetch("/todos", {
+  method: "POST",
+  body: JSON.stringify(data), // JSON string'e çevirir, HTTP body'ye koyar
+});
+```
+
+Thunderclient'ta ise sen **direkt JSON string yazıyorsun**, `JSON.stringify()` adımı yok çünkü zaten HTTP body'desin.
+```
+Thunderclient → HTTP body: '{"title":"todo-6"}' → Backend
+Thunderclient, frontend'in JSON.stringify() yaptığı adımı senin yerine atlıyor.
