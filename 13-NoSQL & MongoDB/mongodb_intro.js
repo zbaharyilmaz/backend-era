@@ -6,9 +6,12 @@ exit
 quit
 //& 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 DATABASE 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 //* show dbs
+// use database_name
+// db.dropDatabase() (database silme)
+
 //* use ...... (database kullanma)
 //* db.dropDatabase() (database silme)
-
+//
 //& 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥 COLLECTIONS(TABLES)🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 //* show collections //* (tab a basıp otomatik tamamla yap.)
 db.createCollection("coll3") //*(yeni bir collection oluşturma)

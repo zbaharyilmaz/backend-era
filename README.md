@@ -15,6 +15,8 @@
 
 ## Mongosh:
 
+- brew services list
+- brew services start mongodb-community
 - $ mongosh --version
 - $ mongosh # defaul:local
 - $ mongosh mongodb://localhost:27017/
