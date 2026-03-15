@@ -25,7 +25,31 @@ Yani mongosh bir uygulama değil, MongoDB server’a bağlanan komut satırı ar
 Şey Ne olduğu Kullanım
 MongoDB server Veritabanı Veri saklar, sorgular vs.
 Mongosh CLI aracı Server’a bağlanıp komut çalıştırır
-Atlas Bulut server Online veritabanı, internete bağlı
+Atlas Bulut server Online veritabanı, internete bağlı,
+
+## Backend Developer Mental Model
+LOCAL
+backend → localhost MongoDB
+
+PRODUCTION
+backend → MongoDB Atlas
+
+
+## Local Compass or Cloud Atlas
+Atlas connection: get your string from Atlas.
+
+VS Code UI ve terminal ayrı bağlantılar kullanıyor.Terminalden Atlas’ı görmek için Atlas connection string’i kullanman gerekiyor:
+
+mongosh "mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/mydb"
+
+Local Connection: mongosh tek başına çalıştırıldığında default olarak local MongoDB server’a bağlanır:
+
+mongodb://127.0.0.1:27017
+
+127.0.0.1 = localhost = senin bilgisayarın.
+
+Port 27017 = MongoDB’nin standart portu.
+
 
 ## MongoDB Links
 
