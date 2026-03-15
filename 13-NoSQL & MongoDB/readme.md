@@ -28,14 +28,15 @@ Mongosh CLI aracı Server’a bağlanıp komut çalıştırır
 Atlas Bulut server Online veritabanı, internete bağlı,
 
 ## Backend Developer Mental Model
+
 LOCAL
 backend → localhost MongoDB
 
 PRODUCTION
 backend → MongoDB Atlas
 
-
 ## Local Compass or Cloud Atlas
+
 Atlas connection: get your string from Atlas.
 
 VS Code UI ve terminal ayrı bağlantılar kullanıyor.Terminalden Atlas’ı görmek için Atlas connection string’i kullanman gerekiyor:
@@ -49,7 +50,6 @@ mongodb://127.0.0.1:27017
 127.0.0.1 = localhost = senin bilgisayarın.
 
 Port 27017 = MongoDB’nin standart portu.
-
 
 ## MongoDB Links
 

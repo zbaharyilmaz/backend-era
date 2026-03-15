@@ -59,9 +59,9 @@ db.coll3.insertMany([
   { firstName: "Test9", lastName: "Test9", age: 19 },
 ]);
 & COUNT
-db.coll.countDocuments(); // count documents in collection
+db.coll.countDocuments(); // count documents in collection //* ASLINDA find().count() da kullanılabilir.
 db.col.countDocuments({ age: 10 }); // count documents with filter
-db.coll.estimatedDocumentCount()
+db.coll.estimatedDocumentCount() // for big data. * countDocuments() tam sayıyı verir, estimatedDocumentCount() tahmini verir ama daha hızlıdır.
 & SELECT
 db.coll.find()
 ! db.collection.find(filter, projection) // filtreleme ve fielt alan seçme
@@ -168,56 +168,77 @@ db.coll.find({
     { firstName: "Test6" },
     { age: 15 }
   ]
-})
+}) //! firstName değeri "Test6" olmayan VE age değeri 15 olmayan documentları getir. NOT (A veya B) mantığı.
 
 db.coll.find({
   age: { $not: { $eq: 15 } }
 })
+
+
+| Operatör | Mantık         | Örnek anlam                         |
+| -------- | -------------- | ----------------------------------- |
+| `$or`    | A veya B       | firstName="Test6" **veya** age=15   |
+| `$and`   | A ve B         | firstName="Test6" **ve** age=15     |
+| `$not`   | NOT A          | firstName ≠ "Test6"                 |
+| `$nor`   | NOT (A veya B) | firstName ≠ "Test6" **ve** age ≠ 15 |
+
+
+
 & Limit / Pagination
-db.coll.find().limit(5)
+db.coll.find().limit(5) //* ilk 5 kaydı getir.
 
-db.coll.find().skip(5).limit(5)
+db.coll.find().skip(5).limit(5) //* 5 kayıt atla, sonraki 5 kaydı getir. (sayfalama için kullanılır)
+
 & Sort
-db.coll.find().sort({ age: -1 })
+db.coll.find().sort({ age: -1 }) // DESCENDING, age değerine göre büyükten küçüğe sırala.
 
-db.coll.find().sort({ age: 1 })
+db.coll.find().sort({ age: 1 }) // ASCENDING, age değerine göre küçükten büyüğe sırala.
 
 & Update
 db.coll.updateOne(
   { age: 19 },
   { $set: { age: 199 } }
-)
+) // age değeri 19 olan ilk documentı bul ve age değerini 199 yap. $set ile sadece belirtilen alan güncellenir, diğer alanlar etkilenmez.
 
 db.coll.updateMany(
   { age: 19 },
   { $set: { status: "updated" } }
-)
+) // age değeri 19 olan tüm documentları bul ve status alanını "updated" yap. $set ile sadece belirtilen alan güncellenir, diğer alanlar etkilenmez.
 
 db.coll.updateMany(
-  {},
+  {}, //! tüm documentları seç
   { $unset: { status: "" } }
-)
+) // tüm documentlardan status alanını kaldır. $unset ile belirtilen alan silinir.
 
 db.coll.updateMany(
-  {},
+  {},  //! tüm documentları seç
   { $inc: { age: 2 } }
-)
+) // tüm documentların age değerini 2 artır. $inc ile belirtilen alanın değeri artırılır veya azaltılır.
 
 db.coll.updateMany(
-  {},
+  {},  //! tüm documentları seç
   { $rename: { updated_at: "updated" } }
-)
+) // tüm documentlarda updated_at alanını updated olarak yeniden adlandır. $rename ile belirtilen alan adı değiştirilir.
 
 db.coll.updateMany(
-  {},
+  {},  //! tüm documentları seç
   { $currentDate: { updated_at: true } }
-)
+) // tüm documentlarda updated_at alanını güncelleme zamanı ile doldur. $currentDate ile belirtilen alanın değeri güncelleme zamanı olarak atanır.
+
+db.coll.updateMany(
+{age:19}, {$set:{new_field: "new value"}}) // age değeri 19 olan tüm documentlara new_field adında yeni bir alan ekle ve değerini "new value" yap. $set ile belirtilen alan güncellenir veya eklenir.
+db.coll.updateMany({},{
+$unset:{new_field: 0} //! drop field: tüm documentlarda new_field alanını kaldır. $unset ile belirtilen alan silinir.})  
 &Delete
+? db.coll.deleteOne({filters}) // filters ile eşleşen ilk documentı siler.
+
+? db.coll.deleteMany({filters}) // filters ile eşleşen tüm documentları siler.
+
 db.coll.deleteOne({ age: 19 })
 
 db.coll.deleteMany({ age: 19 })
 
-db.coll.deleteMany({})
+db.coll.deleteMany({}) // tüm documentları siler.
 
 * Backend geliştirmede en çok kullanılan MongoDB akışı:
 
