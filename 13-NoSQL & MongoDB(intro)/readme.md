@@ -45,3 +45,14 @@
     $ mongosh --version
     $ mongosh # defaul:local
     $ mongosh mongodb://localhost:27017/
+```
+
+
+
+### Non Relational Databases (Not Only SQL)
+
+-No relation, no strict rules.
+- Data is not safe compared to RDBs.
+- Not any standart like SQL. Each db has own code-styles. 
+- MongoDB document type data yapısı kullanır.
+- Json veri Bson a çevrilir.(binary json)
