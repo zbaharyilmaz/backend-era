@@ -12,3 +12,9 @@
 
 - npm i sequelize
 - npm i sqlite3
+
+## Mongosh:
+
+- $ mongosh --version
+- $ mongosh # defaul:local
+- $ mongosh mongodb://localhost:27017/

@@ -1,58 +1,55 @@
-# MongoDB
+## Non Relational Databases (Not Only SQL)
 
-* CommunityServer: https://www.mongodb.com/try/download/community
-* Compass: https://www.mongodb.com/try/download/compass 
-* Cloud: https://account.mongodb.com
-* VSCode Extension: https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode 
+- No relation, no strict rules.
+- Data is not safe compared to RDBs.
+- Not any standart like SQL. Each db has own code-styles.
+- MongoDB document type data yapısı kullanır.
+- Json veri Bson a çevrilir.(binary json)
 
-### MongoDB
+## MongoDB
 
-* Installation Notes:
+- CommunityServer: https://www.mongodb.com/try/download/community
+- Compass: https://www.mongodb.com/try/download/compass
+- Cloud: https://account.mongodb.com
+- VSCode Extension: https://marketplace.visualstudio.com/items?itemName=mongodb.mongodb-vscode
 
-    * Windows
-        * MongoDB CommunityServer & Compass
-            * https://www.mongodb.com/try/download/community
-            * https://lms.CourseName/mod/lesson/view.php?id=4089
-        * MongoDB Shell (Mongosh): 
-            * https://www.mongodb.com/try/download/shell [Select "Windows 64-bit (8.1+) (MSI)"]
-            * Set "uncheck" for "install just for you"
+## MongoDB
 
-    * MacOS
-        * HomeBrew: https://brew.sh
-            ```sh
-            # HomeBrew Install
-            $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-            $ brew -v # --version
-            # HomeBrew Uninstall:
-            $ brew cleanup # delete unused apps.
-            $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
-            ```
-        * MongoDB CommunityServer & Mongosh: https://www.mongodb.com/docs/v4.0/tutorial/install-mongodb-on-os-x/
-            ```sh
-            $ brew tap mongodb/brew # brew tap
-            $ brew install mongodb-community
-            $ brew services start mongodb-community # brew services list|stop
-            # Manual Start: $ mongod --config /usr/local/etc/mongod.conf --fork
-            ```
-        * MongoDB Compass: https://www.mongodb.com/try/download/compass
-        
-    * Linux:
-        * https://www.mongodb.com/docs/manual/administration/install-on-linux/
+- Installation Notes:
+  - Windows
+    - MongoDB CommunityServer & Compass
+      - https://www.mongodb.com/try/download/community
+      - https://lms.CourseName/mod/lesson/view.php?id=4089
+    - MongoDB Shell (Mongosh):
+      - https://www.mongodb.com/try/download/shell [Select "Windows 64-bit (8.1+) (MSI)"]
+      - Set "uncheck" for "install just for you"
 
+  - MacOS
+    - HomeBrew: https://brew.sh
+      ```sh
+      # HomeBrew Install
+      $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      $ brew -v # --version
+      # HomeBrew Uninstall:
+      $ brew cleanup # delete unused apps.
+      $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+      ```
+    - MongoDB CommunityServer & Mongosh: https://www.mongodb.com/docs/v4.0/tutorial/install-mongodb-on-os-x/
+      ```sh
+      $ brew tap mongodb/brew # brew tap
+      $ brew install mongodb-community
+      $ brew services start mongodb-community # brew services list|stop
+      # Manual Start: $ mongod --config /usr/local/etc/mongod.conf --fork
+      ```
+    - MongoDB Compass: https://www.mongodb.com/try/download/compass
+  - Linux:
+    - https://www.mongodb.com/docs/manual/administration/install-on-linux/
 
-### Mongosh:
+## Mongosh:
+
     ```sh
     $ mongosh --version
     $ mongosh # defaul:local
     $ mongosh mongodb://localhost:27017/
+
 ```
-
-
-
-### Non Relational Databases (Not Only SQL)
-
--No relation, no strict rules.
-- Data is not safe compared to RDBs.
-- Not any standart like SQL. Each db has own code-styles. 
-- MongoDB document type data yapısı kullanır.
-- Json veri Bson a çevrilir.(binary json)
