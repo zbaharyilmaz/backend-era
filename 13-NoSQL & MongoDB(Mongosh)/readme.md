@@ -90,7 +90,7 @@ Port 27017 = MongoDB’nin standart portu.
   - Linux:
     - https://www.mongodb.com/docs/manual/administration/install-on-linux/
 
-## Mongosh:
+## Mongosh: (terminal)
 
     ```sh
     $ mongosh --version
