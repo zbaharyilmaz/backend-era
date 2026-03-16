@@ -2,62 +2,68 @@
 /* -------------------------------------------------------
     EXPRESSJS - BLOG Project with Mongoose
 ------------------------------------------------------- */
+//! Controller → Model üzerinden ne yapmak istediğini belirleyen fonksiyonlar (create, list, read, update, delete). Yani “modele göre create yap, modele göre list yap” gibi düşünebilirsin. Controller, HTTP isteğini alır ve modeli kullanarak veri tabanına ne yapılacağını söyler.
+
+/* | Controller Fonksiyonu | Model ile yaptığı iş                                   |
+| --------------------- | ------------------------------------------------------ |
+| `list`                | `BlogCategory.find()` → tüm kategorileri getirir       |
+| `create`              | `BlogCategory.create(req.body)` → yeni kategori ekler  |
+| `read`                | `BlogCategory.findById(id)` → tek kategori getirir     |
+| `update`              | `BlogCategory.findByIdAndUpdate(id, data)` → günceller |
+| `delete`              | `BlogCategory.findByIdAndDelete(id)` → siler           |
+ */
 
 // Call Models:
-const { BlogCategory, BlogPost } = require('../models/blog.model');
+const { BlogCategory, BlogPost } = require("../models/blog.model");
+
+//CRUD
+//ASYNC
 
 module.exports = {
+  list: async (req, res) => {
+    const result = await BlogCategory.find();
 
-    list: async (req, res) => {
+    res.status(200).send({
+      error: false,
+      result,
+    });
+  },
 
-        const result = await BlogCategory.find();
+  create: async (req, res) => {
+    const result = await BlogCategory.create(req.body);
 
-        res.status(200).send({
-            error: false,
-            result
-        });
-    },
-    
-    create: async (req, res) => {
+    res.status(201).send({
+      error: false,
+      result,
+    });
+  },
 
-        const result = await BlogCategory.create(req.body);
+  // Todo below controllers and their routers
 
-        res.status(201).send({
-            error: false,
-            result
-        });
-    },
+  read: async (req, res) => {
+    const result = await BlogCategory;
 
-    // Todo below controllers and their routers
-    
-    read: async (req, res) => {
+    res.status(200).send({
+      error: false,
+      result,
+    });
+  },
 
-        const result = await BlogCategory
+  update: async (req, res) => {
+    const result = await BlogCategory;
 
-        res.status(200).send({
-            error: false,
-            result
-        });
-    },
-    
-    update: async (req, res) => {
+    res.status(200).send({
+      error: false,
+      result,
+    });
+  },
 
-        const result = await BlogCategory
+  delete: async (req, res) => {
+    const result = await BlogCategory;
 
-        res.status(200).send({
-            error: false,
-            result
-        });
-    },
-    
-    delete: async (req, res) => {
-
-        const result = await BlogCategory
-
-        res.status(200).send({
-            error: false,
-            result
-        });
-    },
-    
-}
+    res.status(200).send({
+      error: false,
+      result,
+    });
+  },
+};

@@ -18,7 +18,9 @@ const todoController = require("../controllers/todo.controller");
 
 //DAHA KISACA BÖYLE YAZARIZ.
 
-router.route("/todos").get(todoController.list).post(todoController.create);
+router.route("/todos")
+.get(todoController.list)
+.post(todoController.create);
 router
   .route("/todos/:id")
   .get(todoController.read)

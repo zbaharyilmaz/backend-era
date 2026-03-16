@@ -6,6 +6,7 @@
 
 const mongoose = require("mongoose");
 //! ÖNCE SCHEMA OLUŞTUR, SONRA MODEL OLUŞTUR. SCHEMA = VERİ YAPISI, MODEL = SCHEMA'YI KULLANARAK OLUŞTURULAN SINIF. MODEL ÜZERİNDEN VERİ TABANI İLE ETKİLEŞİMDE BULUNURUZ.
+//! Model → MongoDB’deki koleksiyonun “temsilcisi” (örneğin BlogCategory)
 /* ---------------------------------------------------- */
 //& BlogCategory Schema
 const blogCategorySchema = new mongoose.Schema(
