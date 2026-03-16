@@ -2,7 +2,9 @@
 /* -------------------------------------------------------
     EXPRESSJS - BLOG Project with Mongoose
 ------------------------------------------------------- */
+// Node.js kütüphanesidir.
 //& Mongoose ODM (Mongoose bir ODM (Object Data Modeling) kütüphanesidir. MongoDB ile Node.js arasında veri modelleme katmanı sağlar. MongoDB dokümanlarını JavaScript objeleri ile yönetmek. ODM = Object Document Mapper) )
+//* MongoDB dokümanlarını JavaScript objeleri ile yönetmek için Node.js kütüphanesi.
 
 const mongoose = require("mongoose");
 

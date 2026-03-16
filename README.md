@@ -13,7 +13,7 @@
 - npm i sequelize
 - npm i sqlite3
 
-## Mongosh:
+## Mongosh (MongoDB Shell)
 
 - brew services list
 - brew services start mongodb-community
@@ -21,5 +21,6 @@
 - $ mongosh # defaul:local
 - $ mongosh mongodb://localhost:27017/
 
-## Mongoose
--
+## Mongoose (ODM:Object Data Modeling Library)
+
+- npm install mongoose

@@ -1,6 +1,6 @@
 # BLOG Project with Mongoose
 
-## MONGOOSE
+## MONGOOSE (ODM (Object Data Modeling) Library → MongoDB dokümanlarını JavaScript objeleri ile yönetmek için Node.js kütüphanesi.)
 
 https://mongoosejs.com/
 
@@ -126,6 +126,8 @@ Getter/Setter ile veri okuma/yazma esnasında otomatik dönüşüm yapabiliriz:
 
 get: v => v.toUpperCase()
 set: v => v.trim()
+
+
 ## 7️⃣ Özet Mantık
 
 Schema → veri yapısını belirler
@@ -137,3 +139,78 @@ CRUD işlemleri modeli kullanarak yapılır
 Ref ve populate ile ilişkili dokümanlar çekilebilir
 
 Options ile validation ve veri davranışları kontrol edilir
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+
+## 1️⃣ Mongoose nedir ve nasıl indirilir
+
+Mongoose: Node.js içinde MongoDB ile çalışmayı kolaylaştıran ODM (Object Data Modeling) kütüphanesi.
+
+Kurulum:
+
+# Projeye eklemek için
+npm install mongoose
+
+Kullanım örneği:
+
+const mongoose = require("mongoose");
+
+mongoose.connect("mongodb://localhost:27017/mydb")
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.log(err));
+
+Node.js projen içinde require("mongoose") ile kullanılır.
+
+Schema ve Model ile veri yapısı ve CRUD işlemleri yapılır.
+
+## Mongosh
+
+mongosh = MongoDB shell (komut satırı arayüzü).
+
+Veritabanına bağlanmak ve komut çalıştırmak için kullanılır.
+
+Örnek:
+
+mongosh "mongodb://localhost:27017/mydb"
+
+İçinde:
+
+show dbs
+db.users.find()
+
+
+| Özellik  | Mongoose                        | Mongosh                        |
+| -------- | ------------------------------- | ------------------------------ |
+| Tür      | Node.js kütüphanesi             | MongoDB shell                  |
+| Amaç     | Uygulama kodundan veri yönetimi | Komut satırından veri yönetimi |
+| Kullanım | require/import                  | Terminal                       |
+ 
+
+## 3️⃣ MongoDB’de Collection
+
+Collection → MongoDB’de tablo gibi düşün.
+
+Dokümanları (documents) içerir.
+
+Örnek:
+
+db.createCollection("users")   // collection oluşturma
+db.users.insertOne({name: "Ali", age: 25}) // document ekleme
+name, age // fields
+db.users.find()                 // document listeleme
+
+Mongoose’da Model → belirli collection ile eşleşir:
+
+const User = mongoose.model("User", userSchema); // collection: users
+
+User üzerinden CRUD işlemi yapılır; MongoDB’de users collection’ına yazılır.
+
+- Özet
+
+Mongoose → Node.js içinde MongoDB’yi kolay kullanmak için kütüphane, npm ile kurulur
+
+Mongosh → MongoDB komut satırı, shell, uygulama dışında
+
+Collection → MongoDB’de dokümanların toplandığı tablo benzeri yapı
