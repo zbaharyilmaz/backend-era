@@ -5,7 +5,7 @@
 https://mongoosejs.com/
 
 
-## M-C-R (kosun yazılış sırası) asında mimari: MVC
+## M-C-R-connect with index.js at last  (kdsun yazılış sırası) asında mimari: MVC
 
 ## 1️⃣ Mongoose ve Schema Mantığı
 const mongoose = require("mongoose");
