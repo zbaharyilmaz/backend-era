@@ -48,8 +48,25 @@ module.exports = {
     });
   },
 
+  //! 1.style (FINDONEANDUPDATE) (findOneAndUpdate({...filter},{...data},{...options}))
+
   update: async (req, res) => {
-    //const result = await BlogCategory.updateOne({...filter},{...data},{...options});
+    //const result = await BlogCategory.findOneAndUpdate({...filter},{...data},{...options});
+    const result = await BlogCategory.findOneAndUpdate(
+      { _id: req.params.id },
+      req.body,
+      { new: true },
+    );
+
+    res.status(200).send({
+      error: false,
+      result,
+      new: await BlogCategory.findById(req.params.id), //! güncellenen datayı döndür.
+    });
+  },
+  //! 2.style (UPDATEONE)(YADA YUKARDAKİ UPDATE YERİNE AŞAĞIDAKİNİ KULLAN. new: await BlogCategory.findById(req.params.id) yazman gerekir. )
+  update: async (req, res) => {
+    //const result = await BlogCategory.updateOne({...filter},{...data});
     const result = await BlogCategory.updateOne(
       { _id: req.params.id },
       req.body,
@@ -58,11 +75,21 @@ module.exports = {
     res.status(200).send({
       error: false,
       result,
+      new: await BlogCategory.findById(req.params.id), //! güncellenen datayı döndür.
     });
   },
 
+  /*  RESPONSE TO UPDATE
+  "result": {
+    "acknowledged": true, //if update methods end successfully
+    "modifiedCount": 1, // if returns 0, no any data updated:already up to date
+    "upsertedId": null, // no new document was inserted.combination of insert nad update.
+    "upsertedCount": 0,
+    "matchedCount": 0 // number of data which matches with our filter
+  } */
+
   delete: async (req, res) => {
-    const result = await BlogCategory.deleteOne({_id: req.params.id });
+    const result = await BlogCategory.deleteOne({ _id: req.params.id });
 
     res.status(200).send({
       error: false,

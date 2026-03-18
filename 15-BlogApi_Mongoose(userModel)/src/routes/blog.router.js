@@ -7,14 +7,16 @@ const router = require('express').Router();
 const blogCategory = require('../controllers/blog.controller');
 /* ------------------------------------------------------- */
 // URL: /blogs ->
-//!  CRUD operations are written in the controller.js and HTML methods are written in the route.js
+//!  CRUD operations are written in the controller.js and HTTP methods (GET, POST, PUT, DELETE) are written in the route.js
+// Controller → iş mantığı (CRUD)
+// Route → hangi URL hangi fonksiyona gider
 router.route("/blogs")
     .get(blogCategory.list)   //! GET=> list
     .post(blogCategory.create); //! POST=> create
 router.route("/blogs/:id")
 .get(blogCategory.read)  //! GET=> read
 .put(blogCategory.update) //! PUT=> update
-.delete.(blogCategory.delete) //! DELETE=> delete
+.delete(blogCategory.delete) //! DELETE=> delete
 module.exports = router;
 
 /* 
