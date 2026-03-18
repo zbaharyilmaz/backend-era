@@ -14,7 +14,7 @@
  */
 
 // Call Models:
-const { BlogCategory, BlogPost } = require("../models/blog.model");
+const { BlogCategory, BlogPost } = require("../models/blog.model");   
 
 //CRUD
 //ASYNC
@@ -27,6 +27,7 @@ const { BlogCategory, BlogPost } = require("../models/blog.model");
 | Delete | DELETE | delete          |
 
  */
+//* module.export içine bir element ekleyerek export yapıyoruz.
 module.exports.blogCategory = {
   //? 1.create(POST)
   create: async (req, res) => {

@@ -4,33 +4,37 @@
 ------------------------------------------------------- */
 
 const router = require("express").Router();
-const { blogCategory, blogPost } = require("../controllers/blog.controller");
+const { blogCategory, blogPost } = require("../controllers/blog.controller"); //* require kısmı bir obje oldugu için destruction yaptık.
 /* ------------------------------------------------------- */
 // URL: /blogs ->
 //!  CRUD operations are written in the controller.js and HTTP methods (GET, POST, PUT, DELETE) are written in the route.js
 // Controller → iş mantığı (CRUD)
 // Route → hangi URL hangi fonksiyona gider
+
+//BlogCategory
 router
-  .route("/blogs")
+  .route("/blogs/category")
   .get(blogCategory.list) //! GET=> list
   .post(blogCategory.create); //! POST=> create
 router
-  .route("/blogs/:id")
+  .route("/blogs/category/:id")
   .get(blogCategory.read) //! GET=> read
   .put(blogCategory.update) //! PUT=> update
   .patch(blogCategory.update)
   .delete(blogCategory.delete); //! DELETE=> delete
-module.exports = router;
+
+// BlogPost
 router
-  .route("/blogs")
+  .route("/blogs/post")
   .get(blogPost.list) //! GET=> list
   .post(blogPost.create); //! POST=> create
 router
-  .route("/blogs/:id")
+  .route("/blogs/post/:id")
   .get(blogPost.read) //! GET=> read
   .put(blogPost.update) //! PUT=> update
   .patch(blogPost.update)
   .delete(blogPost.delete); //! DELETE=> delete
+
 module.exports = router;
 
 /* 

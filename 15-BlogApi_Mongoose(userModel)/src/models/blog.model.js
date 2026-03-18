@@ -32,7 +32,7 @@ const BlogCategory = mongoose.model("BlogCategory", blogCategorySchema);
 // Schema({collection's fields},{options})
 const BlogPostSchema = new mongoose.Schema( //! mongoose içindeki Schema constructor veya Schema class ı ile model oluşturuyoruz.
   {
-    categoryId: {
+    categoryId: {  //ex categoryId:     "categoryId": "69b9c4600734860432387f75",
       // default relation: ManyToOne
       type: mongoose.Schema.Types.ObjectId,
       ref: "BlogCategory",
