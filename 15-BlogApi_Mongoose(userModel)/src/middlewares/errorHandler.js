@@ -11,6 +11,6 @@ module.exports = (err, req, res, next) => {
     error: true,
     message: err.message,
     cause: err.cause,
-    stack: err.stack,
+    //stack: err.stack,
   });
 };
