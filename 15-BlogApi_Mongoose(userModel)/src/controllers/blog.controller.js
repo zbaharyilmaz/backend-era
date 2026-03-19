@@ -14,7 +14,7 @@
  */
 
 // Call Models:
-const { BlogCategory, BlogPost } = require("../models/blog.model");   
+const { BlogCategory, BlogPost } = require("../models/blog.model");
 
 //CRUD
 //ASYNC
@@ -149,8 +149,12 @@ module.exports.blogPost = {
   },
   //? 2.read(GET)
   read: async (req, res) => {
-    // const result = await  BlogPost.findOne({...filter});
-    const result = await BlogPost.findById(req.params.id); //? veya yerine: findOne({ _id: req.params.id })
+    // find({...filter},{...select}) gereksiz detayların gelmesini önlemek için select yerinde görmek istediğimiz dataları seçebiliriz.
+    const result = await BlogPost.findById(req.params.id, {
+      title: 1,
+      content: 1,
+      categoryId: true,
+    }); //? veya yerine: findOne({...filter}) yani: findOne({ _id: req.params.id })
 
     res.status(200).send({
       error: false,
@@ -160,8 +164,24 @@ module.exports.blogPost = {
 
   //? 2.list(GET)
   list: async (req, res) => {
-    const result = await BlogPost.find();
-
+    // find({...filter},{...select}) gereksiz detayların gelmesini önlemek için select yerinde görmek istediğimiz dataları seçebiliriz.
+    const result = await BlogPost.find(
+      {},
+      { title: 1, content: 1, categoryId: true },
+    ).populate("categoryId"); //!  WARN: POPULATE METHOD: populate → referans edilen document’i otomatik getirir. MongoDB’de ilişkiler ID ile tutulur. populate bu ID’yi alır, ilgili collection’dan gerçek veriyi çekip yerine koyar. Populate metodu ile; → ID yerine gerçek obje geldi.
+    /* populate kullanmazsan:
+    {
+  "title": "Post 1",
+  "categoryId": "65abc123..."
+}
+populate kullanırsan:
+{
+  "title": "Post 1",
+  "categoryId": {
+    "_id": "65abc123...",
+    "name": "Tech"
+  }
+} */
     res.status(200).send({
       error: false,
       result, //!  means result:result
