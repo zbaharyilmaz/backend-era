@@ -13,11 +13,11 @@ const { blogCategory, blogPost } = require("../controllers/blog.controller"); //
 
 //BlogCategory
 router
-  .route("/blogs/category")
+  .route("/category")
   .get(blogCategory.list) //! GET=> list
   .post(blogCategory.create); //! POST=> create
 router
-  .route("/blogs/category/:id")
+  .route("/category/:id")
   .get(blogCategory.read) //! GET=> read
   .put(blogCategory.update) //! PUT=> update
   .patch(blogCategory.update)
@@ -25,11 +25,11 @@ router
 
 // BlogPost
 router
-  .route("/blogs/post")
+  .route("/post")
   .get(blogPost.list) //! GET=> list
   .post(blogPost.create); //! POST=> create
 router
-  .route("/blogs/post/:id")
+  .route("/post/:id")
   .get(blogPost.read) //! GET=> read
   .put(blogPost.update) //! PUT=> update
   .patch(blogPost.update)

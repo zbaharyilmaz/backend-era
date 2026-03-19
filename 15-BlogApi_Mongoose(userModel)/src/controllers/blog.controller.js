@@ -167,7 +167,7 @@ module.exports.blogPost = {
     // find({...filter},{...select}) gereksiz detayların gelmesini önlemek için select yerinde görmek istediğimiz dataları seçebiliriz.
     const result = await BlogPost.find(
       {},
-      { title: 1, content: 1, categoryId: true },
+      { title: 1, content: 1, categoryId: true, userId: true },
     ).populate("categoryId"); //!  WARN: POPULATE METHOD: populate → referans edilen document’i otomatik getirir. MongoDB’de ilişkiler ID ile tutulur. populate bu ID’yi alır, ilgili collection’dan gerçek veriyi çekip yerine koyar. Populate metodu ile; → ID yerine gerçek obje geldi.
     /* populate kullanmazsan:
     {
