@@ -4,6 +4,10 @@
 
 https://mongoosejs.com/
 
+## Crypto
+Node js crypto: crypto.pbkdf2Sync(password, salt, iterations, keylen, digest)
+https://nodejs.org/api/crypto.html#cryptopbkdf2syncpassword-salt-iterations-keylen-digest
+
 
 ## M-C-R-connect with index.js at last  (kdsun yazılış sırası) asında mimari: MVC
 
