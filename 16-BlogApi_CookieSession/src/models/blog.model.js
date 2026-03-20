@@ -45,7 +45,7 @@ const BlogPostSchema = new mongoose.Schema( //! mongoose içindeki Schema constr
       ref: "User",
       required: true,
     },
-    title: {
+        title: {
       type: String,
       trim: true,
       required: true,
