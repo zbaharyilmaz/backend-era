@@ -32,7 +32,7 @@ module.exports.blogCategory = {
   //? 1.create(POST)
   create: async (req, res) => {
     const result = await BlogCategory.create(req.body);
-
+    console.log(req); // req = devasa obje (network + stream + express). Senin kullanacağın %5:body, params,query
     res.status(201).send({
       error: false,
       result,
@@ -42,7 +42,7 @@ module.exports.blogCategory = {
   read: async (req, res) => {
     // const result = await BlogCategory.findOne({...filter});
     const result = await BlogCategory.findById(req.params.id); //? veya yerine: findOne({ _id: req.params.id })
-
+    console.log(req.body); //{}
     res.status(200).send({
       error: false,
       result,

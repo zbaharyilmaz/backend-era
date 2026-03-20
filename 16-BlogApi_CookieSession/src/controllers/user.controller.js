@@ -17,11 +17,11 @@ module.exports = {
   },
   list: async (req, res) => {
     const result = await User.find();
-
     res.status(200).send({
       error: false,
       result, //!  means result:result
     });
+    console.log(req.body);
   },
   update: async (req, res) => {
     const result = await User.findOneAndUpdate(
@@ -43,5 +43,8 @@ module.exports = {
       res.customErrorCode = 404;
       throw new Error("Data is not found or already deleted.");
     }
+  },
+  login: async (req, res) => {
+    const { email, password } = req.body;
   },
 };

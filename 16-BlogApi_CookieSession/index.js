@@ -23,7 +23,10 @@ require("express-async-errors");
 require("./src/dbConnection")(); // require ile import ettiğimiz dbConnection fonksiyonunu hemen çağırarak veritabanı bağlantısını başlatıyoruz. //!  () KULLAN.
 
 //! Main Route:
-app.all("/", (req, res) => res.send("Welcome to Blog API"));
+app.all("/", (req, res) => {
+  console.log(req.session);
+  res.send("Welcome to Blog API");
+});
 
 //! Blog Route
 app.use("/blogs", require("./src/routes/blog.router"));
