@@ -1,6 +1,6 @@
 # Backend-Era
 
-# Initial commands:
+## Initial commands:
 
 - 🔙 npm init -y
 - 🔙 npm i -D nodemon (-D: in development, not production ) (automatic start for nodejs server)
@@ -8,7 +8,7 @@
 - 🔙 echo PORT=8000 > .env
 - 🔙 add .gitigore file (gitignore.io)
 
-# Sequelize
+## Sequelize
 
 - npm i sequelize
 - npm i sqlite3
