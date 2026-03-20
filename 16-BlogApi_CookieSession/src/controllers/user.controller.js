@@ -62,19 +62,15 @@ module.exports = {
   __v: 0
 } */
       if (user) {
-        if (user.password == password) {
+        if (user.password == passwordEncrypte(password)) {
           res.status(200).send({
             error: false,
-            mesage: "ok",
+            message: "ok",
           });
         } else {
           res.customErrorCode = 401; //! STATUS KODU DEĞİŞİKLİĞİNİ BURDAN YAPABİLİRİSN.
           throw new Error("Wrong password.");
         }
-        res.status(200).send({
-          error: false,
-          mesage: "ok",
-        });
       } else {
         res.customErrorCode = 401;
         throw new Error("Wrong email or password.");
@@ -85,3 +81,7 @@ module.exports = {
     }
   },
 };
+/* ex data for thunder:{
+     "email": "test6@site.com",
+      "password": "test"
+} */
