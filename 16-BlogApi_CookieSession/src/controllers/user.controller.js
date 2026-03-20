@@ -65,7 +65,8 @@ module.exports = {
         if (user.password == passwordEncrypte(password)) {
           res.status(200).send({
             error: false,
-            message: "ok",
+            message: "Login is successful.",
+            user,
           });
         } else {
           res.customErrorCode = 401; //! STATUS KODU DEĞİŞİKLİĞİNİ BURDAN YAPABİLİRİSN.

@@ -21,6 +21,16 @@ require("express-async-errors");
 // const dbConnection = require('./src/dbConnection');
 // dbConnection(); YERİNE:
 require("./src/dbConnection")(); // require ile import ettiğimiz dbConnection fonksiyonunu hemen çağırarak veritabanı bağlantısını başlatıyoruz. //!  () KULLAN.
+//! Cookie-Session Middleware
+//npm i cookie-session
+const session = require("cookie-session");
+app.use(
+  session({
+    secret: process.env.PASS_SALT,
+    maxAge: 1000 * 60 * 60 * 24 * 3, //session süresini belirleme opsiyonu. böylelikle cookie ye dönecektir.  //! SESSION => COOKIE
+    // 1000 msec=1 sec |||| 1000 * 60 * 60 * 24 = 1 day
+  }),
+);
 
 //! Main Route:
 app.all("/", (req, res) => {

@@ -10,6 +10,7 @@ add .gitignore file
 nodemon
 npm install express
 npm install dotenv
+rs(nodemon için restart komutu)
 
 ## Package json varlığı: nodejs projesi göstergesidir.
 
