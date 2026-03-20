@@ -11,4 +11,6 @@ router
   .put(user.update) //! PUT=> update
   .patch(user.update)
   .delete(user.delete); //! DELETE=> delete
+// router.route("/login").post(user.login) yerinne; tek bir route olduğu için:
+router.post("/login", user.login);
 module.exports = router;

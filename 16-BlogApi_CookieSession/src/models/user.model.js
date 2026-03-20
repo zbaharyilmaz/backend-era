@@ -1,6 +1,8 @@
 "use strict";
 const mongoose = require("mongoose");
+
 //PASSWORD ENCRYPTION
+/* //!REUSABLE COMP OLMASI İÇİN BU KISMI UTILS E TAŞI. require ile çağır.
 const crypto = require("node:crypto");
 const passwordEncrypte = (password) => {
   const salt = "jakdlldşdşdşdşdşşdşdşdşdşzzzzzz";
@@ -12,8 +14,10 @@ const passwordEncrypte = (password) => {
     .toString("hex");
 };
 console.log(passwordEncrypte("test"));
-// string olmadan öncesi: <Buffer ad 40 d1 23 67 7f b9 c2 1d ea 2b d4 6f a9 8e c2 e0 83 24 34 10 14 74 0c b3 9e 60 52 22 b4 14 fc>
+- string olmadan öncesi: <Buffer ad 40 d1 23 67 7f b9 c2 1d ea 2b d4 6f a9 8e c2 e0 83 24 34 10 14 74 0c b3 9e 60 52 22 b4 14 fc> */
 // string hex hali: ad40d123677fb9c21dea2bd46fa98ec2e08324341014740cb39e605222b414fc
+
+const passwordEncrypte= require("../utils/passwordEncrypte")
 
 const UserSchema = new mongoose.Schema(
   {

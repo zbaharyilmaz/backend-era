@@ -1,5 +1,7 @@
 "use string";
 const User = require("../models/user.model");
+const passwordEncrypte = require("../utils/passwordEncrypte.js");
+
 module.exports = {
   create: async (req, res) => {
     const result = await User.create(req.body);
@@ -46,5 +48,40 @@ module.exports = {
   },
   login: async (req, res) => {
     const { email, password } = req.body;
+    console.log(req.body);
+    if (email && password) {
+      const user = await User.findOne({ email: email });
+      console.log(user);
+      /*   _id: new ObjectId('69bbabe12335fdd3d31b970e'),
+  email: 'test@site.com',
+  password: 'test',
+  firstName: 'test',
+  lastName: 'test',
+  createdAt: 2026-03-19T07:55:13.485Z,
+  updatedAt: 2026-03-19T07:55:13.485Z,
+  __v: 0
+} */
+      if (user) {
+        if (user.password == password) {
+          res.status(200).send({
+            error: false,
+            mesage: "ok",
+          });
+        } else {
+          res.customErrorCode = 401; //! STATUS KODU DEĞİŞİKLİĞİNİ BURDAN YAPABİLİRİSN.
+          throw new Error("Wrong password.");
+        }
+        res.status(200).send({
+          error: false,
+          mesage: "ok",
+        });
+      } else {
+        res.customErrorCode = 401;
+        throw new Error("Wrong email or password.");
+      }
+    } else {
+      res.customErrorCode = 401;
+      throw new Error("Email and password are required");
+    }
   },
 };
