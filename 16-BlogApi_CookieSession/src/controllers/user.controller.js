@@ -1,7 +1,6 @@
-"use string";
+"use strict";
 const User = require("../models/user.model");
 const passwordEncrypte = require("../utils/passwordEncrypte.js");
-
 module.exports = {
   create: async (req, res) => {
     const result = await User.create(req.body);
@@ -63,6 +62,14 @@ module.exports = {
 } */
       if (user) {
         if (user.password == passwordEncrypte(password)) {
+          /*   req.session={
+            email:user.email,
+            _id:user._id
+          }  veya aşağıdaki gibi kullan: */
+          //! SESSION A VERİ GÖNDER!
+          req.session._id = user._id;
+          req.session.email = user.email;
+
           res.status(200).send({
             error: false,
             message: "Login is successful.",
@@ -81,6 +88,13 @@ module.exports = {
       throw new Error("Email and password are required");
     }
   },
+  logout: async(req,res)=>{
+    req.session=null;
+    res.status(200).send({
+      error:false,
+      message:"Logout is successful."
+    })
+  }
 };
 /* ex data for thunder:{
      "email": "test6@site.com",

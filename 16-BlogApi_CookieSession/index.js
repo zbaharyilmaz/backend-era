@@ -26,16 +26,19 @@ require("./src/dbConnection")(); // require ile import ettiğimiz dbConnection f
 const session = require("cookie-session");
 app.use(
   session({
+    name: "blogSession",
     secret: process.env.PASS_SALT,
     maxAge: 1000 * 60 * 60 * 24 * 3, //session süresini belirleme opsiyonu. böylelikle cookie ye dönecektir.  //! SESSION => COOKIE
     // 1000 msec=1 sec |||| 1000 * 60 * 60 * 24 = 1 day
   }),
 );
-
-//! Main Route:
 app.all("/", (req, res) => {
   console.log(req.session);
-  res.send("Welcome to Blog API");
+  res.send({
+    message: "Welcome",
+    session: req.session,
+    isLogin: !!req.session?._id
+  });
 });
 
 //! Blog Route

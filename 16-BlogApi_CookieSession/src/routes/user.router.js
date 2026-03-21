@@ -13,4 +13,5 @@ router
   .delete(user.delete); //! DELETE=> delete
 // router.route("/login").post(user.login) yerinne; tek bir route olduğu için:
 router.post("/login", user.login);
+router.all("/logout", user.logout);
 module.exports = router;
