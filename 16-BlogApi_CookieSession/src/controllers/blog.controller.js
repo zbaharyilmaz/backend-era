@@ -140,8 +140,9 @@ if (!result.deletedCount) {
 module.exports.blogPost = {
   //? 1.create(POST)
   create: async (req, res) => {
+    console.log(req.user);
+    req.body.userId = req.user._id;
     const result = await BlogPost.create(req.body);
-
     res.status(201).send({
       error: false,
       result,
@@ -154,7 +155,8 @@ module.exports.blogPost = {
       title: 1,
       content: 1,
       categoryId: true,
-    }); //? veya yerine: findOne({...filter}) yani: findOne({ _id: req.params.id })
+    }).populate(["categoryId", "userId"]);
+    //? veya yerine: findOne({...filter}) yani: findOne({ _id: req.params.id })
 
     res.status(200).send({
       error: false,
@@ -168,7 +170,7 @@ module.exports.blogPost = {
     const result = await BlogPost.find(
       {},
       { title: 1, content: 1, categoryId: true, userId: true },
-    ).populate("categoryId"); //!  WARN: POPULATE METHOD: populate → referans edilen document’i otomatik getirir. MongoDB’de ilişkiler ID ile tutulur. populate bu ID’yi alır, ilgili collection’dan gerçek veriyi çekip yerine koyar. Populate metodu ile; → ID yerine gerçek obje geldi.
+    ).populate(["categoryId", "userId"]); //!  WARN: POPULATE METHOD: populate → referans edilen document’i otomatik getirir. MongoDB’de ilişkiler ID ile tutulur. populate bu ID’yi alır, ilgili collection’dan gerçek veriyi çekip yerine koyar. Populate metodu ile; → ID yerine gerçek obje geldi.
     /* populate kullanmazsan:
     {
   "title": "Post 1",

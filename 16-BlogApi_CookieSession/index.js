@@ -21,31 +21,39 @@ require("express-async-errors");
 // const dbConnection = require('./src/dbConnection');
 // dbConnection(); YERİNE:
 require("./src/dbConnection")(); // require ile import ettiğimiz dbConnection fonksiyonunu hemen çağırarak veritabanı bağlantısını başlatıyoruz. //!  () KULLAN.
+/*---------------------------------------------*/
+//* MIDDLEWARES
 //! Cookie-Session Middleware
 //npm i cookie-session
-const session = require("cookie-session");
+const session = require("cookie-session"); //Session verisi server’da değil, client tarafındaki cookie içinde saklanır.
 app.use(
   session({
-    name: "blogSession",
+    // name: "blogSession",
     secret: process.env.PASS_SALT,
-    maxAge: 1000 * 60 * 60 * 24 * 3, //session süresini belirleme opsiyonu. böylelikle cookie ye dönecektir.  //! SESSION => COOKIE
+    // maxAge: 1000 * 60 * 60 * 24 * 3, //session süresini belirleme opsiyonu. böylelikle cookie ye dönecektir.  //& SESSION => COOKIE
     // 1000 msec=1 sec |||| 1000 * 60 * 60 * 24 = 1 day
   }),
 );
+
+//! User Control Middleware(check user data from SESSION)
+app.use(require("./src/middlewares/userControl")); //route belirtmedik:yani her route da çalışır bir middleware.
+/*---------------------------------------------*/
+//* ROUTES
+//! Main Route
 app.all("/", (req, res) => {
   console.log(req.session);
   res.send({
     message: "Welcome",
     session: req.session,
-    isLogin: !!req.session?._id
+    user:req.user,
+    // isLogin: !!req.session?._id,
   });
 });
-
 //! Blog Route
 app.use("/blogs", require("./src/routes/blog.router"));
 //! User Route
 app.use("/users", require("./src/routes/user.router"));
-
+/*---------------------------------------------*/
 //! Error Handler:
 app.use(require("./src/middlewares/errorHandler"));
 
