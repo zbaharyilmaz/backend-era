@@ -1,5 +1,5 @@
 "use strict";
-const User = require("../models/user.model");
+const User = require("../models/user.model.js");
 const passwordEncrypte = require("../utils/passwordEncrypte.js");
 module.exports = {
   create: async (req, res) => {

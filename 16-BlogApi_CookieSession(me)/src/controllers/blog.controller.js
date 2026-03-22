@@ -66,7 +66,7 @@ module.exports.blogCategory = {
     const result = await BlogCategory.findOneAndUpdate(
       { _id: req.params.id },
       req.body,
-      { new: true }, //   { new: true, overwrite: true } // önemli: full replace
+      { new: true, upsert:true }, //   { new: true, overwrite: true } // önemli: full replace
     );
 
     res.status(200).send({
