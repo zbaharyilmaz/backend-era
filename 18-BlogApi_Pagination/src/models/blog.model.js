@@ -6,70 +6,75 @@
 
 const mongoose = require("mongoose");
 
-
 /* ---------------------------------------------------- */
 //* BlogCategory Schema
-const blogCategorySchema = new mongoose.Schema({
-
+const blogCategorySchema = new mongoose.Schema(
+  {
     // _id
 
     name: {
-        type: String,
-        trim: true,
-        required: true,
-        unique: true
-    }
+      type: String,
+      trim: true,
+      required: true,
+      unique: true,
+    },
+  },
+  {
+    collection: "blogCategories",
+  },
+);
 
-}, {
-    collection: 'blogCategories'
-});
-
-const BlogCategory = mongoose.model('BlogCategory', blogCategorySchema);
+const BlogCategory = mongoose.model("BlogCategory", blogCategorySchema);
 
 /* ---------------------------------------------------- */
 //* BlogPost Schema
 
-const BlogPostSchema = new mongoose.Schema({
-
-    categoryId: { // default relation: ManyToOne
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'BlogCategory',
-        required: true,
-        // unique: true // convert relation to OneToOne.
+const BlogPostSchema = new mongoose.Schema(
+  {
+    categoryId: {
+      // default relation: ManyToOne
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "BlogCategory",
+      required: true,
+      // unique: true // convert relation to OneToOne.
     },
 
-    userId: { 
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
     },
-
 
     title: {
-        type: String,
-        trim: true,
-        required: true
+      type: String,
+      trim: true,
+      required: true,
     },
 
     content: {
-        type: String,
-        trim: true,
-        required: true
+      type: String,
+      trim: true,
+      required: true,
     },
 
     // createdAt
     // updatedAt
 
-}, {
-    collection: 'blogPosts',
-    timestamps: true
-});
+    published: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  {
+    collection: "blogPosts",
+    timestamps: true,
+  },
+);
 
-const BlogPost = mongoose.model('BlogPost', BlogPostSchema);
+const BlogPost = mongoose.model("BlogPost", BlogPostSchema);
 
 /* ---------------------------------------------------- */
-module.exports = { BlogCategory, BlogPost }
-
+module.exports = { BlogCategory, BlogPost };
 
 /* ---------------------------------------------------- *
 //* Sample

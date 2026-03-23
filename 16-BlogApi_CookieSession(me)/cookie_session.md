@@ -7,3 +7,6 @@
 - LOCAL STORAGE (ömrü yok)
 - SESSION (ömrü devam eder, x ya basılıncaya kadar)
 - COOKIE (ömrü devam eder. sessionlara bir ömür verirsek: cookie)
+
+
+Not: session {} gelme sorunu devam ediyor.

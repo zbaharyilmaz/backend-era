@@ -1,35 +1,38 @@
-# BLOG Project with Mongoose
+brew services start mongodb-community
 
-## MONGOOSE
+## Search vs Filter
 
-https://mongoosejs.com/
+# Search
 
-### What? Why?
+Tam eşleşme aramaz
+İçerik bazlıdır
+Örnek:
+title: { $regex: "node", $options: "i" }
 
-![](./mongoose.png)
+# Filter
 
-## BLOG API
+Tam eşleşme ister
+Kesin değerle çalışır
+Örnek:
+category: "tech"
 
-### ERD:
+## Frontend vs Backend işlemleri
 
-![ERD](./erdBlogAPI.png)
+Frontend (React Data Table)
+Tüm daha çekilir ve Pagination, search, filter client-side da yapılır.
+Küçük veri için hızlı
+Ama:
+Büyük datada yavaş
+Tüm data client’a gelir → kötü
+Backend (önerilen)
+Pagination, search, filter server-side
+Avantaj:
+Performans yüksek
+Az veri taşınır
+Güvenli
 
-### Folder/File Structure:
+# Net özet
 
-```
-    .env
-    .gitignore
-    index.js
-    package.json
-    readme.md
-    src/
-        dbConnection.js
-        middlewares/
-            errorHandler.js
-        models/
-            blogModel.js
-        controllers/
-            blogController.js
-        routes/
-            blogRouter.js
-```
+Search → esnek arama
+Filter → kesin eşleşme
+Pagination/search/filter → backend’de yapılmalı
