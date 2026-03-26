@@ -83,27 +83,49 @@ module.exports.blogPost = {
     //console.log(req.query);
     /* - Query Param objesi: 
 { filter: { published: '1', categoryId: '69c4b89155d2ab62912cf731' }, search: { title: 'test 1' }, sort: 'asc' } */
- //& FILTERING (URL?filter[fieldName1]=value1&filter[filedName2]=value2) ABSOLUTE EQUALITY
+    //& FILTERING (URL?filter[fieldName1]=value1&filter[filedName2]=value2) ABSOLUTE EQUALITY
     const filter = req.query?.filter || {};
-//&SEARCHING(URL?search[fieldName1]=value1&search[filedName2]=value2) PARTIAL EQUALITY
-    const search = req.query?.search || {};
     console.log("filter:", filter);
-    console.log("search:", search);
-    /* 
-filter: { published: '1', categoryId: '69c4b89155d2ab62912cf731' }
-search: { title: 'test 1' } */
+    // filter: { published: '1', categoryId: '69c4b89155d2ab62912cf731' }
+    //&SEARCHING(URL?search[fieldName1]=value1&search[filedName2]=value2) PARTIAL EQUALITY.
+    // REGEX { "<field>": { "$regex": "pattern", "$options": "<options>" } }
+    // ! ŞU AN AMACIMIZ:  query parametresini MongoDB $regex filtre formatına çevirmek.
+    // QUERY SANITIZATION-QUERY TRANSFORMATION
+    const search = req.query?.search || {};
 
+    console.log("search:", search);
+    //search: { title: 'test 1' } query parametresi
+
+    console.log(search["title"]); //! BRACET NOTATION (property access)
+    console.log(search.title); //! DOT NOTATION
+    // search["title"] = "this is new value";
+    for (let key in search) {
+      search[key] = { $regex: search[key], $options: "i" }; //i means insensitive for case.
+    }
+    console.log(search);
+    // { title: { '$regex': 'this is new value', '$options': 'i' } } MongoDB regex filtre formtına çevrildi.
+    //& SORTING
+    const sort = req.query?.sort || {};
+    //& PAGINATION
+//mongo db: skip and limit
     //* BlogPost.find({...filter}, {select})
     const result = await BlogPost.find(
-      filter,
+      {
+        ...filter,
+        ...search,
+      }, // spread operator: filter içeriği açılır, search içeriği açılır. tek bir query object oluşturulur.
+
       // { title: 1, content: 1, categoryId: true, userId: true },
-    ).populate(["categoryId", "userId"]);
+    )
+      .sort(sort)
+      .populate(["categoryId", "userId"]);
 
     res.status(200).send({
       error: false,
       result,
     });
   },
+
 
   create: async (req, res) => {
     //* add logged in user id for creation of blogpost.
