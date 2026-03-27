@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 
 /* ---------------------------------------------------- */
 //* BlogCategory Schema
-const blogCategorySchema = new mongoose.Schema(
+const BlogCategorySchema = new mongoose.Schema(
   {
     // _id
 
@@ -24,7 +24,7 @@ const blogCategorySchema = new mongoose.Schema(
   },
 );
 
-const BlogCategory = mongoose.model("BlogCategory", blogCategorySchema);
+const BlogCategory = mongoose.model("BlogCategory", BlogCategorySchema);
 
 /* ---------------------------------------------------- */
 //* BlogPost Schema

@@ -9,7 +9,7 @@ const mongoose = require("mongoose");
 //! Model → MongoDB’deki koleksiyonun “temsilcisi” (örneğin BlogCategory)
 /* ---------------------------------------------------- */
 //& BlogCategory Schema
-const blogCategorySchema = new mongoose.Schema(
+const BlogCategorySchema = new mongoose.Schema(
   {
     // _id automatically created and incremented by MongoDB.
     name: {
@@ -24,7 +24,7 @@ const blogCategorySchema = new mongoose.Schema(
   },
 );
 
-const BlogCategory = mongoose.model("BlogCategory", blogCategorySchema);
+const BlogCategory = mongoose.model("BlogCategory", BlogCategorySchema);
 
 /* ---------------------------------------------------- */
 //& BlogPost Schema

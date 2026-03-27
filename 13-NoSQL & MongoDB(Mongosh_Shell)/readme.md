@@ -12,7 +12,7 @@ Local MongoDB → kendi bilgisayarında çalışır, port: 27017, internet gerek
 
 MongoDB Atlas → MongoDB’nin bulut servisi, online, her yerden erişebilirsin. Bağlanmak için kullanıcı adı, şifre ve cluster URL gerekir.
 
-mongosh ise MongoDB Shell:
+mongosh: MongoDB Shell:
 
 MongoDB server ile konuşmanı sağlayan terminal aracı.
 
@@ -20,12 +20,6 @@ Veri ekleme, sorgulama, güncelleme, silme, database ve collection yönetimi gib
 
 Yani mongosh bir uygulama değil, MongoDB server’a bağlanan komut satırı arayüzü.
 
-Özet:
-
-Şey Ne olduğu Kullanım
-MongoDB server Veritabanı Veri saklar, sorgular vs.
-Mongosh CLI aracı Server’a bağlanıp komut çalıştırır
-Atlas Bulut server Online veritabanı, internete bağlı,
 
 ## Backend Developer Mental Model
 

@@ -5,13 +5,13 @@
 ------------------------------------------------------- */
 
 const mongoose = require("mongoose");
-//! ÖNCE SCHEMA OLUŞTUR, SONRA MODEL OLUŞTUR. 
+//! ÖNCE SCHEMA OLUŞTUR, SONRA MODEL OLUŞTUR.
 //! SCHEMA = VERİ YAPISI, MODEL = SCHEMA'YI KULLANARAK OLUŞTURULAN SINIF. MODEL ÜZERİNDEN VERİ TABANI İLE ETKİLEŞİMDE BULUNURUZ.
 //! Model → MongoDB’deki koleksiyonun “temsilcisi” (örneğin BlogCategory)
 /* ---------------------------------------------------- */
 //& BlogCategory Schema
 //* Schema({collection's fields},{options})
-const blogCategorySchema = new mongoose.Schema( //! mongoose içindeki Schema constructor veya Schema class ı ile model oluşturuyoruz.
+const BlogCategorySchema = new mongoose.Schema( //! mongoose içindeki Schema constructor veya Schema class ı ile model oluşturuyoruz.
   {
     // _id automatically created and incremented by MongoDB.
     name: {
@@ -26,26 +26,27 @@ const blogCategorySchema = new mongoose.Schema( //! mongoose içindeki Schema co
   },
 );
 
-const BlogCategory = mongoose.model("BlogCategory", blogCategorySchema);
+const BlogCategory = mongoose.model("BlogCategory", BlogCategorySchema);
 
 /* ---------------------------------------------------- */
 //& BlogPost Schema
 // Schema({collection's fields},{options})
 const BlogPostSchema = new mongoose.Schema( //! mongoose içindeki Schema constructor veya Schema class ı ile model oluşturuyoruz.
   {
-    categoryId: {  //ex categoryId:     "categoryId": "69b9c4600734860432387f75",
+    categoryId: {
+      //ex categoryId:     "categoryId": "69b9c4600734860432387f75",
       // default relation: ManyToOne
       type: mongoose.Schema.Types.ObjectId,
       ref: "BlogCategory",
       required: true,
       // unique: true // convert relation to OneToOne.
     },
-    userId:{
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-        title: {
+    title: {
       type: String,
       trim: true,
       required: true,

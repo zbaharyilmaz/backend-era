@@ -1,7 +1,7 @@
 "use strict";
 const mongoose = require("mongoose");
 //*blogCategories
-const blogCategorySchema = new mongoose.Schema(  //iki parametre var. options ve collection
+const BlogCategorySchema = new mongoose.Schema( //iki parametre var. options ve collection
   {
     name: {
       type: String,
@@ -12,9 +12,9 @@ const blogCategorySchema = new mongoose.Schema(  //iki parametre var. options ve
   },
   {
     collection: "blogCategories",
-  }
+  },
 );
-const BlogCategory = mongoose.model("BlogCategory", blogCategorySchema);
+const BlogCategory = mongoose.model("BlogCategory", BlogCategorySchema);
 //* blogPosts
 const blogPostSchema = new mongoose.Schema(
   {
@@ -35,25 +35,23 @@ const blogPostSchema = new mongoose.Schema(
 
     title: {
       type: String,
-      trim:true,
-      required:true,
+      trim: true,
+      required: true,
     },
     content: {
-      type:String,
-      trim:true,
-      required:true,
+      type: String,
+      trim: true,
+      required: true,
     },
-    published:{
+    published: {
       type: Boolean,
-      default:true,
-    
-      
-    }
+      default: true,
+    },
   },
   {
     collection: "blogPosts",
     timestamps: true,
-  }
+  },
 );
-const BlogPost= mongoose.model("BlogPost",blogPostSchema)
-module.exports= {BlogCategory, BlogPost}
+const BlogPost = mongoose.model("BlogPost", blogPostSchema);
+module.exports = { BlogCategory, BlogPost };
