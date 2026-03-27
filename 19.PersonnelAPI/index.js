@@ -5,6 +5,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8000;
 app.use(express.json());
 require("./src/configs/dbConnection")();
+app.use(require("./src/middlewares/queryHandler"));
 const session = require("cookie-session");
 app.use(
   session({
@@ -12,4 +13,13 @@ app.use(
     // maxAge: 1000 * 60 * 60 * 24 * 3 // 3 days in miliSeconds // now this is a cookie.
   }),
 );
+app.all("/", (req,res)=>{
+  res.send({
+    message:"Welcome PersonnelAPI"
+  })
+})
+app.use("/departments",require("./src/routes/department.router"));
+
+app.use(require("./src/middlewares/errorHandler"));
+
 app.listen(PORT, () => console.log("Running at http://127.0.0.1:" + PORT));
