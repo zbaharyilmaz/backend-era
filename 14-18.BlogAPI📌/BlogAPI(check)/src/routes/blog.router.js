@@ -4,7 +4,7 @@ const router = require("express").Router();
 const {blogCategory, blogPost }= require("../controllers/blog.controller");
 // ️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ ⭐️ *
 //Todo BlogCategory
-router.route("/category").get(blogCategory.list).post(blogCategory.create); //create conttroller ı çalışacak.
+router.route("/category").get(blogCategory.list).post(blogCategory.create); //create controller ı çalışacak.
 
 router.route("/category/:id").get(blogCategory.read).put(blogCategory.update)
 .delete(blogCategory.delete);
