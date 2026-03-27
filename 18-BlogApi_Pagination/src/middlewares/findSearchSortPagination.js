@@ -76,7 +76,7 @@ module.exports = async (req, res, next) => {
       pages: {
         previos: page > 1 ? page - 1 : false,
         current: page,
-        next: page + 1 < Math.ceil(count / limit) ? page + 1 : false,
+        next: page < Math.ceil(count / limit) ? page + 1 : false,
         total: Math.ceil(count / limit),
       },
     };
