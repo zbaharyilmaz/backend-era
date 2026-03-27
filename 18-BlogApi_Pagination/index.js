@@ -37,7 +37,7 @@ app.use(
 
 // User Control (check user data from session)
 app.use(require("./src/middlewares/userControl"));
-
+app.use(require("./src/middlewares/findSearchSortPagination"));
 /*------------------------------------------------------- */
 
 // Main Route:

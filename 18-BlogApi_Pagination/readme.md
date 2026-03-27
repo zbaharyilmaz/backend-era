@@ -57,3 +57,20 @@ http://127.0.0.1:8000/blogs/post?filter[published]=1&search[title]=test 1&filter
     { $or: [{ title: { $regex: "test 1", $options: "i" } }] }
   ]
 }
+
+## Note: 
+parseInt vs Number
+
+parseInt("10.5") // 10
+parseInt("10abc") // 10
+parseInt("abc10") // NaN
+- Soldan sağa okur,İlk geçersiz karakterde durur
+
+Number("10.5") // 10.5
+Number("10abc") // NaN
+Number("abc10") // NaN
+- Tam dönüşüm yapar, String tamamen valid olmalı
+
+Yani: parseInt = “sayının başını al, devamını ignore et”, Number = “tam doğru sayı mı? değilse reddet.
+
+- env den gelen veriler stringtir.
