@@ -49,7 +49,39 @@ const PersonnelSchema = new mongoose.Schema(
         "Email is not valid.",
       ],
     },
+    title: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    salary: {
+      type: Number,
+      default: 30000,
+    },
+    description: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    isLead: {
+      type: Boolean,
+      default: false,
+    },
+    startedAt: {
+      type: Date,
+      default: Date.now(),
+      required: true,
+    },
   },
+
   {
     collection: "personnels",
     timestamps: true,
