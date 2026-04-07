@@ -54,14 +54,13 @@ app.all("/", (req, res) => {
 app.use("/blogs", require("./src/routes/blog.router"));
 // User Route
 app.use("/users", require("./src/routes/user.router"));
-//Not Found Route
-app.all("*", (req, res) => {
-  res.status(404).send({
+// 404 handler
+app.use("*", (req, res) => {
+  res.status(404).json({
     error: true,
-    message: "The route you are looking is not found.",
+    message: "Not found",
   });
 });
-/*------------------------------------------------------- */
 
 // Error Handler:
 app.use(require("./src/middlewares/errorHandler"));
