@@ -15,6 +15,7 @@ module.exports = {
         res.status(200).send({
         error:false,
         result
+        //! create() ile yeni bir belge eklediğinde validatorlar otomatik çalışır .runValidator yazmana gerek yok.
     })
   },
   read: async (req, res) => {
@@ -26,7 +27,8 @@ module.exports = {
   },
   update: async (req, res) => {
        const result = await DepartmentModel.findByIdAndUpdate(req.params.id, req.body, {
-         new: true,
+        runValidators:true, //! validate ediyor tekrardan. Eğer yazmazsan schema’daki required, match, validate çalışmaz.
+         new: true, // return updated data.
        });
         res.status(202).send({
         error:false,

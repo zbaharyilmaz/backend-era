@@ -13,13 +13,16 @@ app.use(
     // maxAge: 1000 * 60 * 60 * 24 * 3 // 3 days in miliSeconds // now this is a cookie.
   }),
 );
-app.all("/", (req,res)=>{
+app.all("/", (req, res) => {
   res.send({
-    message:"Welcome PersonnelAPI"
-  })
-})
-app.use("/departments",require("./src/routes/department.router"));
+    message: "Welcome PersonnelAPI",
+  });
+});
+app.use("/departments", require("./src/routes/department.router"));
+app.use("/personnels", require("./src/routes/personnel.router"));
 
 app.use(require("./src/middlewares/errorHandler"));
 
 app.listen(PORT, () => console.log("Running at http://127.0.0.1:" + PORT));
+//! Syncronization : Run it only once.
+//require("./src/utils/sync")();

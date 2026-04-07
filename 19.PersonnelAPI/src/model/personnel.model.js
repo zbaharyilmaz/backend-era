@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const passwordEncrypte = require("../utils/passwordEncrypte");
 const PersonnelSchema = new mongoose.Schema(
   {
-    deartmentId: {
+    departmentId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "DepartmentModel",
       required: true,
@@ -19,14 +19,14 @@ const PersonnelSchema = new mongoose.Schema(
       type: String,
       trim: true,
       required: true,
-      set: (password) => passwordEncrypte(),
+      set: (password) => passwordEncrypte(password),
     },
     firstName: {
       type: String,
       trim: true,
       required: true,
     },
-    LastName: {
+    lastName: {
       type: String,
       trim: true,
       required: true,
