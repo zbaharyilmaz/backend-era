@@ -4,7 +4,7 @@ const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 8000;
 app.use(express.json());
-require("./src/configs/dbConnection")();
+require("./src/configs/dbConnection"); //! require("./src/configs/dbConnection")(); kaldırdık. çünkü config db connection fonk kaldırdık, direkt mongoose u export ettik.
 app.use(require("./src/middlewares/queryHandler"));
 const session = require("cookie-session");
 app.use(
