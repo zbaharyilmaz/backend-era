@@ -62,6 +62,8 @@ Güvenli → Süresi dolmuş token’lar geçersiz
 
 Session = Web için, Token = Mobile ve IoT için modern kimlik doğrulama yöntemi
 
+## Login olan kullanıcının bilgileri frontend de cookie de tutulur. Backend de request te tutulur.(req.user)
+
 # API nedir?
 
 👉 Bütün sistemin adı : API = veri isteme ve gönderme kapısı 🚪
