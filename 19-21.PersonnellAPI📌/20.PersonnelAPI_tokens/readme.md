@@ -101,3 +101,12 @@ HTTP metodlarını kullanır:
 | POST   | Veri ekler |
 | PUT    | Günceller  |
 | DELETE | Siler      |
+
+
+## Package json scripts
+
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  }, 
+  bu güncelleme ile nodemon ------> yerine; npm start kullanılabilir.
