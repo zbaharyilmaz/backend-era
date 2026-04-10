@@ -1,8 +1,12 @@
 "use strict";
+const PersonnelModel = require("../model/personnel.model");
 module.exports = {
   login: async (req, res) => {
     const { username, email, password } = req.body; //!destructuring
     if ((username || email) && password) {
+      const user = await PersonnelModel.findOne({
+        $or: [{ email }, { username }],
+      }); //  $or: [{ email: email }, { username: username }]
       res.status(200).send({
         error: false,
         message: "OK",
