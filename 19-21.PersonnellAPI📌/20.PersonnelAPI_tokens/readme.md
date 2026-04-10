@@ -102,11 +102,54 @@ HTTP metodlarını kullanır:
 | PUT    | Günceller  |
 | DELETE | Siler      |
 
-
 ## Package json scripts
 
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
-  }, 
-  bu güncelleme ile nodemon ------> yerine; npm start kullanılabilir.
+"scripts": {
+"test": "echo \"Error: no test specified\" && exit 1",
+"start": "nodemon index.js"
+},
+bu güncelleme ile nodemon ------> yerine; npm start kullanılabilir.
+
+## INDEX
+
+🚀 Index (İndexleme) Nedir?
+
+Index, veritabanında arama işlemlerini hızlandırmak için kullanılan bir yapıdır.
+
+🧠 Mantık:
+
+Index yoksa:
+
+MongoDB tüm verileri tek tek tarar (full scan)
+
+Index varsa:
+
+Kitap indeksine bakar gibi direkt bulur
+📚 Örnek:
+
+Diyelim 1 milyon kayıt var:
+
+TokenModel.find({ token: "abc123" });
+❌ Index yoksa:
+1 milyon kaydı tek tek kontrol eder
+✅ Index varsa:
+Direkt ilgili kayda gider (çok hızlı)
+🎯 Neden Kullanılır?
+⚡ Performans artırır
+🔍 Sorguları hızlandırır
+📊 Büyük veride kritik öneme sahiptir
+⚠️ Ama Dikkat:
+
+Index'in dezavantajları da var:
+
+❗ Fazla index → yazma işlemlerini yavaşlatır
+❗ Daha fazla disk alanı kullanır
+🔐 Bu Kodda Index Neden Kullanılmış?
+userId için:
+index: true
+“Bu kullanıcıya ait tokenları getir” sorgusu hızlı olur
+token için:
+unique: true,
+index: true
+Token ile login / doğrulama yapılır → hızlı olmalı
+unique → güvenlik için aynı token tekrar oluşamaz
