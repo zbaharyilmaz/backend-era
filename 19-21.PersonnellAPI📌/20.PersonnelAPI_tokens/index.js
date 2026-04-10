@@ -20,6 +20,8 @@ app.all("/", (req, res) => {
 });
 app.use("/departments", require("./src/routes/department.router"));
 app.use("/personnels", require("./src/routes/personnel.router"));
+app.use("/tokens", require("./src/routes/token.router"));
+app.use("/auth", require("./src/routes/auth"));
 app.use((req, res, next) => {
   res.status(404).json({
     error: true,

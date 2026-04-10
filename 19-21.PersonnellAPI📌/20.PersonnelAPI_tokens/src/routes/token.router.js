@@ -5,7 +5,7 @@ const {
   create,
   read,
   update,
-  deleting,
+  deleteToken,
 } = require("../controllers/token.controller"); //! BURADA FARKLI OLARAK DESTRUCTONG YAPTIK.
 router.route("/").get(list).post(create);
 
