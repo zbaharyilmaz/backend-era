@@ -6,7 +6,18 @@ module.exports = {
     if ((username || email) && password) {
       const user = await PersonnelModel.findOne({
         $or: [{ email }, { username }],
+        password,
       }); //  $or: [{ email: email }, { username: username }]
+      //! findone set metodunu da çalıştırarak, passwordda hash li password a ulaşacagız.
+      if (user) {
+        res.status(200).send({
+          error: false,
+          message: "OK",
+        });
+      } else {
+        res.errorStatusCode = 401;
+        throw new Error("Wrong email/username/password");
+      }
       res.status(200).send({
         error: false,
         message: "OK",
